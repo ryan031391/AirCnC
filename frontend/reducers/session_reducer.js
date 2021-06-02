@@ -14,6 +14,7 @@ import {
         return { id: action.currentUser.id };
       case LOGOUT_CURRENT_USER:
         return _nullUser;
+        
       default:
         return state;
     }

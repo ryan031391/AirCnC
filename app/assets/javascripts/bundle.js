@@ -573,7 +573,7 @@ var Protected = function Protected(_ref2) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    loggedIn: Boolean(state.session.id)
+    loggedIn: Boolean(state.session)
   };
 };
 

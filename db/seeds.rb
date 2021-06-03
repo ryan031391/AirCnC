@@ -7,9 +7,3 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.delete_all
-
-u1 = User.create!(
-    username: 'guest',
-    password: 'password'
-)

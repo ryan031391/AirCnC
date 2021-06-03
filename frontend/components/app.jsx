@@ -5,17 +5,20 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SignUpFormContainer from './session_form/signup_form_container'
 import LoginFormContainer from './session_form/login_form_container'
 import WelcomeContainer from './welcome/welcome_container'
+import Modal from './modal/modal'
+
 
 
 const App = () => (
     <div>
+      <Modal />
       <header>
         <h1>Welcome to AirCnC</h1>
         <WelcomeContainer />
       </header>
       <Switch>
-        <AuthRoute exact path="/login" component={LoginFormContainer} />
-        <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+        {/* <AuthRoute exact path="/login" component={LoginFormContainer} />
+        <AuthRoute exact path="/signup" component={SignUpFormContainer} /> */}
       </Switch>
     </div>
 );

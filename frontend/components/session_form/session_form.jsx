@@ -23,12 +23,13 @@ class SessionForm extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         this.props.signup(this.state)
+            .then(this.props.closeModal())
     }
 
     render(){
         return(
             <div>
-                <h1>Please enter your Username and Password to {this.props.formType}</h1>
+                <h1>Please {this.props.formType} or {this.props.otherForm}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Username: 
                         <input 

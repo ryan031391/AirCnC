@@ -364,8 +364,10 @@ function Modal(_ref) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "modal-background",
     onClick: closeModal
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "modal-child",
     onClick: function onClick(e) {
       return e.stopPropagation();
     }

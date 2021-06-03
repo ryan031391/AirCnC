@@ -28,7 +28,7 @@ class SessionForm extends React.Component{
     render(){
         return(
             <div>
-                <h1>Sign Up To Be A Member Of AirCnC!</h1>
+                <h1>Please enter your Username and Password to {this.props.formType}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Username: 
                         <input 

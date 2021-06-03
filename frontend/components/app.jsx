@@ -11,7 +11,7 @@ const App = () => (
     <div>
       <header>
         <h1>Welcome to AirCnC</h1>
-        {/* <WelcomeContainer /> */}
+        <WelcomeContainer />
       </header>
       <Switch>
         <AuthRoute exact path="/login" component={LoginFormContainer} />

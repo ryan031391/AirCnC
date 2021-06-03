@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Welcome = (props) => {
     const not_logged_in = () => (
-        <div>
+        <nav>
             <Link to="/login">Login</Link>
             &nbsp;or&nbsp;
             <Link to="/signup">Sign Up!</Link>
-        </div>
+        </nav>
     );
 
     const logged_in = () => (
@@ -16,7 +17,7 @@ const Welcome = (props) => {
         </div>
     );
 
-    return currentUser ? logged_in() : not_logged_in();
+    return props.currentUser ? logged_in() : not_logged_in();
 }
 
 export default Welcome;

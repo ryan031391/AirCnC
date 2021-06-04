@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 const Welcome = ({currentUser, logout, openModal}) => {
     const not_logged_in = () => (
         <nav>
+            <h1>Welcome to AirCnC</h1>
             <button onClick={() => openModal('login')}>Login</button>
             &nbsp;or&nbsp;
             <button onClick={() => openModal('signup')}>SignUp</button>

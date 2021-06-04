@@ -12,7 +12,7 @@ const Welcome = ({currentUser, logout, openModal}) => {
 
     const logged_in = () => (
         <div>
-            <h1>Welcome, {currentUser.username}</h1>
+            <h1>Hi, {currentUser.username}</h1>
             <button onClick={logout}>Log out</button>
         </div>
     );

@@ -7,10 +7,16 @@ class SessionForm extends React.Component{
             username: '',
             password: ''
         }
+        const num = Math.floor(Math.random()*100000000)
+        this.guestState = {
+            username: `guest${num}`,
+            password: `${num}`
+        }
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
+        this.handleGuest = this.handleGuest.bind(this);
     }
 
     updateUsername(e){
@@ -23,7 +29,7 @@ class SessionForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.signup(this.state)
+        this.props.action(this.state)
             // .then(this.props.closeModal())
             .then(() => {
                 if (this.props.errors.session) {}
@@ -41,6 +47,19 @@ class SessionForm extends React.Component{
             ))}
           </ul>
         );
+    }
+
+    handleGuest(){
+        const guestSubmit = state => {
+            this.props.signup(state)
+                .then(this.props.closeModal())
+        }
+
+        if (this.props.formType === 'LogIn') {
+            return(
+                <button onClick={() => guestSubmit(this.guestState)}>Guest Login</button>
+            )
+        }
     }
 
     render(){
@@ -64,6 +83,8 @@ class SessionForm extends React.Component{
                         />
                     </label>
                     <button>{this.props.formType}</button>
+                    <br/>
+                    {this.handleGuest()}
                 </form>
             </div>
         )

@@ -10,6 +10,12 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def destroy
+        @user = User.find_by(id: params[:id])
+        @user.destroy
+        render "api/users/show"
+    end
+
     private
 
     def user_params

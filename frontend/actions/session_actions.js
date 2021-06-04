@@ -48,3 +48,15 @@ export const logout = () => dispatch => (
     APIUtil.logout()
         .then(user => dispatch(logoutCurrentUser()))
 )
+
+export const guestLogin = user => dispatch =>(
+    APIUtil.signup(user)
+        .then(
+            user => dispatch(recieveCurrentUser(user))
+        )
+)
+
+export const guestLogout = userId => dispatch => (
+    APIUtil.remove(userId)
+        .then(() => dispatch(logoutCurrentUser()))
+)

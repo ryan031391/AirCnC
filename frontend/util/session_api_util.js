@@ -27,3 +27,10 @@ export const login = user => (
       url: '/api/session'
     })
   );
+
+  export const remove = userId => (
+    $.ajax({
+      method: 'DELETE',
+      url: `/api/user/${userId}`
+    })
+  )

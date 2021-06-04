@@ -2342,3 +2342,11 @@ Processing by StaticPagesController#root as HTML
 Completed 200 OK in 47ms (Views: 44.7ms | ActiveRecord: 0.0ms)
 
 
+Started POST "/api/session" for ::1 at 2021-06-04 12:19:03 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"111111", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "111111"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:10
+Completed 401 Unauthorized in 12ms (Views: 0.2ms | ActiveRecord: 5.0ms)
+
+

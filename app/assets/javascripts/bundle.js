@@ -557,6 +557,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     _this.updateUsername = _this.updateUsername.bind(_assertThisInitialized(_this));
     _this.updatePassword = _this.updatePassword.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 

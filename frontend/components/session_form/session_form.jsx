@@ -17,6 +17,7 @@ class SessionForm extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
         this.handleGuest = this.handleGuest.bind(this);
+        this.handleKey = this.handleKey.bind(this);
     }
 
     updateUsername(e){
@@ -49,6 +50,12 @@ class SessionForm extends React.Component{
         );
     }
 
+    handleKey(e){
+        if (e.key === 'Enter') {
+            this.handleSubmit(e)
+        }
+    }
+
     handleGuest(){
         const guestSubmit = state => {
             this.props.signup(state)
@@ -68,21 +75,24 @@ class SessionForm extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     Please {this.props.formType} or {this.props.otherForm}
                     {this.renderErrors()}
-                    <label>Username: 
+                    <label class="input">Username: 
                         <input 
                         type="text" 
                         value={this.state.username} 
                         onChange={this.updateUsername}
+                        onKeyDown={this.handleKey}
                         />
                     </label>
-                    <label>Password: 
+                    <br/>
+                    <label class="input">Password: 
                         <input 
                         type="password"
                         value={this.state.password}
                         onChange={this.updatePassword}
+                        onKeyDown={this.handleKey}
                         />
                     </label>
-                    <button>{this.props.formType}</button>
+                    <button id="signin">{this.props.formType}</button>
                     <br/>
                     {this.handleGuest()}
                 </form>

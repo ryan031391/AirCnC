@@ -14,13 +14,17 @@ import Modal from './modal/modal';
 const App = () => (
     <div>
       <Modal />
-      <header>
+      <nav id="home-nav">
+        <Link to="/">AIRCNC</Link>
+        {/* <WelcomeContainer/> */}
+      </nav>
+      {/* <header>
         
-        {/* <WelcomeContainer /> */}
-      </header>
+        <WelcomeContainer />
+      </header> */}
       <Switch>
       <Route exact path="/" component={WelcomeContainer}/>
-      <Route component={My404Component} />
+      <Route path="/" component={My404Component} />
       
         {/* <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignUpFormContainer} /> */}

@@ -23,14 +23,31 @@ class SessionForm extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         this.props.signup(this.state)
-            .then(this.props.closeModal())
+            // .then(this.props.closeModal())
+            .then(() => {
+                if (this.props.errors.session) {}
+                else { this.props.closeModal() }
+            })
+    }
+
+    renderErrors() {
+        return(
+          <ul>
+            {this.props.errors.map((error, i) => (
+              <li key={`error-${i}`}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        );
     }
 
     render(){
         return(
             <div>
-                <h1>Please {this.props.formType} or {this.props.otherForm}</h1>
                 <form onSubmit={this.handleSubmit}>
+                    Please {this.props.formType} or {this.props.otherForm}
+                    {this.renderErrors()}
                     <label>Username: 
                         <input 
                         type="text" 

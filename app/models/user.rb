@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-
-    attr_reader :password
   
     validates :username, :password_digest, :session_token, presence: true
     validates :username, uniqueness: true
@@ -12,6 +10,10 @@ class User < ApplicationRecord
       user = User.find_by(username: username)
       return nil unless user
       user.is_password?(password) ? user : nil
+    end
+
+    def password
+      @password
     end
   
     def password=(password)

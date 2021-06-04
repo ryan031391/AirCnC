@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import {openModal, closeModal} from '../../actions/modal_actions'
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = ({ errors }) => ({
+    errors: errors.session,
     formType: 'SignUp'
 })
 

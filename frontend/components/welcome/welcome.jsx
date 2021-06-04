@@ -18,6 +18,7 @@ const Welcome = ({currentUser, logout, openModal}) => {
     );
 
     return currentUser ? logged_in() : not_logged_in();
+    return not_logged_in();
 }
 
 export default Welcome;

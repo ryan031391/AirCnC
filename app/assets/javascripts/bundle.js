@@ -639,8 +639,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.signup)(user));
     },
     otherForm: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
-      onClick: function onClick() {
-        return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)('signup'));
+      onClick: function onClick(e) {
+        e.preventDefault();
+        dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)('signup'));
       }
     }, "Signup"),
     closeModal: function closeModal() {
@@ -831,8 +832,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.signup)(user));
     },
     otherForm: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
-      onClick: function onClick() {
-        return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)('login'));
+      onClick: function onClick(e) {
+        e.preventDefault();
+        dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)('login'));
       }
     }, "Login"),
     closeModal: function closeModal() {
@@ -1167,6 +1169,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 var sessionerrorsReducer = function sessionerrorsReducer() {
@@ -1177,6 +1181,9 @@ var sessionerrorsReducer = function sessionerrorsReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_SESSION_ERRORS:
       return action.errors;
+
+    case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.OPEN_MODAL:
+      return [];
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
       return [];
@@ -1301,19 +1308,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
-/* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _reducers_root_reduer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/root_reduer */ "./frontend/reducers/root_reduer.js");
+/* harmony import */ var _reducers_root_reduer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/root_reduer */ "./frontend/reducers/root_reduer.js");
 
 
 
+var middleware = [redux_thunk__WEBPACK_IMPORTED_MODULE_0__.default];
 
+if (true) {
+  var _require = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js"),
+      logger = _require.logger;
+
+  middleware.push(logger);
+}
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reduer__WEBPACK_IMPORTED_MODULE_2__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_0__.default, (redux_logger__WEBPACK_IMPORTED_MODULE_1___default())));
+  return (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(_reducers_root_reduer__WEBPACK_IMPORTED_MODULE_1__.default, preloadedState, redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware.apply(void 0, middleware));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);

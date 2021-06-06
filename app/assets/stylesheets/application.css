@@ -33,6 +33,16 @@
   color: white;
 }
 
+#home-nav{
+  background-color: blue;
+  height: 50px;
+}
+
+#home-symbol{
+  color:white;
+  margin: 20px;
+}
+
 #Welcome {
   position: initial;
   text-align: center;
@@ -41,3 +51,4 @@
 #signin {
   margin: 2px;
 }
+

@@ -358,7 +358,8 @@ var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_8__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
     id: "home-nav"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
-    to: "/"
+    to: "/",
+    id: "home-symbol"
   }, "AIRCNC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     exact: true,
     path: "/",
@@ -791,14 +792,14 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit
       }, "Please ", this.props.formType, " or ", this.props.otherForm, this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        "class": "input"
+        className: "input"
       }, "Username:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         value: this.state.username,
         onChange: this.updateUsername,
         onKeyDown: this.handleKey
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        "class": "input"
+        className: "input"
       }, "Password:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "password",
         value: this.state.password,
@@ -958,7 +959,7 @@ var mSTP = function mSTP(_ref) {
   var entities = _ref.entities,
       session = _ref.session;
   return {
-    currentUser: entities.users[session.id]
+    currentUser: entities.users[session.session_token]
   };
 };
 
@@ -1048,7 +1049,7 @@ var mSTP = function mSTP(_ref) {
   var session = _ref.session,
       entities = _ref.entities;
   return {
-    currentUser: entities.users[session.id]
+    currentUser: entities.users[session.session_token]
   };
 };
 
@@ -1246,7 +1247,7 @@ var sessionReducer = function sessionReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
       return Object.assign({}, {
-        id: action.currentUser.id
+        session_token: action.currentUser.session_token
       });
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.LOGOUT_CURRENT_USER:
@@ -1308,7 +1309,7 @@ var usersReducer = function usersReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
       var nextState = Object.assign({}, state);
-      nextState[action.currentUser.id] = action.currentUser;
+      nextState[action.currentUser.session_token] = action.currentUser;
       return nextState;
 
     default:
@@ -1408,7 +1409,7 @@ var Protected = function Protected(_ref2) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    loggedIn: Boolean(state.session.id)
+    loggedIn: Boolean(state.session.session_token)
   };
 };
 
@@ -37904,13 +37905,13 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.currentUser) {
     var _window = window,
         currentUser = _window.currentUser;
-    var id = currentUser.id;
+    var session_token = currentUser.session_token;
     var preloadedState = {
       entities: {
-        users: _defineProperty({}, id, currentUser)
+        users: _defineProperty({}, session_token, currentUser)
       },
       session: {
-        id: id
+        session_token: session_token
       }
     };
     store = (0,_store_store__WEBPACK_IMPORTED_MODULE_3__.default)(preloadedState);

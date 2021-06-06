@@ -4,7 +4,7 @@ import Welcome from './welcome';
 import {openModal} from '../../actions/modal_actions'
 
 const mSTP = ({ session, entities}) =>({
-    currentUser: entities.users[session.id]
+    currentUser: entities.users[session.session_token]
 })
 
 const mDTP = dispatch => ({

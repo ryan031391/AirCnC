@@ -3,7 +3,7 @@ import { fetchUser, logout } from '../../actions/session_actions';
 import User from './user';
 
 const mSTP = ({entities, session}) => ({
-    currentUser: entities.users[session.id]
+    currentUser: entities.users[session.session_token]
 })
 
 const mDTP = dispatch => ({

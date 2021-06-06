@@ -75,7 +75,7 @@ class SessionForm extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     Please {this.props.formType} or {this.props.otherForm}
                     {this.renderErrors()}
-                    <label class="input">Username: 
+                    <label className="input">Username: 
                         <input 
                         type="text" 
                         value={this.state.username} 
@@ -84,7 +84,7 @@ class SessionForm extends React.Component{
                         />
                     </label>
                     <br/>
-                    <label class="input">Password: 
+                    <label className="input">Password: 
                         <input 
                         type="password"
                         value={this.state.password}

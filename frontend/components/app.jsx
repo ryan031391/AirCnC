@@ -15,7 +15,7 @@ const App = () => (
     <div>
       <Modal />
       <nav id="home-nav">
-        <Link to="/">AIRCNC</Link>
+        <Link to="/" id="home-symbol">AIRCNC</Link>
         {/* <WelcomeContainer/> */}
       </nav>
       {/* <header>

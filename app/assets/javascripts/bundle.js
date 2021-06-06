@@ -189,9 +189,74 @@ function _setPrototypeOf(o, p) {
 /*!*******************************************!*\
   !*** ./frontend/actions/house_actions.js ***!
   \*******************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_HOUSES": () => (/* binding */ RECEIVE_HOUSES),
+/* harmony export */   "RECEIVE_HOUSE": () => (/* binding */ RECEIVE_HOUSE),
+/* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
+/* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse)
+/* harmony export */ });
+/* harmony import */ var _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/house_api_util */ "./frontend/util/house_api_util.js");
 
+var RECEIVE_HOUSES = 'RECEIVE_HOUSES';
+var RECEIVE_HOUSE = 'RECEIVE_HOUSE';
+var RECEIVE_REVIEW = 'RECEIVE_REVIEW'; // export const RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
+
+var receiveHouses = function receiveHouses(houses) {
+  return {
+    type: RECEIVE_HOUSES,
+    houses: houses
+  };
+};
+
+var receiveHouse = function receiveHouse(_ref) {
+  var house = _ref.house,
+      reviews = _ref.reviews,
+      authors = _ref.authors;
+  return {
+    type: RECEIVE_HOUSE,
+    house: house,
+    reviews: reviews,
+    authors: authors
+  };
+};
+
+var receiveReview = function receiveReview(_ref2) {
+  var review = _ref2.review,
+      author = _ref2.author;
+  return {
+    type: RECEIVE_REVIEW,
+    review: review,
+    author: author
+  };
+};
+
+var createReview = function createReview(review) {
+  return function (dispatch) {
+    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (review) {
+      return dispatch(receiveReview(review));
+    });
+  };
+};
+var fetchHouses = function fetchHouses() {
+  return function (dispatch) {
+    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchHouses().then(function (houses) {
+      return dispatch(receiveHouses(houses));
+    });
+  };
+};
+var fetchHouse = function fetchHouse(id) {
+  return function (dispatch) {
+    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchHouse(id).then(function (payload) {
+      return dispatch(receiveHouse(payload));
+    });
+  };
+};
 
 /***/ }),
 
@@ -765,6 +830,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleKey",
     value: function handleKey(e) {
+      e.preventDefault();
+
       if (e.key === 'Enter') {
         this.handleSubmit(e);
       }
@@ -1079,16 +1146,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
- // import housesReducer from './houses_reducer';
-// import reviewsReducer from './reviews_reducer';
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _houses_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./houses_reducer */ "./frontend/reducers/houses_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+
+ // import reviewsReducer from './reviews_reducer';
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  //   houses: housesReducer,
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  houses: _houses_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
   //   reviews: reviewsReducer,
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -1113,6 +1181,47 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/houses_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/houses_reducer.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
+
+
+var housesReducer = function housesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_HOUSES:
+      return action.houses;
+
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_HOUSE:
+      nextState[action.house.id] = action.house;
+      return nextState;
+
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW:
+      nextState[action.review.house_id].reviewId.push[review.id];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (housesReducer);
 
 /***/ }),
 
@@ -1297,7 +1406,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
-/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_actions_house_actions__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
@@ -1353,6 +1461,44 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/house_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/house_api_util.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
+/* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
+/* harmony export */   "createReview": () => (/* binding */ createReview)
+/* harmony export */ });
+var fetchHouses = function fetchHouses(data) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/houses',
+    data: data
+  });
+};
+var fetchHouse = function fetchHouse(id) {
+  return $.ajax({
+    method: 'GET',
+    url: "api/houses/".concat(id)
+  });
+};
+var createReview = function createReview(review) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/reviews',
+    data: {
+      review: review
+    }
+  });
+};
 
 /***/ }),
 

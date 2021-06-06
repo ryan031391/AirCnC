@@ -1,0 +1,1 @@
+json.extract! house, :id, :owner_id, :price, :latitude, :longitude, :description

@@ -51,12 +51,14 @@ class SessionForm extends React.Component{
     }
 
     handleKey(e){
+        e.preventDefault()
         if (e.key === 'Enter') {
             this.handleSubmit(e)
         }
     }
 
     handleGuest(){
+
         const guestSubmit = state => {
             this.props.signup(state)
                 .then(this.props.closeModal())

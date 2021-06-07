@@ -790,7 +790,8 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(HouseIndexItem, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Price: ", this.props.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "location: ", this.props.latitude, ", ", this.props.longitude));
+      var house = this.props.house;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Price: ", house.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "location: ", house.latitude, ", ", house.longitude));
     }
   }]);
 

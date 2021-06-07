@@ -7,10 +7,12 @@ class HouseIndexItem extends React.Component{
     }
 
     render(){
+        const {house} = this.props
         return(
             <li>
-                <label>Price: {this.props.price}</label>
-                <label>location: {this.props.latitude}, {this.props.longitude}</label>
+                <label>Price: {house.price}</label>
+                <br/>
+                <label>location: {house.latitude}, {house.longitude}</label>
             </li>
         )
     }

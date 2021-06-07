@@ -6021,3 +6021,71 @@ Processing by Api::HousesController#index as JSON
 Completed 200 OK in 36ms (Views: 33.4ms | ActiveRecord: 2.4ms)
 
 
+Started GET "/" for ::1 at 2021-06-07 12:12:02 -0700
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/guocong/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wXSgHC3iYkXmWkfID9XIkA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 1601ms (Views: 1592.2ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/api/houses" for ::1 at 2021-06-07 12:12:04 -0700
+Processing by Api::HousesController#index as JSON
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (8.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (1.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 1], ["house_id", 2], ["house_id", 3], ["house_id", 4], ["house_id", 5], ["house_id", 6], ["house_id", 7], ["house_id", 8], ["house_id", 9], ["house_id", 10]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (1.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 1], ["house_id", 2], ["house_id", 3], ["house_id", 4], ["house_id", 5], ["house_id", 6], ["house_id", 7], ["house_id", 8], ["house_id", 9], ["house_id", 10]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (88.6ms)
+Completed 200 OK in 107ms (Views: 70.7ms | ActiveRecord: 22.8ms)
+
+
+Started GET "/" for ::1 at 2021-06-07 12:12:33 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wXSgHC3iYkXmWkfID9XIkA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 438ms (Views: 432.2ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/api/houses" for ::1 at 2021-06-07 12:12:34 -0700
+Processing by Api::HousesController#index as JSON
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.9ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 1], ["house_id", 2], ["house_id", 3], ["house_id", 4], ["house_id", 5], ["house_id", 6], ["house_id", 7], ["house_id", 8], ["house_id", 9], ["house_id", 10]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 1], ["house_id", 2], ["house_id", 3], ["house_id", 4], ["house_id", 5], ["house_id", 6], ["house_id", 7], ["house_id", 8], ["house_id", 9], ["house_id", 10]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.9ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (94.9ms)
+Completed 200 OK in 111ms (Views: 80.7ms | ActiveRecord: 21.6ms)
+
+

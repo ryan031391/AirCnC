@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Search from '../search/search_container'
+import SearchContainer from '../search/search_container'
 
 const Welcome = ({currentUser, logout, openModal}) => {
     const not_logged_in = () => (
@@ -16,7 +16,7 @@ const Welcome = ({currentUser, logout, openModal}) => {
         <div>
             <h1>Hi, {currentUser.username}</h1>
             <button onClick={logout}>Log out</button>
-            <Search />
+            <SearchContainer />
         </div>
     );
 

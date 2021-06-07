@@ -18,6 +18,7 @@ class SessionForm extends React.Component{
         this.renderErrors = this.renderErrors.bind(this);
         this.handleGuest = this.handleGuest.bind(this);
         this.handleKey = this.handleKey.bind(this);
+        this.guestSubmit = this.guestSubmit.bind(this)
     }
 
     updateUsername(e){
@@ -51,22 +52,24 @@ class SessionForm extends React.Component{
     }
 
     handleKey(e){
-        e.preventDefault()
+        // e.preventDefault()
         if (e.key === 'Enter') {
             this.handleSubmit(e)
         }
     }
 
-    handleGuest(){
+    guestSubmit(e){
+        e.preventDefault();
 
-        const guestSubmit = state => {
-            this.props.signup(state)
-                .then(this.props.closeModal())
-        }
+        this.props.signup(this.guestState)
+            .then(this.props.closeModal())
+    }
+
+    handleGuest(){
 
         if (this.props.formType === 'LogIn') {
             return(
-                <button onClick={() => guestSubmit(this.guestState)}>Guest Login</button>
+                <button onClick={this.guestSubmit}>Guest Login</button>
             )
         }
     }

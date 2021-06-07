@@ -14,9 +14,9 @@ class House < ApplicationRecord
         class_name: :RentalInfo
 
     def self.in_bounds(bounds)
-        self.where("lat < ?", bounds[:northEast][:lat])
-            .where("lat > ?", bounds[:southWest][:lat])
-            .where("lng > ?", bounds[:southWest][:lng])
-            .where("lng < ?", bounds[:northEast][:lng])
+        self.where("latitude < ?", bounds[:north])
+            .where("latitude > ?", bounds[:south])
+            .where("longitude > ?", bounds[:west])
+            .where("longitude < ?", bounds[:east])
     end
 end

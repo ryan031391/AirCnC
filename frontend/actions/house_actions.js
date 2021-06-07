@@ -23,17 +23,46 @@ const receiveReview = ({ review, author }) => ({
     author,
 });
 
+const range = (payload, bound) => {
+    const location = payload.results[0].geometry.location;
+    const latchange = bound / 69;
+    const lngchange = bound / 60;
+    const east = location.lng + lngchange;
+    const south = location.lat - latchange;
+    const west = location.lng - lngchange;
+    const north = location.lat + latchange;
+    return {
+        // type: 'RANGE',
+        east: east,
+        south: south,
+        west: west,
+        north: north
+    }
+}
+
 export const createReview = review => dispatch => (
     APIUtil.createReview(review)
         .then(review => dispatch(receiveReview(review)))
 );
 
-export const fetchHouses = () => dispatch => (
-    APIUtil.fetchHouses()
-        .then(houses => dispatch(receiveHouses(houses)))
-)
+export const fetchHouses = data => dispatch => {
+    console.log(data);
+    return APIUtil.fetchHouses(data)
+            .then(houses => dispatch(receiveHouses(houses)))
+}
+
+
+// (
+//     APIUtil.fetchHouses(data)
+//         .then(houses => dispatch(receiveHouses(houses)))
+// )
 
 export const fetchHouse = id => dispatch => (
     APIUtil.fetchHouse(id)
         .then(payload => dispatch(receiveHouse(payload)))
+)
+
+export const fetchLocation = (location, bound) => dispatch => (
+    APIUtil.fetchLocation(location)
+        .then(payload => dispatch(fetchHouses(range(payload, bound))))
 )

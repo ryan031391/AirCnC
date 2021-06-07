@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { selectHouses } from '../../reducers/selectors';
-import { fetchHouses } from '../../actions/house_actions'
+import { fetchHouses, fetchLocation } from '../../actions/house_actions'
 import Search from './search';
 
 const mSTP = state => ({
@@ -9,6 +9,7 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     fetchHouses: () => dispatch(fetchHouses()),
+    fetchLocation: ({location, bound}) => dispatch(fetchLocation(location, bound))
 })
 
 export default connect(mSTP, mDTP)(Search);

@@ -1,8 +1,8 @@
-export const fetchHouses = data => (
+export const fetchHouses = bounds => (
     $.ajax({
       method: 'GET',
       url: 'api/houses',
-      data
+      data: {bounds}
     })
   );
   
@@ -20,3 +20,10 @@ export const fetchHouses = data => (
       data: { review }
     })
   );
+
+  export const fetchLocation = location => (
+    $.ajax({
+      method: 'GET',
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyAUADNSH9nyJqtTLTKdArLj6OhTs918GGg`
+    })
+  )

@@ -199,7 +199,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
-/* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse)
+/* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
+/* harmony export */   "fetchLocation": () => (/* binding */ fetchLocation)
 /* harmony export */ });
 /* harmony import */ var _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/house_api_util */ "./frontend/util/house_api_util.js");
 
@@ -236,6 +237,23 @@ var receiveReview = function receiveReview(_ref2) {
   };
 };
 
+var range = function range(payload, bound) {
+  var location = payload.results[0].geometry.location;
+  var latchange = bound / 69;
+  var lngchange = bound / 60;
+  var east = location.lng + lngchange;
+  var south = location.lat - latchange;
+  var west = location.lng - lngchange;
+  var north = location.lat + latchange;
+  return {
+    // type: 'RANGE',
+    east: east,
+    south: south,
+    west: west,
+    north: north
+  };
+};
+
 var createReview = function createReview(review) {
   return function (dispatch) {
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (review) {
@@ -243,17 +261,29 @@ var createReview = function createReview(review) {
     });
   };
 };
-var fetchHouses = function fetchHouses() {
+var fetchHouses = function fetchHouses(data) {
   return function (dispatch) {
-    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchHouses().then(function (houses) {
+    console.log(data);
+    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchHouses(data).then(function (houses) {
       return dispatch(receiveHouses(houses));
     });
   };
-};
+}; // (
+//     APIUtil.fetchHouses(data)
+//         .then(houses => dispatch(receiveHouses(houses)))
+// )
+
 var fetchHouse = function fetchHouse(id) {
   return function (dispatch) {
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchHouse(id).then(function (payload) {
       return dispatch(receiveHouse(payload));
+    });
+  };
+};
+var fetchLocation = function fetchLocation(location, bound) {
+  return function (dispatch) {
+    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchLocation(location).then(function (payload) {
+      return dispatch(fetchHouses(range(payload, bound)));
     });
   };
 };
@@ -853,10 +883,11 @@ var Search = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       location: '',
-      bound: '5'
+      bound: ''
     };
     _this.updateLocation = _this.updateLocation.bind(_assertThisInitialized(_this));
     _this.updateBound = _this.updateBound.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   } // componentDidMount(){
   //     this.props.fetchHouses();
@@ -864,6 +895,14 @@ var Search = /*#__PURE__*/function (_React$Component) {
 
 
   _createClass(Search, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault(); // const temp = this.state.location.split(" ").join("")
+      // this.setState({location: `${temp}`})
+
+      this.props.fetchLocation(this.state);
+    }
+  }, {
     key: "updateLocation",
     value: function updateLocation(e) {
       this.setState({
@@ -880,16 +919,26 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         value: this.state.location,
         onChange: this.updateLocation
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
         id: "myList",
         onChange: this.updateBound
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " ---Choose Bound--- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " 5 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " 10 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " 20 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " 50 miles "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: this.handleClick
-      }, "Search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index__WEBPACK_IMPORTED_MODULE_1__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " ---Choose Bound--- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "5"
+      }, " 5 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "10"
+      }, " 10 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "20"
+      }, " 20 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "50"
+      }, " 50 miles "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "submit"
+      }, "Search")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index__WEBPACK_IMPORTED_MODULE_1__.default, {
         houses: this.props.houses
       }));
     }
@@ -932,6 +981,11 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchHouses: function fetchHouses() {
       return dispatch((0,_actions_house_actions__WEBPACK_IMPORTED_MODULE_2__.fetchHouses)());
+    },
+    fetchLocation: function fetchLocation(_ref) {
+      var location = _ref.location,
+          bound = _ref.bound;
+      return dispatch((0,_actions_house_actions__WEBPACK_IMPORTED_MODULE_2__.fetchLocation)(location, bound));
     }
   };
 };
@@ -1475,7 +1529,7 @@ var housesReducer = function housesReducer() {
 
   switch (action.type) {
     case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_HOUSES:
-      return action.houses;
+      return Object.assign({}, action.houses);
 
     case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_HOUSE:
       nextState[action.house.id] = action.house;
@@ -1780,13 +1834,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
 /* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
-/* harmony export */   "createReview": () => (/* binding */ createReview)
+/* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "fetchLocation": () => (/* binding */ fetchLocation)
 /* harmony export */ });
-var fetchHouses = function fetchHouses(data) {
+var fetchHouses = function fetchHouses(bounds) {
   return $.ajax({
     method: 'GET',
     url: 'api/houses',
-    data: data
+    data: {
+      bounds: bounds
+    }
   });
 };
 var fetchHouse = function fetchHouse(id) {
@@ -1802,6 +1859,12 @@ var createReview = function createReview(review) {
     data: {
       review: review
     }
+  });
+};
+var fetchLocation = function fetchLocation(location) {
+  return $.ajax({
+    method: 'GET',
+    url: "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(location, "&key=AIzaSyAUADNSH9nyJqtTLTKdArLj6OhTs918GGg")
   });
 };
 

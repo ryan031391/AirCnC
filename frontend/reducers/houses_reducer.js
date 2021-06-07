@@ -9,7 +9,7 @@ const housesReducer = (state = {}, action) => {
     const nextState = Object.assign({}, state);
     switch (action.type) {
         case RECEIVE_HOUSES:
-            return action.houses;
+            return Object.assign({}, action.houses);
         case RECEIVE_HOUSE:
             nextState[action.house.id] = action.house;
             return nextState;

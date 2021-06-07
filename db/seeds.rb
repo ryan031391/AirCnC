@@ -88,3 +88,42 @@ h10 = House.create!(
     description: "union square 10"
 )
 
+h11 = House.create!(
+    owner_id: 1,
+    latitude: 37.7080712,
+    longitude: -122.4363059,
+    price: 590,
+    description: "Daly City 1"
+)
+
+h12 = House.create!(
+    owner_id: 1,
+    latitude: 37.7080713,
+    longitude: -122.4363050,
+    price: 590,
+    description: "Daly City 2"
+)
+
+h13 = House.create!(
+    owner_id: 1,
+    latitude: 37.7080710,
+    longitude: -122.4363054,
+    price: 590,
+    description: "Daly City 3"
+)
+
+h14 = House.create!(
+    owner_id: 1,
+    latitude: 37.7080722,
+    longitude: -122.4363069,
+    price: 590,
+    description: "Daly City 4"
+)
+
+h15 = House.create!(
+    owner_id: 1,
+    latitude: 37.7080702,
+    longitude: -122.4363050,
+    price: 590,
+    description: "Daly City 5"
+)

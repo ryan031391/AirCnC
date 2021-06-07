@@ -6,15 +6,22 @@ class Search extends React.Component{
         super(props)
         this.state = {
             location: '',
-            bound: '5',
+            bound: '',
         }
         this.updateLocation = this.updateLocation.bind(this);
-        this.updateBound = this.updateBound.bind(this)
+        this.updateBound = this.updateBound.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     // componentDidMount(){
     //     this.props.fetchHouses();
     // }
+    handleSubmit(e){
+        e.preventDefault();
+        // const temp = this.state.location.split(" ").join("")
+        // this.setState({location: `${temp}`})
+        this.props.fetchLocation(this.state)
+    }
 
     updateLocation(e){
         this.setState({location: e.currentTarget.value})
@@ -27,28 +34,30 @@ class Search extends React.Component{
     render(){
         return(
             <div>
-                <b>Location: </b>
-                    <input 
+                <form onSubmit={this.handleSubmit}>
+                    <b>Location: </b>
+                        <input 
+                        type="text" 
+                        value={this.state.location} 
+                        onChange={this.updateLocation}
+                        />
+                    <div>  
+                        <b> Bound: </b>  
+                        <select id="myList" onChange={this.updateBound} >  
+                            <option> ---Choose Bound--- </option>  
+                            <option value="5"> 5 miles </option>  
+                            <option value="10"> 10 miles </option>  
+                            <option value="20"> 20 miles </option>  
+                            <option value="50"> 50 miles </option>  
+                        </select>     
+                    </div>
+                    <button type="submit">Search</button>
+                    {/* <input 
                     type="text" 
-                    value={this.state.location} 
-                    onChange={this.updateLocation}
-                    />
-                <form>  
-                    <b> Bound: </b>  
-                    <select id="myList" onChange={this.updateBound} >  
-                        <option> ---Choose Bound--- </option>  
-                        <option> 5 miles </option>  
-                        <option> 10 miles </option>  
-                        <option> 20 miles </option>  
-                        <option> 50 miles </option>  
-                    </select>     
+                    value={this.state.bound} 
+                    onChange={this.updateBound}
+                    /> */}
                 </form>
-                <button onClick={this.handleClick}>Search</button>
-                {/* <input 
-                type="text" 
-                value={this.state.bound} 
-                onChange={this.updateBound}
-                /> */}
                 <HouseIndex houses={this.props.houses} />
             </div>
         )

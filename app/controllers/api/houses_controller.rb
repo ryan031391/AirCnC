@@ -1,3 +1,5 @@
+require 'httparty'
+
 class Api::HousesController < ApplicationController
     before_action :require_logged_in, only: [:create]
 

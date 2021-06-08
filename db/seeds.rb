@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-House.delete_all
+House.destroy_all;
+Review.destroy_all;
 
 h1 = House.create!(
     owner_id: 1,
@@ -99,3 +100,93 @@ h10 = House.create!(
     description: "Daly City 2"
 )
 
+r1 = Review.create!(
+    user_id: 2,
+    house_id: h1.id,
+    score: 5,
+    body: "Perfect!"
+)
+
+r2 = Review.create!(
+    user_id: 4,
+    house_id: h1.id,
+    score: 5,
+    body: "Perfect!"
+)
+
+r3 = Review.create!(
+    user_id: 3,
+    house_id: h2.id,
+    score: 4,
+    body: "Really nice experience!"
+)
+
+r4 = Review.create!(
+    user_id: 2,
+    house_id: h2.id,
+    score: 5,
+    body: "Perfect!"
+)
+
+r5 = Review.create!(
+    user_id: 4,
+    house_id: h2.id,
+    score: 4,
+    body: "Really nice experience!"
+)
+
+r6 = Review.create!(
+    user_id: 2,
+    house_id: h3.id,
+    score: 5,
+    body: "Perfect!"
+)
+
+r7 = Review.create!(
+    user_id: 3,
+    house_id: h3.id,
+    score: 4,
+    body: "Really nice experience!"
+)
+
+r8 = Review.create!(
+    user_id: 2,
+    house_id: h4.id,
+    score: 5,
+    body: "Perfect!"
+)
+
+r9 = Review.create!(
+    user_id: 3,
+    house_id: h4.id,
+    score: 4,
+    body: "Really nice experience!"
+)
+
+r10 = Review.create!(
+    user_id: 2,
+    house_id: h5.id,
+    score: 5,
+    body: "Perfect!"
+)
+
+r11 = Review.create!(
+    user_id: 3,
+    house_id: h5.id,
+    score: 4,
+    body: "Really nice experience!"
+)
+
+r12 = Review.create!(
+    user_id: 2,
+    house_id: h6.id,
+    score: 5,
+    body: "Perfect!"
+)
+
+r13 = Review.create!(
+    user_id: 3,
+    house_id: h6.id,
+    score: 4,
+    body: "Really nice experience!"
+)

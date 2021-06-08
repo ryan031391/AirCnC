@@ -229,10 +229,12 @@ var receiveHouse = function receiveHouse(_ref) {
 
 var receiveReview = function receiveReview(_ref2) {
   var review = _ref2.review,
+      average_score = _ref2.average_score,
       author = _ref2.author;
   return {
     type: RECEIVE_REVIEW,
     review: review,
+    average_score: average_score,
     author: author
   };
 };
@@ -263,7 +265,7 @@ var createReview = function createReview(review) {
 };
 var fetchHouses = function fetchHouses(data) {
   return function (dispatch) {
-    console.log(data);
+    // console.log(data);
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchHouses(data).then(function (houses) {
       return dispatch(receiveHouses(houses));
     });
@@ -282,7 +284,7 @@ var fetchHouse = function fetchHouse(id) {
 };
 var fetchLocationInBound = function fetchLocationInBound(location, bound) {
   return function (dispatch) {
-    console.log(location);
+    // console.log(location);
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchLocation(location).then(function (payload) {
       return dispatch(fetchHouses(range(payload, bound)));
     });
@@ -754,12 +756,16 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(HouseIndex, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Houses: "), this.props.houses.map(function (house) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+        id: "houses"
+      }, "Houses: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        id: "house-list"
+      }, this.props.houses.map(function (house) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index_item__WEBPACK_IMPORTED_MODULE_1__.default, {
           key: house.id,
           house: house
         });
-      }));
+      })));
     }
   }]);
 
@@ -782,6 +788,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -822,7 +829,11 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var house = this.props.house;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Price: ", house.price, "/day"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "location: ", house.location));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        to: "/api/".concat(house.id)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        id: "house-".concat(house.id)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Price: ", house.price, "/day"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "location: ", house.location)));
     }
   }]);
 
@@ -889,6 +900,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
     _this.updateLocation = _this.updateLocation.bind(_assertThisInitialized(_this));
     _this.updateBound = _this.updateBound.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.showHouses = _this.showHouses.bind(_assertThisInitialized(_this));
     return _this;
   } // componentDidMount(){
   //     this.props.fetchHouses();
@@ -896,6 +908,15 @@ var Search = /*#__PURE__*/function (_React$Component) {
 
 
   _createClass(Search, [{
+    key: "showHouses",
+    value: function showHouses() {
+      if (this.props.houses.length !== 0) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index__WEBPACK_IMPORTED_MODULE_1__.default, {
+          houses: this.props.houses
+        });
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault(); // const temp = this.state.location.split(" ").join("")
@@ -939,9 +960,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         value: "50"
       }, " 50 miles "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "submit"
-      }, "Search")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index__WEBPACK_IMPORTED_MODULE_1__.default, {
-        houses: this.props.houses
-      }));
+      }, "Search")), this.showHouses());
     }
   }]);
 
@@ -1520,6 +1539,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 var housesReducer = function housesReducer() {
@@ -1538,7 +1559,11 @@ var housesReducer = function housesReducer() {
 
     case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW:
       nextState[action.review.house_id].reviewId.push[review.id];
+      nextState[action.review.house.id].average_score = action.average_score;
       return nextState;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.LOGOUT_CURRENT_USER:
+      return {};
 
     default:
       return state;
@@ -1773,12 +1798,22 @@ var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
-      var nextState = Object.assign({}, state);
       nextState[action.currentUser.session_token] = action.currentUser;
       return nextState;
+
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_REVIEW:
+      nextState[action.author.id] = action.author;
+      return nextState;
+
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_HOUSE:
+      return Object.assign({}, state, action.authors);
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.LOGOUT_CURRENT_USER:
+      return {};
 
     default:
       return state;

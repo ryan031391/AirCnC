@@ -10,12 +10,19 @@ class Search extends React.Component{
         }
         this.updateLocation = this.updateLocation.bind(this);
         this.updateBound = this.updateBound.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.showHouses = this.showHouses.bind(this);
     }
 
     // componentDidMount(){
     //     this.props.fetchHouses();
     // }
+    showHouses(){
+        if (this.props.houses.length !== 0){
+            return <HouseIndex houses={this.props.houses} />
+        }
+    }
+
     handleSubmit(e){
         e.preventDefault();
         // const temp = this.state.location.split(" ").join("")
@@ -58,7 +65,8 @@ class Search extends React.Component{
                     onChange={this.updateBound}
                     /> */}
                 </form>
-                <HouseIndex houses={this.props.houses} />
+                {this.showHouses()}
+                {/* <HouseIndex houses={this.props.houses} /> */}
             </div>
         )
     }

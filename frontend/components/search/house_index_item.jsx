@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class HouseIndexItem extends React.Component{
     constructor(props){
@@ -9,11 +9,13 @@ class HouseIndexItem extends React.Component{
     render(){
         const {house} = this.props
         return(
-            <li>
-                <label>Price: {house.price}/day</label>
-                <br/>
-                <label>location: {house.location}</label>
-            </li>
+            <Link to={`/api/${house.id}`}>
+                <li id={`house-${house.id}`}>
+                    <label>Price: {house.price}/day</label>
+                    <br/>
+                    <label>location: {house.location}</label>
+                </li>
+            </Link>
         )
     }
 }

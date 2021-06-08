@@ -17,9 +17,10 @@ const receiveHouse = ({ house, reviews, authors }) => ({
     authors,
 });
 
-const receiveReview = ({ review, author }) => ({
+const receiveReview = ({ review, average_score, author }) => ({
     type: RECEIVE_REVIEW,
     review,
+    average_score,
     author,
 });
 

@@ -19,4 +19,8 @@ class House < ApplicationRecord
             .where("longitude > ?", bounds[:west])
             .where("longitude < ?", bounds[:east])
     end
+
+    def average_score
+        reviews.average(:score)
+    end
 end

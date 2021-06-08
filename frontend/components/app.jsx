@@ -5,6 +5,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SignUpFormContainer from './session_form/signup_form_container'
 import LoginFormContainer from './session_form/login_form_container'
 import WelcomeContainer from './welcome/welcome_container';
+import HouseShowContainer from './house_show/house_show_container';
 import My404Component from './my404';
 import UserContainer from './user/user_container';
 import Modal from './modal/modal';
@@ -24,8 +25,8 @@ const App = () => (
       </header> */}
       <Switch>
       <Route exact path="/" component={WelcomeContainer}/>
-      <Route path="/" component={My404Component} />
-      {/* <Route exact path="/:houseId" component={HouseShowContainer} /> */}
+      <Route component={My404Component} />
+      <Route path="/houses/:houseId" component={HouseShowContainer} />
       
         {/* <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignUpFormContainer} /> */}

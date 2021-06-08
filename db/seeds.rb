@@ -10,120 +10,92 @@ House.delete_all
 
 h1 = House.create!(
     owner_id: 1,
+    location: "333 Post St, San Francisco, CA 94108",
     latitude: 37.7879374,
     longitude: -122.4075147,
     price: 500,
-    description: "union square"
+    description: "San Francisco 1"
 )
 
+ 
 h2 = House.create!(
     owner_id: 1,
-    latitude: 37.7879375,
-    longitude: -122.4075148,
+    location: "187 Pope St, San Francisco, CA 94112",
+    latitude: 37.71298815803055,
+    longitude: -122.44051655497177,
     price: 510,
-    description: "union square 2"
+    description: "San Francisco 2"
 )
 
 h3 = House.create!(
     owner_id: 1,
-    latitude: 37.7879373,
-    longitude: -122.4075146,
+    location: "97 Jordan Ave, San Francisco, CA 94118",
+    latitude: 37.784132150349855, 
+    longitude: -122.45701364742105,
     price: 520,
-    description: "union square 3"
+    description: "San Francisco 3"
 )
 
 h4 = House.create!(
     owner_id: 1,
-    latitude: 37.7879372,
-    longitude: -122.4075146,
+    location: "1695 25th Ave, San Francisco, CA 94122",
+    latitude: 37.7560508304374, 
+    longitude: -122.48327732842135,
     price: 530,
-    description: "union square 4"
+    description: "San Francisco 4"
 )
 
 h5 = House.create!(
     owner_id: 1,
-    latitude: 37.7879376,
-    longitude: -122.4075148,
+    location: "583 Victoria St, San Francisco, CA 94132",
+    latitude: 37.72141804584469, 
+    longitude: -122.4656957271743,
     price: 540,
-    description: "union square 5"
+    description: "San Francisco 5"
 )
 
 h6 = House.create!(
     owner_id: 1,
-    latitude: 37.7879377,
-    longitude: -122.4075147,
+    location: "424 Clipper St, San Francisco, CA 94114",
+    latitude: 37.749030515341815, 
+    longitude: -122.43465549591555,
     price: 550,
-    description: "union square 6"
+    description: "San Francisco 6"
 )
 
 h7 = House.create!(
     owner_id: 1,
-    latitude: 37.7879378,
-    longitude: -122.4075146,
+    location: "300 Locust Ave, South San Francisco, CA 94080",
+    latitude: 37.65798604415719, 
+    longitude: -122.42157767591473,
     price: 560,
-    description: "union square 7"
+    description: "South San Francisco 1"
 )
 
 h8 = House.create!(
     owner_id: 1,
-    latitude: 37.7879372,
-    longitude: -122.4075148,
+    location: "431 E Grand Ave., South San Francisco, CA 94080",
+    latitude: 37.651451457882104, 
+    longitude: -122.38436983721593,
     price: 570,
-    description: "union square 8"
+    description: "South San Francisco 2"
 )
 
 h9 = House.create!(
     owner_id: 1,
-    latitude: 37.7879379,
-    longitude: -122.4075142,
+    location: "109 Mirada Dr, Daly City, CA 94015",
+    latitude: 37.68444729137199, 
+    longitude: -122.47557205225577,
     price: 580,
-    description: "union square 9"
+    description: "Daly City 1"
 )
 
 h10 = House.create!(
     owner_id: 1,
-    latitude: 37.7879371,
-    longitude: -122.4075141,
-    price: 590,
-    description: "union square 10"
-)
-
-h11 = House.create!(
-    owner_id: 1,
-    latitude: 37.7080712,
-    longitude: -122.4363059,
-    price: 590,
-    description: "Daly City 1"
-)
-
-h12 = House.create!(
-    owner_id: 1,
-    latitude: 37.7080713,
-    longitude: -122.4363050,
+    location: "641 Southgate Ave, Daly City, CA 94015",
+    latitude: 37.69484301866328, 
+    longitude: -122.49113150600837,
     price: 590,
     description: "Daly City 2"
 )
 
-h13 = House.create!(
-    owner_id: 1,
-    latitude: 37.7080710,
-    longitude: -122.4363054,
-    price: 590,
-    description: "Daly City 3"
-)
-
-h14 = House.create!(
-    owner_id: 1,
-    latitude: 37.7080722,
-    longitude: -122.4363069,
-    price: 590,
-    description: "Daly City 4"
-)
-
-h15 = House.create!(
-    owner_id: 1,
-    latitude: 37.7080702,
-    longitude: -122.4363050,
-    price: 590,
-    description: "Daly City 5"
-)

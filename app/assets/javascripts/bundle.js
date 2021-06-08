@@ -200,7 +200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
 /* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
-/* harmony export */   "fetchLocation": () => (/* binding */ fetchLocation)
+/* harmony export */   "fetchLocationInBound": () => (/* binding */ fetchLocationInBound)
 /* harmony export */ });
 /* harmony import */ var _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/house_api_util */ "./frontend/util/house_api_util.js");
 
@@ -280,8 +280,9 @@ var fetchHouse = function fetchHouse(id) {
     });
   };
 };
-var fetchLocation = function fetchLocation(location, bound) {
+var fetchLocationInBound = function fetchLocationInBound(location, bound) {
   return function (dispatch) {
+    console.log(location);
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchLocation(location).then(function (payload) {
       return dispatch(fetchHouses(range(payload, bound)));
     });
@@ -821,7 +822,7 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var house = this.props.house;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Price: ", house.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "location: ", house.latitude, ", ", house.longitude));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Price: ", house.price, "/day"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "location: ", house.location));
     }
   }]);
 
@@ -985,7 +986,7 @@ var mDTP = function mDTP(dispatch) {
     fetchLocation: function fetchLocation(_ref) {
       var location = _ref.location,
           bound = _ref.bound;
-      return dispatch((0,_actions_house_actions__WEBPACK_IMPORTED_MODULE_2__.fetchLocation)(location, bound));
+      return dispatch((0,_actions_house_actions__WEBPACK_IMPORTED_MODULE_2__.fetchLocationInBound)(location, bound));
     }
   };
 };

@@ -12,7 +12,7 @@ class HouseIndexItem extends React.Component{
             <li>
                 <label>Price: {house.price}/day</label>
                 <br/>
-                <label>location: {house.latitude}, {house.longitude}</label>
+                <label>location: {house.location}</label>
             </li>
         )
     }

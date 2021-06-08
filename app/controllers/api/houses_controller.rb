@@ -1,4 +1,4 @@
-require 'httparty'
+# require 'httparty'
 
 class Api::HousesController < ApplicationController
     before_action :require_logged_in, only: [:create]
@@ -14,6 +14,7 @@ class Api::HousesController < ApplicationController
     end
 
     def create
+        # response = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{location}&key=AIzaSyAUADNSH9nyJqtTLTKdArLj6OhTs918GGg")
         @house = House.create!(house_params)
         render :show
     end
@@ -32,8 +33,13 @@ class Api::HousesController < ApplicationController
         params[:bounds]
     end
 
+    def location
+        params[:location]
+    end
+
     def house_params
         params.require(:house).permit(
+            :location,
             :latitude,
             :longitude,
             :price,

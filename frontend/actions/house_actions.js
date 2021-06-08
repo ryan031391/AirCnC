@@ -62,7 +62,7 @@ export const fetchHouse = id => dispatch => (
         .then(payload => dispatch(receiveHouse(payload)))
 )
 
-export const fetchLocation = (location, bound) => dispatch => (
+export const fetchLocationInBound = (location, bound) => dispatch => (
     APIUtil.fetchLocation(location)
         .then(payload => dispatch(fetchHouses(range(payload, bound))))
 )

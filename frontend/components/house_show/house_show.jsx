@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewItemContainer from './review_item_container';
+import ReviewFormContainer from './review_form_container';
 
 class HouseShow extends React.Component{
     constructor(props){
@@ -10,7 +11,14 @@ class HouseShow extends React.Component{
         this.props.fetchHouse(this.props.HouseId)
     }
 
+    reviewForm(){
+        return(
+            <ReviewFormContainer />
+        )
+    }
+
     render(){
+        console.log(this.props)
         const {house, reviews} = this.props;
         let sum = 0;
         let num = 0;
@@ -30,7 +38,7 @@ class HouseShow extends React.Component{
                 {reviews.map(review => (
                     <ReviewItemContainer key={review.id} review={review}/>
                 ))}
-
+                {this.reviewForm()}
             </div>
         )
     }

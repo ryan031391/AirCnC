@@ -1,5 +1,5 @@
 export const selectHouse = ({ houses }, houseId) => {
-    return houses[houseId] || { reviewIds: [] };
+    return houses[houseId] || { reviewIds: [], rentalIds: [] };
   };
   
 export const selectReviewsForHouse = ({ houses, reviews }, house) => {

@@ -10,11 +10,12 @@ const receiveHouses = houses => ({
     houses
 });
 
-const receiveHouse = ({ house, reviews, authors }) => ({
+const receiveHouse = ({ house, reviews, authors, rentals }) => ({
     type: RECEIVE_HOUSE,
     house,
     reviews,
     authors,
+    rentals,
 });
 
 const receiveReview = ({ review, average_score, author }) => ({

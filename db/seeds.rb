@@ -197,3 +197,10 @@ r1 = RentalInfo.create!(
     check_in: "March 15 2021",
     check_out: "March 17 2021",
 )
+
+r2 = RentalInfo.create!(
+    user_id: 3,
+    house_id: h1.id,
+    check_in: "April 15 2021",
+    check_out: "April 17 2021",
+)

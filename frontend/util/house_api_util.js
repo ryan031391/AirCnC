@@ -2,7 +2,7 @@ export const fetchHouses = bounds => (
     $.ajax({
       method: 'GET',
       url: 'api/houses',
-      data: {bounds}
+      data: { bounds }
     })
   );
   
@@ -17,7 +17,9 @@ export const fetchHouses = bounds => (
     $.ajax({
       method: 'POST',
       url: 'api/reviews',
-      data: { review }
+      data: { 
+        review 
+      }
     })
   );
 

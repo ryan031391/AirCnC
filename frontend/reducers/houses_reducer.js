@@ -16,7 +16,7 @@ const housesReducer = (state = {}, action) => {
             return nextState;
         case RECEIVE_REVIEW:
             nextState[action.review.house_id].reviewId.push[review.id];
-            nextState[action.review.house.id].average_score = action.average_score;
+            // nextState[action.review.house.id].average_score = action.average_score;
             return nextState;
         case LOGOUT_CURRENT_USER:
             return {};

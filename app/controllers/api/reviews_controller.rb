@@ -7,13 +7,14 @@ class Api::ReviewsController < ApplicationController
       if @review.save
         render :show
       else
-        render json: @review, status: :unprocessable_entity
+        # render json: @review, status: :unprocessable_entity
+        render json: @review.errors.full_messages, status: 422
       end
     end
   
     private
   
     def review_params
-      params.require(:review).permit(:rating, :body, :house_id)
+      params.require(:review).permit(:score, :body, :house_id)
     end
 end

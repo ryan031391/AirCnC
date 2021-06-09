@@ -12,22 +12,20 @@ class HouseShow extends React.Component{
         this.props.fetchHouse(this.props.HouseId)
     }
 
-    reviewForm(){
+    reviewForm(houseId){
         let temp = false
         let today = new Date()
+        // console.log(this.props)
 
-        this.props.renters.forEach(renter => {
+        if (this.props.renters) this.props.renters.forEach(renter => {
             if (this.props.currentUser.username === renter.username ) {
-                // return (
-                //     <ReviewFormContainer />
-                // )
                 let temp_1 = new Date(this.props.rentals.find(ele => ele.user_id === renter.id).check_out)
                 if (temp_1 < today) temp = true;
             }
         })
 
         if (temp) return(
-            <ReviewFormContainer />
+            <ReviewFormContainer houseId={houseId}/>
         ) 
     }
 
@@ -52,7 +50,7 @@ class HouseShow extends React.Component{
                 {reviews.map(review => (
                     <ReviewItemContainer key={review.id} review={review}/>
                 ))}
-                {this.reviewForm()}
+                {this.reviewForm(this.props.match.params.houseId)}
             </div>
         )
     }

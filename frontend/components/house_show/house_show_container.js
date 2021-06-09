@@ -12,15 +12,18 @@ const mSTP = (state, ownProps) => {
     const house = selectHouse(state.entities, HouseId);
     const reviews = selectReviewsForHouse(state.entities, house);
     const rentals = selectRentalsForHouse(state.entities, house);
+    // const renters = selectRentersForHouse(state.entities, house);
+    const renters = state.entities.renters ? Object.values(state.entities.renters) : [];
     return {
         currentUser: state.entities.users[state.session.session_token],
         HouseId,
         house,
         reviews,
         rentals,
-        renters: rentals.map(rental => (
-            state.entities.users[rental.user_id]
-        )),
+        // renters: rentals.map(rental => (
+        //     state.entities.users[rental.user_id]
+        // )),
+        renters,
     }
 }
 

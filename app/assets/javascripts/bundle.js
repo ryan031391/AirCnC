@@ -197,6 +197,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_HOUSES": () => (/* binding */ RECEIVE_HOUSES),
 /* harmony export */   "RECEIVE_HOUSE": () => (/* binding */ RECEIVE_HOUSE),
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "RECEIVE_REVIEW_ERRORS": () => (/* binding */ RECEIVE_REVIEW_ERRORS),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
 /* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
@@ -207,6 +208,8 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_HOUSES = 'RECEIVE_HOUSES';
 var RECEIVE_HOUSE = 'RECEIVE_HOUSE';
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW'; // export const RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
+
+var RECEIVE_REVIEW_ERRORS = 'RECEIVE_REVIEW_ERRORS';
 
 var receiveHouses = function receiveHouses(houses) {
   return {
@@ -219,13 +222,15 @@ var receiveHouse = function receiveHouse(_ref) {
   var house = _ref.house,
       reviews = _ref.reviews,
       authors = _ref.authors,
-      rentals = _ref.rentals;
+      rentals = _ref.rentals,
+      renters = _ref.renters;
   return {
     type: RECEIVE_HOUSE,
     house: house,
     reviews: reviews,
     authors: authors,
-    rentals: rentals
+    rentals: rentals,
+    renters: renters
   };
 };
 
@@ -238,6 +243,13 @@ var receiveReview = function receiveReview(_ref2) {
     review: review,
     average_score: average_score,
     author: author
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_REVIEW_ERRORS,
+    errors: errors
   };
 };
 
@@ -262,6 +274,8 @@ var createReview = function createReview(review) {
   return function (dispatch) {
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (review) {
       return dispatch(receiveReview(review));
+    }, function (error) {
+      return dispatch(receiveErrors(error.responseJSON));
     });
   };
 };
@@ -337,7 +351,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_CURRENT_USER": () => (/* binding */ RECEIVE_CURRENT_USER),
 /* harmony export */   "LOGOUT_CURRENT_USER": () => (/* binding */ LOGOUT_CURRENT_USER),
 /* harmony export */   "RECEIVE_SESSION_ERRORS": () => (/* binding */ RECEIVE_SESSION_ERRORS),
-/* harmony export */   "receiveErrors": () => (/* binding */ receiveErrors),
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
 /* harmony export */   "login": () => (/* binding */ login),
@@ -370,6 +383,7 @@ var receiveErrors = function receiveErrors(errors) {
     errors: errors
   };
 };
+
 var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.signup(user).then(function (user) {
@@ -540,23 +554,23 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "reviewForm",
-    value: function reviewForm() {
+    value: function reviewForm(houseId) {
       var _this2 = this;
 
       var temp = false;
-      var today = new Date();
-      this.props.renters.forEach(function (renter) {
+      var today = new Date(); // console.log(this.props)
+
+      if (this.props.renters) this.props.renters.forEach(function (renter) {
         if (_this2.props.currentUser.username === renter.username) {
-          // return (
-          //     <ReviewFormContainer />
-          // )
           var temp_1 = new Date(_this2.props.rentals.find(function (ele) {
             return ele.user_id === renter.id;
           }).check_out);
           if (temp_1 < today) temp = true;
         }
       });
-      if (temp) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_2__.default, null);
+      if (temp) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_2__.default, {
+        houseId: houseId
+      });
     }
   }, {
     key: "render",
@@ -578,7 +592,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
           key: review.id,
           review: review
         });
-      }), this.reviewForm());
+      }), this.reviewForm(this.props.match.params.houseId));
     }
   }]);
 
@@ -615,16 +629,19 @@ var mSTP = function mSTP(state, ownProps) {
   var HouseId = parseInt(ownProps.match.params.houseId);
   var house = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectHouse)(state.entities, HouseId);
   var reviews = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectReviewsForHouse)(state.entities, house);
-  var rentals = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectRentalsForHouse)(state.entities, house);
+  var rentals = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectRentalsForHouse)(state.entities, house); // const renters = selectRentersForHouse(state.entities, house);
+
+  var renters = state.entities.renters ? Object.values(state.entities.renters) : [];
   return {
     currentUser: state.entities.users[state.session.session_token],
     HouseId: HouseId,
     house: house,
     reviews: reviews,
     rentals: rentals,
-    renters: rentals.map(function (rental) {
-      return state.entities.users[rental.user_id];
-    })
+    // renters: rentals.map(rental => (
+    //     state.entities.users[rental.user_id]
+    // )),
+    renters: renters
   };
 };
 
@@ -682,15 +699,77 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ReviewForm);
 
   function ReviewForm(props) {
+    var _this;
+
     _classCallCheck(this, ReviewForm);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      house_id: props.houseId,
+      body: '',
+      score: ''
+    };
+    _this.updateBody = _this.updateBody.bind(_assertThisInitialized(_this));
+    _this.updateScore = _this.updateScore.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ReviewForm, [{
+    key: "updateBody",
+    value: function updateBody(e) {
+      this.setState({
+        body: e.currentTarget.value
+      });
+    }
+  }, {
+    key: "updateScore",
+    value: function updateScore(e) {
+      this.setState({
+        score: e.currentTarget.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.createReview(this.state);
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Wabby Wabby, Wabby Wabbo");
+      console.log(this.props);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Leave your review:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+        value: this.state.body,
+        onChange: this.updateBody
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Score: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+        id: "myList",
+        onChange: this.updateScore
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " --- Rate --- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "5"
+      }, " 5 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "4"
+      }, " 4 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "3"
+      }, " 3 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "2"
+      }, " 2 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        value: "1"
+      }, " 1 ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "submit"
+      }, "Submit"), this.renderErrors());
     }
   }]);
 
@@ -717,9 +796,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/house_show/review_form.jsx");
 
 
- // const mSTP = ownProps => ({
-//     houseId: parseInt(ownProps.match.params.houseId)
-// });
+
+
+var mSTP = function mSTP(state) {
+  return {
+    errors: state.errors.house
+  };
+};
 
 var mDTP = function mDTP(dispatch) {
   return {
@@ -729,7 +812,7 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mDTP)(_review_form__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_review_form__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -1846,21 +1929,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _houses_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./houses_reducer */ "./frontend/reducers/houses_reducer.js");
 /* harmony import */ var _reviews_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reviews_reducer */ "./frontend/reducers/reviews_reducer.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _rental_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./rental_reducer */ "./frontend/reducers/rental_reducer.js");
+/* harmony import */ var _renter_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./renter_reducer */ "./frontend/reducers/renter_reducer.js");
 
 
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_5__.combineReducers)({
   houses: _houses_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
   reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
-  rentals: _rental_reducer__WEBPACK_IMPORTED_MODULE_3__.default
+  rentals: _rental_reducer__WEBPACK_IMPORTED_MODULE_3__.default,
+  renters: _renter_reducer__WEBPACK_IMPORTED_MODULE_4__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -1877,14 +1963,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
+/* harmony import */ var _house_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./house_errors_reducer */ "./frontend/reducers/house_errors_reducer.js");
 
 
-var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__.default
+
+var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  house: _house_errors_reducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/house_errors_reducer.js":
+/*!***************************************************!*\
+  !*** ./frontend/reducers/house_errors_reducer.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
+
+
+var houseerrosReducer = function houseerrosReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW_ERRORS:
+      return action.errors;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (houseerrosReducer);
 
 /***/ }),
 
@@ -1919,8 +2040,8 @@ var housesReducer = function housesReducer() {
       return nextState;
 
     case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW:
-      nextState[action.review.house_id].reviewId.push[review.id];
-      nextState[action.review.house.id].average_score = action.average_score;
+      nextState[action.review.house_id].reviewId.push[review.id]; // nextState[action.review.house.id].average_score = action.average_score;
+
       return nextState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.LOGOUT_CURRENT_USER:
@@ -1998,6 +2119,38 @@ var rentalReducer = function rentalReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rentalReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/renter_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/renter_reducer.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
+
+
+var renterReducer = function renterReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_HOUSE:
+      return Object.assign({}, state, action.renters);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renterReducer);
 
 /***/ }),
 
@@ -2087,7 +2240,8 @@ var selectHouse = function selectHouse(_ref, houseId) {
   var houses = _ref.houses;
   return houses[houseId] || {
     reviewIds: [],
-    rentalIds: []
+    rentalIds: [],
+    renterIds: []
   };
 };
 var selectReviewsForHouse = function selectReviewsForHouse(_ref2, house) {
@@ -2103,7 +2257,10 @@ var selectRentalsForHouse = function selectRentalsForHouse(_ref3, house) {
   return house.rentalIds.map(function (rentalId) {
     return rentals[rentalId];
   });
-};
+}; // export const selectRentersForHouse = ({houses, renters}, house) => {
+//   return house.renterIds.map(renterId => renters[renterId]);
+// }
+
 var selectHouses = function selectHouses(_ref4) {
   var houses = _ref4.houses;
   return Object.keys(houses).map(function (key) {

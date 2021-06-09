@@ -466,7 +466,7 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _welcome_welcome_container__WEBPACK_IMPORTED_MODULE_5__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
     path: "/houses/:houseId",
     component: _house_show_house_show_container__WEBPACK_IMPORTED_MODULE_6__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
@@ -524,9 +524,13 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(HouseShow);
 
   function HouseShow(props) {
+    var _this;
+
     _classCallCheck(this, HouseShow);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.reviewForm = _this.reviewForm.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(HouseShow, [{
@@ -537,7 +541,22 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "reviewForm",
     value: function reviewForm() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_2__.default, null);
+      var _this2 = this;
+
+      var temp = false;
+      var today = new Date();
+      this.props.renters.forEach(function (renter) {
+        if (_this2.props.currentUser.username === renter.username) {
+          // return (
+          //     <ReviewFormContainer />
+          // )
+          var temp_1 = new Date(_this2.props.rentals.find(function (ele) {
+            return ele.user_id === renter.id;
+          }).check_out);
+          if (temp_1 < today) temp = true;
+        }
+      });
+      if (temp) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_2__.default, null);
     }
   }, {
     key: "render",
@@ -588,7 +607,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // const mSTP = ({ session, entities}) =>({
+//     currentUser: entities.users[session.session_token]
+// })
 
 var mSTP = function mSTP(state, ownProps) {
   var HouseId = parseInt(ownProps.match.params.houseId);
@@ -596,10 +617,14 @@ var mSTP = function mSTP(state, ownProps) {
   var reviews = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectReviewsForHouse)(state.entities, house);
   var rentals = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectRentalsForHouse)(state.entities, house);
   return {
+    currentUser: state.entities.users[state.session.session_token],
     HouseId: HouseId,
     house: house,
     reviews: reviews,
-    rentals: rentals
+    rentals: rentals,
+    renters: rentals.map(function (rental) {
+      return state.entities.users[rental.user_id];
+    })
   };
 };
 
@@ -665,7 +690,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   _createClass(ReviewForm, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "PenPineappleApplePen!");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Wabby Wabby, Wabby Wabbo");
     }
   }]);
 
@@ -1662,6 +1687,7 @@ var User = /*#__PURE__*/function (_React$Component) {
   _createClass(User, [{
     key: "render",
     value: function render() {
+      // console.log(this.props)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Welcome, ", this.props.currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.props.logout
       }, "Log out"));
@@ -1738,6 +1764,7 @@ var Welcome = function Welcome(_ref) {
       logout = _ref.logout,
       openModal = _ref.openModal;
 
+  // console.log(currentUser);
   var not_logged_in = function not_logged_in() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
       id: "Welcome"
@@ -2332,7 +2359,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _components_my404__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/my404 */ "./frontend/components/my404.jsx");
+
 
 
 
@@ -2342,13 +2371,14 @@ var Auth = function Auth(_ref) {
       path = _ref.path,
       loggedIn = _ref.loggedIn,
       exact = _ref.exact;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
     path: path,
     exact: exact,
     render: function render(props) {
-      return !loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Redirect, {
+      return !loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
         to: "/"
-      });
+      }) // <Route component={My404Component}/>
+      ;
     }
   });
 };
@@ -2358,11 +2388,11 @@ var Protected = function Protected(_ref2) {
       path = _ref2.path,
       loggedIn = _ref2.loggedIn,
       exact = _ref2.exact;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
     path: path,
     exact: exact,
     render: function render(props) {
-      return loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Redirect, {
+      return loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
         to: "/"
       });
     }
@@ -2375,8 +2405,8 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var AuthRoute = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Auth));
-var ProtectedRoute = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Protected));
+var AuthRoute = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Auth));
+var ProtectedRoute = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Protected));
 
 /***/ }),
 

@@ -1,1 +1,1 @@
-json.extract! rental, :id, :check_in, :check_out, :user_id, :house_id
+json.extract! rental, :id, :user_id, :house_id, :check_in, :check_out

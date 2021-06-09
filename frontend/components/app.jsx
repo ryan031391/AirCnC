@@ -25,7 +25,7 @@ const App = () => (
       </header> */}
       <Switch>
       <Route exact path="/" component={WelcomeContainer}/>
-      <Route path="/houses/:houseId" component={HouseShowContainer} />
+      <ProtectedRoute path="/houses/:houseId" component={HouseShowContainer} />
 
       <Route component={My404Component} />
       

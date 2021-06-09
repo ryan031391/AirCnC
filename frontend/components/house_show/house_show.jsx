@@ -4,7 +4,8 @@ import ReviewFormContainer from './review_form_container';
 
 class HouseShow extends React.Component{
     constructor(props){
-        super(props)
+        super(props);
+        this.reviewForm = this.reviewForm.bind(this);
     }
 
     componentDidMount(){
@@ -12,9 +13,22 @@ class HouseShow extends React.Component{
     }
 
     reviewForm(){
-        return(
+        let temp = false
+        let today = new Date()
+
+        this.props.renters.forEach(renter => {
+            if (this.props.currentUser.username === renter.username ) {
+                // return (
+                //     <ReviewFormContainer />
+                // )
+                let temp_1 = new Date(this.props.rentals.find(ele => ele.user_id === renter.id).check_out)
+                if (temp_1 < today) temp = true;
+            }
+        })
+
+        if (temp) return(
             <ReviewFormContainer />
-        )
+        ) 
     }
 
     render(){

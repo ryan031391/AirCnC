@@ -190,3 +190,10 @@ r13 = Review.create!(
     score: 4,
     body: "Really nice experience!"
 )
+
+r1 = RentalInfo.create!(
+    user_id: 2,
+    house_id: h1.id,
+    check_in: "March 15 2021",
+    check_out: "March 17 2021",
+)

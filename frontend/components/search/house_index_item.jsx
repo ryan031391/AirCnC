@@ -9,7 +9,7 @@ class HouseIndexItem extends React.Component{
     render(){
         const {house} = this.props
         return(
-            <Link to={`/api/${house.id}`}>
+            <Link to={`/houses/${house.id}`}>
                 <li id={`house-${house.id}`}>
                     <label>Price: {house.price}/day</label>
                     <br/>

@@ -465,14 +465,98 @@ var App = function App() {
     path: "/",
     component: _welcome_welcome_container__WEBPACK_IMPORTED_MODULE_5__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-    component: _my404__WEBPACK_IMPORTED_MODULE_7__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/houses/:houseId",
     component: _house_show_house_show_container__WEBPACK_IMPORTED_MODULE_6__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    component: _my404__WEBPACK_IMPORTED_MODULE_7__.default
   })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./frontend/components/house_show/house_show.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/house_show/house_show.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _review_item_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./review_item_container */ "./frontend/components/house_show/review_item_container.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var HouseShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(HouseShow, _React$Component);
+
+  var _super = _createSuper(HouseShow);
+
+  function HouseShow(props) {
+    _classCallCheck(this, HouseShow);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(HouseShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchHouse(this.props.HouseId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          house = _this$props.house,
+          reviews = _this$props.reviews;
+      var sum = 0;
+      var num = 0;
+      reviews.map(function (review) {
+        return num += 1;
+      });
+      reviews.map(function (review) {
+        return sum += review.score;
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hi Banana!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "House Info:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Rating: ", (sum / num).toFixed(2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Description: ", house.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Location: ", house.location, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Reviews: "), reviews.map(function (review) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
+          key: review.id,
+          review: review
+        });
+      }));
+    }
+  }]);
+
+  return HouseShow;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HouseShow);
 
 /***/ }),
 
@@ -484,10 +568,136 @@ var App = function App() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/house_actions */ "./frontend/actions/house_actions.js");
+/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
+/* harmony import */ var _house_show__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./house_show */ "./frontend/components/house_show/house_show.jsx");
 
 
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  var HouseId = parseInt(ownProps.match.params.houseId);
+  var house = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectHouse)(state.entities, HouseId);
+  var reviews = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectReviewsForHouse)(state.entities, house);
+  return {
+    HouseId: HouseId,
+    house: house,
+    reviews: reviews
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    fetchHouse: function fetchHouse(houseId) {
+      return dispatch((0,_actions_house_actions__WEBPACK_IMPORTED_MODULE_1__.fetchHouse)(houseId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_house_show__WEBPACK_IMPORTED_MODULE_3__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/house_show/review_item.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/house_show/review_item.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ReviewItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(ReviewItem, _React$Component);
+
+  var _super = _createSuper(ReviewItem);
+
+  function ReviewItem(props) {
+    var _this;
+
+    _classCallCheck(this, ReviewItem);
+
+    _this = _super.call(this, props);
+    console.log(props);
+    return _this;
+  }
+
+  _createClass(ReviewItem, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          author = _this$props.author,
+          review = _this$props.review;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "User ", author.username, " -", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Rating: ", review.score, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Comment: \"", review.body, "\"");
+    }
+  }]);
+
+  return ReviewItem;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewItem);
+
+/***/ }),
+
+/***/ "./frontend/components/house_show/review_item_container.js":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/house_show/review_item_container.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _review_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_item */ "./frontend/components/house_show/review_item.jsx");
+
+
+
+
+var mSTP = function mSTP(_ref, _ref2) {
+  var entities = _ref.entities;
+  var review = _ref2.review;
+  return {
+    author: entities.users[review.user_id]
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP)(_review_item__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -849,7 +1059,7 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var house = this.props.house;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "/api/".concat(house.id)
+        to: "/houses/".concat(house.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         id: "house-".concat(house.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Price: ", house.price, "/day"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "location: ", house.location)));
@@ -1508,17 +1718,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _houses_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./houses_reducer */ "./frontend/reducers/houses_reducer.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _reviews_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reviews_reducer */ "./frontend/reducers/reviews_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 
- // import reviewsReducer from './reviews_reducer';
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   houses: _houses_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  //   reviews: reviewsReducer,
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__.default
+  reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_2__.default // rentals: rentalReducer,
+
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -1627,6 +1839,43 @@ var modalReducer = function modalReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/reviews_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/reviews_reducer.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
+
+
+var ReviewsReducer = function ReviewsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_HOUSE:
+      return Object.assign({}, action.reviews);
+
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW:
+      nextState[action.review.id] = action.review;
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/root_reduer.js":
 /*!******************************************!*\
   !*** ./frontend/reducers/root_reduer.js ***!
@@ -1669,6 +1918,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "selectHouse": () => (/* binding */ selectHouse),
 /* harmony export */   "selectReviewsForHouse": () => (/* binding */ selectReviewsForHouse),
+/* harmony export */   "selectRentalsForHouse": () => (/* binding */ selectRentalsForHouse),
 /* harmony export */   "selectHouses": () => (/* binding */ selectHouses)
 /* harmony export */ });
 var selectHouse = function selectHouse(_ref, houseId) {
@@ -1684,8 +1934,15 @@ var selectReviewsForHouse = function selectReviewsForHouse(_ref2, house) {
     return reviews[reviewId];
   });
 };
-var selectHouses = function selectHouses(_ref3) {
-  var houses = _ref3.houses;
+var selectRentalsForHouse = function selectRentalsForHouse(_ref3, house) {
+  var houses = _ref3.houses,
+      rentals = _ref3.rentals;
+  return house.rentalIds.map(function (rentalId) {
+    return rentals[rentalId];
+  });
+};
+var selectHouses = function selectHouses(_ref4) {
+  var houses = _ref4.houses;
   return Object.keys(houses).map(function (key) {
     return houses[key];
   }) // Object.values(state.houses)

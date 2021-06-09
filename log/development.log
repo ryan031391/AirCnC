@@ -23607,3 +23607,2374 @@ Processing by StaticPagesController#root as HTML
 Completed 200 OK in 497ms (Views: 476.5ms | ActiveRecord: 17.7ms)
 
 
+Started GET "/" for ::1 at 2021-06-08 15:10:49 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "PtnFFRyFt8A-heEnyVna_A"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.8ms)
+Completed 200 OK in 436ms (Views: 423.0ms | ActiveRecord: 11.2ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-06-08 15:10:52 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "PtnFFRyFt8A-heEnyVna_A"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "UlUBkas9Fov6via8Jvza8g"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "guest4492800"], ["id", 39], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "UlUBkas9Fov6via8Jvza8g"], ["updated_at", "2021-06-08 22:10:52.556721"], ["id", 39]]
+  ↳ app/models/user.rb:42
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered api/users/show.json.jbuilder (2.4ms)
+Completed 200 OK in 37ms (Views: 7.9ms | ActiveRecord: 9.5ms)
+
+
+Started POST "/api/session" for ::1 at 2021-06-08 15:10:59 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"ryan", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ryan"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:22
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["updated_at", "2021-06-08 22:10:59.791654"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  Rendered api/users/show.json.jbuilder (2.0ms)
+Completed 200 OK in 274ms (Views: 7.6ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:11:09 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (1.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (1.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (1.1ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (46.1ms)
+Completed 200 OK in 58ms (Views: 37.9ms | ActiveRecord: 12.9ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:11:56 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 427ms (Views: 418.7ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:12:02 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (50.0ms)
+Completed 200 OK in 62ms (Views: 43.7ms | ActiveRecord: 10.2ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:12:37 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+Completed 200 OK in 422ms (Views: 419.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:12:43 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (20.8ms)
+Completed 200 OK in 28ms (Views: 26.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:13:06 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 408ms (Views: 406.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:13:15 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (14.4ms)
+Completed 200 OK in 19ms (Views: 17.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=NaN&bounds%5Bsouth%5D=NaN&bounds%5Bwest%5D=NaN&bounds%5Bnorth%5D=NaN" for ::1 at 2021-06-08 15:13:18 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"NaN", "south"=>"NaN", "west"=>"NaN", "north"=>"NaN"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < 'NaN') AND (latitude > 'NaN') AND (longitude > 'NaN') AND (longitude < 'NaN')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/index.json.jbuilder (2.3ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:13:19 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (14.6ms)
+Completed 200 OK in 20ms (Views: 17.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:14:33 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 395ms (Views: 393.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:14:38 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (13.9ms)
+Completed 200 OK in 19ms (Views: 16.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:14:53 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 48ms (Views: 44.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:15:52 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.8ms)
+Completed 200 OK in 419ms (Views: 417.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:15:59 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (14.9ms)
+Completed 200 OK in 21ms (Views: 19.0ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:22:46 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 675ms (Views: 671.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:22:47 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (3.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.8ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (42.6ms)
+Completed 200 OK in 66ms (Views: 53.6ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:27:57 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (1.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (2.0ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (1.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (16.3ms)
+Completed 200 OK in 21ms (Views: 16.1ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:29:20 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 407ms (Views: 402.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:29:28 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.7ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/index.json.jbuilder (19.2ms)
+Completed 200 OK in 26ms (Views: 23.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:29:30 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (19.5ms)
+Completed 200 OK in 39ms (Views: 30.1ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/api/houses/88" for ::1 at 2021-06-08 15:30:37 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"88"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 88], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 88]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (1.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 88]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (1.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (17.6ms)
+Completed 200 OK in 26ms (Views: 19.4ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/houses/89" for ::1 at 2021-06-08 15:31:11 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"89"}
+  [1m[36mHouse Load (1.0ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 89], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 89]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (1.0ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 89]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (17.1ms)
+Completed 200 OK in 32ms (Views: 21.2ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:31:14 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (19.1ms)
+Completed 200 OK in 28ms (Views: 21.8ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:37:08 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (14.8ms)
+Completed 200 OK in 25ms (Views: 15.8ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:39:08 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 410ms (Views: 408.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:39:08 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (1.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  Rendered api/houses/show.json.jbuilder (16.8ms)
+Completed 200 OK in 34ms (Views: 23.0ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:39:31 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (1.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (2.9ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (20.1ms)
+Completed 200 OK in 27ms (Views: 20.8ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:39:32 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (1.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (18.5ms)
+Completed 200 OK in 36ms (Views: 24.6ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:39:37 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 49ms (Views: 46.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:39:37 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (4.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (13.9ms)
+Completed 200 OK in 35ms (Views: 25.0ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:43:36 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 432ms (Views: 428.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:43:37 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (9.0ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (1.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (28.0ms)
+Completed 200 OK in 41ms (Views: 25.7ms | ActiveRecord: 11.3ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:43:42 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (20.7ms)
+Completed 200 OK in 32ms (Views: 23.7ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:43:44 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 60ms (Views: 56.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:43:44 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (17.3ms)
+Completed 200 OK in 28ms (Views: 20.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.4075147&bounds%5Bsouth%5D=37.7879374&bounds%5Bwest%5D=-122.4075147&bounds%5Bnorth%5D=37.7879374" for ::1 at 2021-06-08 15:44:35 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.4075147", "south"=>"37.7879374", "west"=>"-122.4075147", "north"=>"37.7879374"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.7879374') AND (latitude > '37.7879374') AND (longitude > '-122.4075147') AND (longitude < '-122.4075147')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/index.json.jbuilder (2.2ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:44:37 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (16.9ms)
+Completed 200 OK in 22ms (Views: 19.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:44:57 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (1.3ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.9ms)
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (23.2ms)
+Completed 200 OK in 42ms (Views: 31.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:46:55 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 424ms (Views: 421.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:46:55 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.9ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (15.7ms)
+Completed 200 OK in 28ms (Views: 19.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:49:08 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (1.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (17.7ms)
+Completed 200 OK in 31ms (Views: 23.1ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:49:11 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 412ms (Views: 409.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:49:12 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (15.8ms)
+Completed 200 OK in 28ms (Views: 20.0ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:50:34 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+Completed 200 OK in 432ms (Views: 428.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:50:35 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (20.6ms)
+Completed 200 OK in 35ms (Views: 26.3ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:51:03 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (14.5ms)
+Completed 200 OK in 20ms (Views: 17.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:51:24 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 48ms (Views: 45.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:51:31 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (15.1ms)
+Completed 200 OK in 23ms (Views: 20.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:51:42 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  Rendered api/houses/show.json.jbuilder (14.8ms)
+Completed 200 OK in 27ms (Views: 20.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:52:22 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 78ms (Views: 75.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:52:22 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (27.8ms)
+Completed 200 OK in 41ms (Views: 32.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:52:52 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 63ms (Views: 60.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:52:52 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (4.9ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (18.7ms)
+Completed 200 OK in 37ms (Views: 24.2ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 15:53:41 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 49ms (Views: 46.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 15:53:47 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (14.9ms)
+Completed 200 OK in 21ms (Views: 19.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 15:53:55 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (12.3ms)
+Completed 200 OK in 25ms (Views: 18.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/houses/88" for ::1 at 2021-06-08 15:56:06 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"88"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 88], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (3.4ms)
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 88]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 88]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (17.8ms)
+Completed 200 OK in 30ms (Views: 24.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/houses/89" for ::1 at 2021-06-08 15:56:09 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"89"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 89], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (1.1ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 89]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 89]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (17.2ms)
+Completed 200 OK in 27ms (Views: 21.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:01:16 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 407ms (Views: 404.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 16:01:23 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (15.7ms)
+Completed 200 OK in 21ms (Views: 18.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:01:24 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (1.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (19.9ms)
+Completed 200 OK in 33ms (Views: 22.7ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:02:05 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (18.4ms)
+Completed 200 OK in 28ms (Views: 22.7ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:12:14 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 479ms (Views: 456.7ms | ActiveRecord: 20.7ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 16:12:20 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (1.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (1.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (1.2ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (52.6ms)
+Completed 200 OK in 66ms (Views: 44.0ms | ActiveRecord: 13.6ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:12:21 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (40.9ms)
+Completed 200 OK in 67ms (Views: 37.1ms | ActiveRecord: 13.1ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:12:34 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.8ms)
+Completed 200 OK in 424ms (Views: 420.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:12:35 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (1.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (5.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (31.5ms)
+Completed 200 OK in 47ms (Views: 32.4ms | ActiveRecord: 8.4ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:13:16 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 421ms (Views: 419.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:14:22 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+Completed 200 OK in 399ms (Views: 397.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:14:23 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (2.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (14.3ms)
+Completed 200 OK in 30ms (Views: 20.1ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 16:14:33 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (38.5ms)
+Completed 200 OK in 45ms (Views: 41.1ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/api/houses/88" for ::1 at 2021-06-08 16:14:34 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"88"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 88], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (1.5ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 88]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 88]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (15.0ms)
+Completed 200 OK in 27ms (Views: 21.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/houses/89" for ::1 at 2021-06-08 16:14:36 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"89"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 89], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 89]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 89]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (15.8ms)
+Completed 200 OK in 29ms (Views: 22.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/houses/90" for ::1 at 2021-06-08 16:14:40 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"90"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 90], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 90]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 90]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (14.6ms)
+Completed 200 OK in 26ms (Views: 20.7ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/houses/91" for ::1 at 2021-06-08 16:14:42 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"91"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 91], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 91]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 91]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (14.8ms)
+Completed 200 OK in 24ms (Views: 18.3ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-121.57418136666666&bounds%5Bsouth%5D=37.063299718840575&bounds%5Bwest%5D=-123.24084803333332&bounds%5Bnorth%5D=38.51257508115942" for ::1 at 2021-06-08 16:14:54 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-121.57418136666666", "south"=>"37.063299718840575", "west"=>"-123.24084803333332", "north"=>"38.51257508115942"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '38.51257508115942') AND (latitude > '37.063299718840575') AND (longitude > '-123.24084803333332') AND (longitude < '-121.57418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 86], ["house_id", 87], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91], ["house_id", 92], ["house_id", 93], ["house_id", 94], ["house_id", 95]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 86], ["house_id", 87], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91], ["house_id", 92], ["house_id", 93], ["house_id", 94], ["house_id", 95]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (24.0ms)
+Completed 200 OK in 31ms (Views: 27.7ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/houses/87" for ::1 at 2021-06-08 16:14:55 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"87"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.9ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 3], ["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (23.5ms)
+Completed 200 OK in 33ms (Views: 25.3ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:15:56 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 449ms (Views: 446.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 16:16:02 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.7ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (18.1ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-121.57418136666666&bounds%5Bsouth%5D=37.063299718840575&bounds%5Bwest%5D=-123.24084803333332&bounds%5Bnorth%5D=38.51257508115942" for ::1 at 2021-06-08 16:16:07 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-121.57418136666666", "south"=>"37.063299718840575", "west"=>"-123.24084803333332", "north"=>"38.51257508115942"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '38.51257508115942') AND (latitude > '37.063299718840575') AND (longitude > '-123.24084803333332') AND (longitude < '-121.57418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 86], ["house_id", 87], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91], ["house_id", 92], ["house_id", 93], ["house_id", 94], ["house_id", 95]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 86], ["house_id", 87], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91], ["house_id", 92], ["house_id", 93], ["house_id", 94], ["house_id", 95]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (27.8ms)
+Completed 200 OK in 34ms (Views: 30.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/houses/87" for ::1 at 2021-06-08 16:16:16 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"87"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 3], ["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (21.2ms)
+Completed 200 OK in 33ms (Views: 25.5ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:16:33 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 462ms (Views: 458.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-121.57418136666666&bounds%5Bsouth%5D=37.063299718840575&bounds%5Bwest%5D=-123.24084803333332&bounds%5Bnorth%5D=38.51257508115942" for ::1 at 2021-06-08 16:16:40 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-121.57418136666666", "south"=>"37.063299718840575", "west"=>"-123.24084803333332", "north"=>"38.51257508115942"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '38.51257508115942') AND (latitude > '37.063299718840575') AND (longitude > '-123.24084803333332') AND (longitude < '-121.57418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 86], ["house_id", 87], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91], ["house_id", 92], ["house_id", 93], ["house_id", 94], ["house_id", 95]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.9ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 86], ["house_id", 87], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91], ["house_id", 92], ["house_id", 93], ["house_id", 94], ["house_id", 95]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (24.1ms)
+Completed 200 OK in 30ms (Views: 26.9ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/houses/87" for ::1 at 2021-06-08 16:16:41 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"87"}
+  [1m[36mHouse Load (1.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 3], ["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.8ms)
+  Rendered api/houses/show.json.jbuilder (18.2ms)
+Completed 200 OK in 34ms (Views: 24.4ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:17:01 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 401ms (Views: 398.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:21:27 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 410ms (Views: 407.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/houses/87" for ::1 at 2021-06-08 16:21:27 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"87"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 3], ["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.9ms)
+  Rendered api/houses/show.json.jbuilder (17.2ms)
+Completed 200 OK in 32ms (Views: 22.1ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:21:31 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 45ms (Views: 42.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 16:21:40 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 86], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (17.1ms)
+Completed 200 OK in 22ms (Views: 19.6ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:21:40 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (13.5ms)
+Completed 200 OK in 24ms (Views: 16.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:26:13 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 404ms (Views: 401.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:26:14 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.9ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (1.1ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (13.8ms)
+Completed 200 OK in 32ms (Views: 21.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:28:54 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 413ms (Views: 411.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:28:55 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (16.8ms)
+Completed 200 OK in 28ms (Views: 22.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:34:40 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 407ms (Views: 404.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:34:41 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (28.2ms)
+Completed 200 OK in 42ms (Views: 34.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:35:07 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+Completed 200 OK in 679ms (Views: 677.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:35:25 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+Completed 200 OK in 421ms (Views: 418.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:35:25 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.9ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (22.8ms)
+Completed 200 OK in 37ms (Views: 28.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:35:59 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 418ms (Views: 415.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:35:59 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (17.1ms)
+Completed 200 OK in 29ms (Views: 21.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:38:44 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 406ms (Views: 404.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:38:45 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.9ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (2.0ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (15.7ms)
+Completed 200 OK in 27ms (Views: 19.1ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:39:19 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 415ms (Views: 412.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:39:19 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  Rendered api/houses/show.json.jbuilder (15.4ms)
+Completed 200 OK in 26ms (Views: 18.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:40:16 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 419ms (Views: 417.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:40:17 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (1.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/houses/show.json.jbuilder (17.1ms)
+Completed 200 OK in 29ms (Views: 21.2ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:40:43 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 414ms (Views: 411.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:40:44 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (15.9ms)
+Completed 200 OK in 31ms (Views: 21.8ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:41:16 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 412ms (Views: 409.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:41:16 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (3.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (13.8ms)
+Completed 200 OK in 31ms (Views: 19.3ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:41:48 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 417ms (Views: 414.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:41:49 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (15.2ms)
+Completed 200 OK in 28ms (Views: 20.6ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/" for ::1 at 2021-06-08 16:42:01 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 61ms (Views: 58.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-73.89913366666667&bounds%5Bsouth%5D=40.59168713188406&bounds%5Bwest%5D=-74.06580033333333&bounds%5Bnorth%5D=40.73661466811595" for ::1 at 2021-06-08 16:42:11 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-73.89913366666667", "south"=>"40.59168713188406", "west"=>"-74.06580033333333", "north"=>"40.73661466811595"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '40.73661466811595') AND (latitude > '40.59168713188406') AND (longitude > '-74.06580033333333') AND (longitude < '-73.89913366666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/index.json.jbuilder (2.3ms)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-83.07137926666667&bounds%5Bsouth%5D=42.180806831884055&bounds%5Bwest%5D=-83.23804593333332&bounds%5Bnorth%5D=42.325734368115945" for ::1 at 2021-06-08 16:42:22 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-83.07137926666667", "south"=>"42.180806831884055", "west"=>"-83.23804593333332", "north"=>"42.325734368115945"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '42.325734368115945') AND (latitude > '42.180806831884055') AND (longitude > '-83.23804593333332') AND (longitude < '-83.07137926666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/index.json.jbuilder (2.2ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.33489826666667&bounds%5Bsouth%5D=37.70591533188406&bounds%5Bwest%5D=-122.50156493333333&bounds%5Bnorth%5D=37.85084286811595" for ::1 at 2021-06-08 16:42:34 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.33489826666667", "south"=>"37.70591533188406", "west"=>"-122.50156493333333", "north"=>"37.85084286811595"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.85084286811595') AND (latitude > '37.70591533188406') AND (longitude > '-122.50156493333333') AND (longitude < '-122.33489826666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5, $6)[0m  [["house_id", 86], ["house_id", 87], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (1.1ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5, $6)[0m  [["house_id", 86], ["house_id", 87], ["house_id", 88], ["house_id", 89], ["house_id", 90], ["house_id", 91]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (1.0ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (22.0ms)
+Completed 200 OK in 28ms (Views: 24.7ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/houses/87" for ::1 at 2021-06-08 16:42:39 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"87"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 87]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 3], ["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (22.4ms)
+Completed 200 OK in 33ms (Views: 23.5ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 16:46:21 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (1.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 86]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (1.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (21.3ms)
+Completed 200 OK in 33ms (Views: 25.5ms | ActiveRecord: 3.1ms)
+
+
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.4ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 86]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 87]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 88]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 89]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 90]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 91]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 92]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 93]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 94]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mHouse Destroy (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 95]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[36mReview Load (1.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 2]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 3]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 4]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 5]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 6]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 7]]
+  ↳ db/seeds.rb:10
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 8]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 9]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 10]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.2ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 11]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 12]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mReview Destroy (0.3ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 13]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mHouse Create (0.8ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.7879374], ["longitude", -122.4075147], ["price", 500], ["description", "San Francisco 1"], ["created_at", "2021-06-08 23:51:19.561430"], ["updated_at", "2021-06-08 23:51:19.561430"], ["location", "333 Post St, San Francisco, CA 94108"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:22
+  [1m[36mHouse Create (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.71298815803055], ["longitude", -122.44051655497177], ["price", 510], ["description", "San Francisco 2"], ["created_at", "2021-06-08 23:51:19.565205"], ["updated_at", "2021-06-08 23:51:19.565205"], ["location", "187 Pope St, San Francisco, CA 94112"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:31
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:31
+  [1m[36mHouse Create (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.784132150349855], ["longitude", -122.45701364742105], ["price", 520], ["description", "San Francisco 3"], ["created_at", "2021-06-08 23:51:19.567969"], ["updated_at", "2021-06-08 23:51:19.567969"], ["location", "97 Jordan Ave, San Francisco, CA 94118"]]
+  ↳ db/seeds.rb:31
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:31
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:40
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:40
+  [1m[36mHouse Create (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.7560508304374], ["longitude", -122.48327732842135], ["price", 530], ["description", "San Francisco 4"], ["created_at", "2021-06-08 23:51:19.571050"], ["updated_at", "2021-06-08 23:51:19.571050"], ["location", "1695 25th Ave, San Francisco, CA 94122"]]
+  ↳ db/seeds.rb:40
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:40
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:49
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:49
+  [1m[36mHouse Create (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.72141804584469], ["longitude", -122.4656957271743], ["price", 540], ["description", "San Francisco 5"], ["created_at", "2021-06-08 23:51:19.573703"], ["updated_at", "2021-06-08 23:51:19.573703"], ["location", "583 Victoria St, San Francisco, CA 94132"]]
+  ↳ db/seeds.rb:49
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:49
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:58
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:58
+  [1m[36mHouse Create (0.4ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.749030515341815], ["longitude", -122.43465549591555], ["price", 550], ["description", "San Francisco 6"], ["created_at", "2021-06-08 23:51:19.576452"], ["updated_at", "2021-06-08 23:51:19.576452"], ["location", "424 Clipper St, San Francisco, CA 94114"]]
+  ↳ db/seeds.rb:58
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:58
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:67
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:67
+  [1m[36mHouse Create (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.65798604415719], ["longitude", -122.42157767591473], ["price", 560], ["description", "South San Francisco 1"], ["created_at", "2021-06-08 23:51:19.583019"], ["updated_at", "2021-06-08 23:51:19.583019"], ["location", "300 Locust Ave, South San Francisco, CA 94080"]]
+  ↳ db/seeds.rb:67
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:67
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:76
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:76
+  [1m[36mHouse Create (0.4ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.651451457882104], ["longitude", -122.38436983721593], ["price", 570], ["description", "South San Francisco 2"], ["created_at", "2021-06-08 23:51:19.585638"], ["updated_at", "2021-06-08 23:51:19.585638"], ["location", "431 E Grand Ave., South San Francisco, CA 94080"]]
+  ↳ db/seeds.rb:76
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:76
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:85
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:85
+  [1m[36mHouse Create (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.68444729137199], ["longitude", -122.47557205225577], ["price", 580], ["description", "Daly City 1"], ["created_at", "2021-06-08 23:51:19.588530"], ["updated_at", "2021-06-08 23:51:19.588530"], ["location", "109 Mirada Dr, Daly City, CA 94015"]]
+  ↳ db/seeds.rb:85
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:85
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:94
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:94
+  [1m[36mHouse Create (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("owner_id", "latitude", "longitude", "price", "description", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["owner_id", 1], ["latitude", 37.69484301866328], ["longitude", -122.49113150600837], ["price", 590], ["description", "Daly City 2"], ["created_at", "2021-06-08 23:51:19.591480"], ["updated_at", "2021-06-08 23:51:19.591480"], ["location", "641 Southgate Ave, Daly City, CA 94015"]]
+  ↳ db/seeds.rb:94
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:94
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:103
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 2], ["house_id", 96], ["LIMIT", 1]]
+  ↳ db/seeds.rb:103
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:103
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 96], ["LIMIT", 1]]
+  ↳ db/seeds.rb:103
+  [1m[36mReview Create (0.6ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["house_id", 96], ["score", 5], ["body", "Perfect!"], ["created_at", "2021-06-08 23:51:19.600356"], ["updated_at", "2021-06-08 23:51:19.600356"]]
+  ↳ db/seeds.rb:103
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:103
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:110
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 4], ["house_id", 96], ["LIMIT", 1]]
+  ↳ db/seeds.rb:110
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:110
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 96], ["LIMIT", 1]]
+  ↳ db/seeds.rb:110
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 4], ["house_id", 96], ["score", 5], ["body", "Perfect!"], ["created_at", "2021-06-08 23:51:19.605040"], ["updated_at", "2021-06-08 23:51:19.605040"]]
+  ↳ db/seeds.rb:110
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:110
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:117
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 3], ["house_id", 97], ["LIMIT", 1]]
+  ↳ db/seeds.rb:117
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:117
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 97], ["LIMIT", 1]]
+  ↳ db/seeds.rb:117
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["house_id", 97], ["score", 4], ["body", "Really nice experience!"], ["created_at", "2021-06-08 23:51:19.609839"], ["updated_at", "2021-06-08 23:51:19.609839"]]
+  ↳ db/seeds.rb:117
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:117
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:124
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 2], ["house_id", 97], ["LIMIT", 1]]
+  ↳ db/seeds.rb:124
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:124
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 97], ["LIMIT", 1]]
+  ↳ db/seeds.rb:124
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["house_id", 97], ["score", 5], ["body", "Perfect!"], ["created_at", "2021-06-08 23:51:19.614063"], ["updated_at", "2021-06-08 23:51:19.614063"]]
+  ↳ db/seeds.rb:124
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:124
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:131
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 4], ["house_id", 97], ["LIMIT", 1]]
+  ↳ db/seeds.rb:131
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:131
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 97], ["LIMIT", 1]]
+  ↳ db/seeds.rb:131
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 4], ["house_id", 97], ["score", 4], ["body", "Really nice experience!"], ["created_at", "2021-06-08 23:51:19.618508"], ["updated_at", "2021-06-08 23:51:19.618508"]]
+  ↳ db/seeds.rb:131
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:131
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:138
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 2], ["house_id", 98], ["LIMIT", 1]]
+  ↳ db/seeds.rb:138
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:138
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 98], ["LIMIT", 1]]
+  ↳ db/seeds.rb:138
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["house_id", 98], ["score", 5], ["body", "Perfect!"], ["created_at", "2021-06-08 23:51:19.622634"], ["updated_at", "2021-06-08 23:51:19.622634"]]
+  ↳ db/seeds.rb:138
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:138
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:145
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 3], ["house_id", 98], ["LIMIT", 1]]
+  ↳ db/seeds.rb:145
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:145
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 98], ["LIMIT", 1]]
+  ↳ db/seeds.rb:145
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["house_id", 98], ["score", 4], ["body", "Really nice experience!"], ["created_at", "2021-06-08 23:51:19.626730"], ["updated_at", "2021-06-08 23:51:19.626730"]]
+  ↳ db/seeds.rb:145
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:145
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:152
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 2], ["house_id", 99], ["LIMIT", 1]]
+  ↳ db/seeds.rb:152
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:152
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 99], ["LIMIT", 1]]
+  ↳ db/seeds.rb:152
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["house_id", 99], ["score", 5], ["body", "Perfect!"], ["created_at", "2021-06-08 23:51:19.631292"], ["updated_at", "2021-06-08 23:51:19.631292"]]
+  ↳ db/seeds.rb:152
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:152
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:159
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 3], ["house_id", 99], ["LIMIT", 1]]
+  ↳ db/seeds.rb:159
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:159
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 99], ["LIMIT", 1]]
+  ↳ db/seeds.rb:159
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["house_id", 99], ["score", 4], ["body", "Really nice experience!"], ["created_at", "2021-06-08 23:51:19.635357"], ["updated_at", "2021-06-08 23:51:19.635357"]]
+  ↳ db/seeds.rb:159
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:159
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:166
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 2], ["house_id", 100], ["LIMIT", 1]]
+  ↳ db/seeds.rb:166
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:166
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ db/seeds.rb:166
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["house_id", 100], ["score", 5], ["body", "Perfect!"], ["created_at", "2021-06-08 23:51:19.639868"], ["updated_at", "2021-06-08 23:51:19.639868"]]
+  ↳ db/seeds.rb:166
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:166
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:173
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 3], ["house_id", 100], ["LIMIT", 1]]
+  ↳ db/seeds.rb:173
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:173
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  ↳ db/seeds.rb:173
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["house_id", 100], ["score", 4], ["body", "Really nice experience!"], ["created_at", "2021-06-08 23:51:19.643979"], ["updated_at", "2021-06-08 23:51:19.643979"]]
+  ↳ db/seeds.rb:173
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:173
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:180
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 2], ["house_id", 101], ["LIMIT", 1]]
+  ↳ db/seeds.rb:180
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:180
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  ↳ db/seeds.rb:180
+  [1m[36mReview Create (0.4ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["house_id", 101], ["score", 5], ["body", "Perfect!"], ["created_at", "2021-06-08 23:51:19.647988"], ["updated_at", "2021-06-08 23:51:19.647988"]]
+  ↳ db/seeds.rb:180
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:180
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:187
+  [1m[36mReview Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."user_id" = $1 AND "reviews"."house_id" = $2 LIMIT $3[0m  [["user_id", 3], ["house_id", 101], ["LIMIT", 1]]
+  ↳ db/seeds.rb:187
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:187
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  ↳ db/seeds.rb:187
+  [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("user_id", "house_id", "score", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["house_id", 101], ["score", 4], ["body", "Really nice experience!"], ["created_at", "2021-06-08 23:51:19.652522"], ["updated_at", "2021-06-08 23:51:19.652522"]]
+  ↳ db/seeds.rb:187
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:187
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:194
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:194
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 96], ["LIMIT", 1]]
+  ↳ db/seeds.rb:194
+  [1m[36mRentalInfo Create (3.1ms)[0m  [1m[32mINSERT INTO "rental_infos" ("user_id", "house_id", "check_in", "check_out", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["house_id", 96], ["check_in", "2021-03-15 00:00:00"], ["check_out", "2021-03-17 00:00:00"], ["created_at", "2021-06-08 23:51:19.670257"], ["updated_at", "2021-06-08 23:51:19.670257"]]
+  ↳ db/seeds.rb:194
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:194
+  [1m[36mRentalInfo Load (1.0ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos"[0m
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT  "rental_infos".* FROM "rental_infos" ORDER BY "rental_infos"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/" for ::1 at 2021-06-08 17:05:06 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "Bk93571pYZwBrs7fYXIgSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+Completed 200 OK in 76ms (Views: 60.4ms | ActiveRecord: 13.2ms)
+
+
+Started GET "/api/houses/86" for ::1 at 2021-06-08 17:05:07 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"86"}
+  [1m[36mHouse Load (1.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 86], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+Completed 404 Not Found in 35ms (ActiveRecord: 4.9ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find House with 'id'=86:
+  app/controllers/api/houses_controller.rb:13:in `show'
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32418136666666&bounds%5Bsouth%5D=37.71547363188405&bounds%5Bwest%5D=-122.49084803333332&bounds%5Bnorth%5D=37.86040116811594" for ::1 at 2021-06-08 17:05:18 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32418136666666", "south"=>"37.71547363188405", "west"=>"-122.49084803333332", "north"=>"37.86040116811594"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (1.0ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86040116811594') AND (latitude > '37.71547363188405') AND (longitude > '-122.49084803333332') AND (longitude < '-122.32418136666666')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (1.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 96], ["house_id", 98], ["house_id", 99], ["house_id", 100], ["house_id", 101]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (1.0ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 96], ["house_id", 98], ["house_id", 99], ["house_id", 100], ["house_id", 101]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (48.6ms)
+Completed 200 OK in 53ms (Views: 41.6ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/api/houses/96" for ::1 at 2021-06-08 17:05:20 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"96"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 96], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 96]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 96]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 4]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/houses/show.json.jbuilder (18.6ms)
+Completed 200 OK in 32ms (Views: 23.2ms | ActiveRecord: 2.4ms)
+
+

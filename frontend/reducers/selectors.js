@@ -1,12 +1,20 @@
 export const selectHouse = ({ houses }, houseId) => {
-    return houses[houseId] || { reviewIds: [], rentalIds: [], renterIds: [] };
+    return houses[houseId] || { reviewIds: [], rentalIds: []};
   };
   
-export const selectReviewsForHouse = ({ houses, reviews }, house) => {
-  return house.reviewIds.map(reviewId => reviews[reviewId]);
+export const selectReviewsForHouse = ({ reviews }, house) => {
+  return house.reviewIds.map(reviewId => reviews[reviewId])
+  //   { 
+  //   // console.log(reviews[reviewId])
+  //   if (reviews[reviewId] === undefined) {
+  //     return 0;
+  //   } else {
+  //     return reviews[reviewId];
+  //   }
+  // });
 };
 
-export const selectRentalsForHouse = ({ houses, rentals }, house) => {
+export const selectRentalsForHouse = ({ rentals }, house) => {
   return house.rentalIds.map(rentalId => rentals[rentalId]);
 };
 

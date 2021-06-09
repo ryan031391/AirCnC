@@ -5,6 +5,7 @@ import ReviewFormContainer from './review_form_container';
 class HouseShow extends React.Component{
     constructor(props){
         super(props);
+        this.today = new Date();
         this.reviewForm = this.reviewForm.bind(this);
     }
 
@@ -14,15 +15,16 @@ class HouseShow extends React.Component{
 
     reviewForm(houseId){
         let temp = false
-        let today = new Date()
         // console.log(this.props)
 
-        if (this.props.renters) this.props.renters.forEach(renter => {
-            if (this.props.currentUser.username === renter.username ) {
-                let temp_1 = new Date(this.props.rentals.find(ele => ele.user_id === renter.id).check_out)
-                if (temp_1 < today) temp = true;
-            }
-        })
+        if (this.props.rentals.length !==0 && this.props.renters.lenth !== 0) {
+            this.props.renters.forEach(renter => {
+                if (this.props.currentUser.username === renter.username ) {
+                    let temp_1 = new Date(this.props.rentals.find(ele => ele.user_id === renter.id).check_out)
+                    if (temp_1 < this.today) temp = true;
+                }
+            })
+        }
 
         if (temp) return(
             <ReviewFormContainer houseId={houseId}/>
@@ -44,7 +46,11 @@ class HouseShow extends React.Component{
                     <li>Rating: {(sum/num).toFixed(2)}</li>
                     <li>Description: {house.description}</li>
                     <li>Location: {house.location} </li>
+                    
                 </ul>
+
+                <h2>Make a reservation!</h2>
+
                 <h2>Reviews: </h2>
 
                 {reviews.map(review => (

@@ -543,6 +543,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, HouseShow);
 
     _this = _super.call(this, props);
+    _this.today = new Date();
     _this.reviewForm = _this.reviewForm.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -557,17 +558,19 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     value: function reviewForm(houseId) {
       var _this2 = this;
 
-      var temp = false;
-      var today = new Date(); // console.log(this.props)
+      var temp = false; // console.log(this.props)
 
-      if (this.props.renters) this.props.renters.forEach(function (renter) {
-        if (_this2.props.currentUser.username === renter.username) {
-          var temp_1 = new Date(_this2.props.rentals.find(function (ele) {
-            return ele.user_id === renter.id;
-          }).check_out);
-          if (temp_1 < today) temp = true;
-        }
-      });
+      if (this.props.rentals.length !== 0 && this.props.renters.lenth !== 0) {
+        this.props.renters.forEach(function (renter) {
+          if (_this2.props.currentUser.username === renter.username) {
+            var temp_1 = new Date(_this2.props.rentals.find(function (ele) {
+              return ele.user_id === renter.id;
+            }).check_out);
+            if (temp_1 < _this2.today) temp = true;
+          }
+        });
+      }
+
       if (temp) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_2__.default, {
         houseId: houseId
       });
@@ -587,7 +590,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       reviews.map(function (review) {
         return sum += review.score;
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hi Banana!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "House Info:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Rating: ", (sum / num).toFixed(2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Description: ", house.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Location: ", house.location, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Reviews: "), reviews.map(function (review) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hi Banana!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "House Info:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Rating: ", (sum / num).toFixed(2)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Description: ", house.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Location: ", house.location, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Make a reservation!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Reviews: "), reviews.map(function (review) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           key: review.id,
           review: review
@@ -739,7 +742,9 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.props.errors.map(function (error, i) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        id: "review-error"
+      }, this.props.errors.map(function (error, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
           key: "error-".concat(i)
         }, error);
@@ -2240,20 +2245,24 @@ var selectHouse = function selectHouse(_ref, houseId) {
   var houses = _ref.houses;
   return houses[houseId] || {
     reviewIds: [],
-    rentalIds: [],
-    renterIds: []
+    rentalIds: []
   };
 };
 var selectReviewsForHouse = function selectReviewsForHouse(_ref2, house) {
-  var houses = _ref2.houses,
-      reviews = _ref2.reviews;
+  var reviews = _ref2.reviews;
   return house.reviewIds.map(function (reviewId) {
     return reviews[reviewId];
-  });
+  }); //   { 
+  //   // console.log(reviews[reviewId])
+  //   if (reviews[reviewId] === undefined) {
+  //     return 0;
+  //   } else {
+  //     return reviews[reviewId];
+  //   }
+  // });
 };
 var selectRentalsForHouse = function selectRentalsForHouse(_ref3, house) {
-  var houses = _ref3.houses,
-      rentals = _ref3.rentals;
+  var rentals = _ref3.rentals;
   return house.rentalIds.map(function (rentalId) {
     return rentals[rentalId];
   });

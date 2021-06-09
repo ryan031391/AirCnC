@@ -1,13 +1,18 @@
 import React from 'react';
 import ReviewItemContainer from './review_item_container';
 import ReviewFormContainer from './review_form_container';
+import ReservationContainer from './reservation_container';
 
 class HouseShow extends React.Component{
     constructor(props){
         super(props);
         this.today = new Date();
+        
         this.reviewForm = this.reviewForm.bind(this);
+
     }
+
+
 
     componentDidMount(){
         this.props.fetchHouse(this.props.HouseId)
@@ -15,7 +20,7 @@ class HouseShow extends React.Component{
 
     reviewForm(houseId){
         let temp = false
-        // console.log(this.props)
+        console.log(this.state)
 
         if (this.props.rentals.length !==0 && this.props.renters.lenth !== 0) {
             this.props.renters.forEach(renter => {
@@ -32,7 +37,7 @@ class HouseShow extends React.Component{
     }
 
     render(){
-        console.log(this.props)
+        // console.log(this.state)
         const {house, reviews} = this.props;
         let sum = 0;
         let num = 0;
@@ -49,7 +54,9 @@ class HouseShow extends React.Component{
                     
                 </ul>
 
-                <h2>Make a reservation!</h2>
+                <h2>Make a reservation now!</h2>
+                <ReservationContainer today={this.today} houseId={this.props.match.params.houseId} />
+                
 
                 <h2>Reviews: </h2>
 

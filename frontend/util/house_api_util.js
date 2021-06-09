@@ -29,3 +29,11 @@ export const fetchHouses = bounds => (
       url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyAUADNSH9nyJqtTLTKdArLj6OhTs918GGg`
     })
   )
+
+  export const createRental = rental => (
+    $.ajax({
+      method: 'POST',
+      url: 'api/rental_infos',
+      data: { rental }
+    })
+  )

@@ -3,7 +3,7 @@ import * as APIUtil from '../util/house_api_util';
 export const RECEIVE_HOUSES = 'RECEIVE_HOUSES';
 export const RECEIVE_HOUSE = 'RECEIVE_HOUSE';
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
-// export const RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
+export const RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
 export const RECEIVE_REVIEW_ERRORS = 'RECEIVE_REVIEW_ERRORS';
 
 const receiveHouses = houses => ({
@@ -30,6 +30,11 @@ const receiveReview = ({ review, average_score, author }) => ({
 const receiveErrors = errors => ({
     type: RECEIVE_REVIEW_ERRORS,
     errors
+})
+
+const receiveRental = rental => ({
+    type: RECEIVE_RENTAL_INFO,
+    rental
 })
 
 const range = (payload, bound) => {
@@ -79,3 +84,8 @@ export const fetchLocationInBound = (location, bound) => dispatch => {
     return APIUtil.fetchLocation(location)
         .then(payload => dispatch(fetchHouses(range(payload, bound))))
 }
+
+export const createRental = rental => dispatch => (
+    APIUtil.createRental(rental)
+        .then(rental => dispatch(receiveRental(rental)))
+)

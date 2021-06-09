@@ -40,13 +40,13 @@ class ReviewForm extends React.Component{
     }
 
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <form onSubmit={this.handleSubmit}>
                 <h2>Leave your review:</h2>
                     <textarea value={this.state.body} onChange={this.updateBody} />
                 <b> Score: </b>  
-                <select id="myList" onChange={this.updateScore} >  
+                <select id="reviewlist" onChange={this.updateScore} >  
                     <option> --- Rate --- </option> 
                     <option value="5"> 5 </option>  
                     <option value="4"> 4 </option>  

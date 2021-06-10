@@ -20,8 +20,6 @@ class HouseShow extends React.Component{
 
     reviewForm(houseId){
         let temp = false
-        console.log(this.state)
-
         if (this.props.rentals.length !==0 && this.props.renters.lenth !== 0) {
             this.props.renters.forEach(renter => {
                 if (this.props.currentUser.username === renter.username ) {
@@ -37,7 +35,6 @@ class HouseShow extends React.Component{
     }
 
     render(){
-        // console.log(this.state)
         const {house, reviews} = this.props;
         let sum = 0;
         let num = 0;

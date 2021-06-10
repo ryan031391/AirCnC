@@ -34,6 +34,8 @@ export const fetchHouses = bounds => (
     $.ajax({
       method: 'POST',
       url: 'api/rental_infos',
-      data: { rental }
+      data: { 
+        rental 
+      }
     })
   )

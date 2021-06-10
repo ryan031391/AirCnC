@@ -314,7 +314,11 @@ var fetchLocationInBound = function fetchLocationInBound(location, bound) {
       return dispatch(fetchHouses(range(payload, bound)));
     });
   };
-};
+}; // export const fetchRental = rental => dispatch => (
+//     APIUtil.createRental(rental)
+//         .then(rental => dispatch(receiveRental(rental)))
+// )
+
 var createRental = function createRental(rental) {
   return function (dispatch) {
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.createRental(rental).then(function (rental) {
@@ -577,7 +581,6 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var temp = false;
-      console.log(this.state);
 
       if (this.props.rentals.length !== 0 && this.props.renters.lenth !== 0) {
         this.props.renters.forEach(function (renter) {
@@ -597,7 +600,6 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // console.log(this.state)
       var _this$props = this.props,
           house = _this$props.house,
           reviews = _this$props.reviews;
@@ -732,16 +734,16 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      house_id: props.houseId,
-      check_in_month: '',
-      check_in_day: '',
-      check_in_year: '',
-      check_out_month: '',
-      check_out_day: '',
-      check_out_year: ''
+      check_in_month: props.today.getMonth() + 1,
+      check_in_day: props.today.getDate(),
+      check_in_year: props.today.getFullYear(),
+      check_out_month: props.today.getMonth() + 1,
+      check_out_day: props.today.getDate(),
+      check_out_year: props.today.getFullYear()
     };
     _this.addLeadingZero = _this.addLeadingZero.bind(_assertThisInitialized(_this));
-    _this.updateCheckin = _this.updateCheckin.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -752,43 +754,146 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "renderMonth",
-    value: function renderMonth() {
-      for (var i = this.props.today.getMonth() + 2; i < 13; i++) {
+    value: function renderMonth(ele) {
+      var _this2 = this;
+
+      var today = this.props.today;
+      var numMonth = [];
+      var tempYear = this.state.check_in_year;
+
+      if (ele !== 'check_in') {
+        tempYear = this.state.check_out_year;
+      }
+
+      if (parseInt(tempYear) === today.getFullYear()) {
+        for (var i = today.getMonth() + 1; i < 13; i++) {
+          numMonth.push(this.addLeadingZero(i));
+        }
+      } else {
+        for (var _i = 1; _i < 13; _i++) {
+          numMonth.push(this.addLeadingZero(_i));
+        }
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+        onChange: this.update("".concat(ele, "_month"))
+      }, numMonth.map(function (i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+          value: i,
+          onClick: function onClick() {
+            return _this2.renderDate(ele);
+          },
+          key: "{month-".concat(i, "}")
+        }, i);
+      }));
+    }
+  }, {
+    key: "renderDate",
+    value: function renderDate(ele) {
+      var _this3 = this;
+
+      var today = this.props.today;
+      var tempMonth = this.state.check_in_month;
+      var tempYear = this.state.check_in_year;
+
+      if (ele !== 'check_in') {
+        tempYear = this.state.check_out_year;
+        tempMonth = this.state.check_out_month;
+      }
+
+      var numDate = [];
+
+      if (parseInt(tempYear) === today.getFullYear()) {
+        if (parseInt(tempMonth) <= today.getMonth() + 1) {
+          for (var i = today.getDate(); i < this.dayOfMonth(today.getMonth()) + 1; i++) {
+            numDate.push(i);
+          }
+        } else {
+          for (var _i2 = 1; _i2 < this.dayOfMonth(tempMonth) + 1; _i2++) {
+            numDate.push(_i2);
+          }
+        }
+      } else {
+        for (var _i3 = 1; _i3 < this.dayOfMonth(tempMonth) + 1; _i3++) {
+          numDate.push(_i3);
+        }
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+        onChange: this.update("".concat(ele, "_day"))
+      }, numDate.map(function (i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+          key: "{day-".concat(i, "}"),
           value: i
-        }, this.addLeadingZero(i));
+        }, _this3.addLeadingZero(i));
+      }));
+    }
+  }, {
+    key: "dayOfMonth",
+    value: function dayOfMonth(month) {
+      var large = [0, 2, 4, 6, 7, 9, 11];
+      var small = [3, 5, 8, 10];
+
+      if (large.includes(month)) {
+        return 31;
+      } else if (small.includes(month)) {
+        return 30;
+      } else if (this.props.today.getFullYear() % 4 === 0) {
+        return 29;
+      } else {
+        return 28;
       }
     }
   }, {
-    key: "updateCheckin",
-    value: function updateCheckin(ele) {
-      var _this2 = this;
+    key: "renderYear",
+    value: function renderYear(ele) {
+      var today = this.props.today;
+      var numYear = [];
 
-      var temp = "check_in_" + ele;
+      for (var i = today.getFullYear(); i < 2100; i++) {
+        numYear.push(i);
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+        onChange: this.update("".concat(ele, "_year"))
+      }, numYear.map(function (i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+          key: "{year-".concat(i, "}"),
+          value: i // onClick={() => this.renderMonth(ele)}
+          // onClick={() => this.renderDate(ele)}
+
+        }, i);
+      }));
+    }
+  }, {
+    key: "update",
+    value: function update(ele) {
+      var _this4 = this;
+
       return function (e) {
-        return _this2.setState(_defineProperty({}, temp, e.currentTarget.value));
+        return _this4.setState(_defineProperty({}, ele, e.currentTarget.value));
       };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      // e.preventDefault();
+      var tempState = {
+        house_id: this.props.houseId,
+        check_in: "".concat(this.addLeadingZero(this.state.check_in_month), " ").concat(this.addLeadingZero(this.state.check_in_day), " ").concat(this.state.check_in_year),
+        check_out: "".concat(this.addLeadingZero(this.state.check_out_month), " ").concat(this.addLeadingZero(this.state.check_out_day), " ").concat(this.state.check_out_year)
+      };
+      this.props.createRental(tempState);
     }
   }, {
     key: "render",
     value: function render() {
-      var today = this.props.today;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Check In Date: \xA0 \xA0 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-        id: "checkinlistmonth",
-        onChange: this.updateCheckin("month")
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-        value: "".concat(today.getMonth() + 1)
-      }, this.addLeadingZero(today.getMonth() + 1)), this.renderMonth()), " /", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-        id: "checkinlistdate"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " ", this.addLeadingZero(today.getDate()), " ")), " /", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-        id: "checkinlistyear"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " ", today.getFullYear(), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Check Out Date: \xA0 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-        id: "checkoutlistmonth"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " ", this.addLeadingZero(today.getMonth() + 1), " ")), " /", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-        id: "checkoutlistdate"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " ", this.addLeadingZero(today.getDate() + 1), " ")), " /", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
-        id: "checkoutlistyear"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " ", today.getFullYear(), " ")));
+      console.log(this.props);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Check In Date: \xA0 \xA0 "), this.renderYear('check_in'), " \xA0 / \xA0", this.renderMonth('check_in'), " \xA0 / \xA0", this.renderDate('check_in'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Check Out Date: \xA0 "), this.renderYear('check_out'), " \xA0 / \xA0", this.renderMonth('check_out'), " \xA0 / \xA0", this.renderDate('check_out'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "submit"
+      }, "Confirm"));
     }
   }]);
 

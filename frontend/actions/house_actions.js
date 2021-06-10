@@ -85,7 +85,14 @@ export const fetchLocationInBound = (location, bound) => dispatch => {
         .then(payload => dispatch(fetchHouses(range(payload, bound))))
 }
 
+// export const fetchRental = rental => dispatch => (
+//     APIUtil.createRental(rental)
+//         .then(rental => dispatch(receiveRental(rental)))
+// )
+
 export const createRental = rental => dispatch => (
     APIUtil.createRental(rental)
-        .then(rental => dispatch(receiveRental(rental)))
-)
+        .then(
+            rental => dispatch(receiveRental(rental))
+            )
+);

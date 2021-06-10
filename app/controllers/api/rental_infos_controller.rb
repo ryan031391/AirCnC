@@ -7,7 +7,7 @@ class Api::RentalInfosController < ApplicationController
         if @rental_info.save
             render :show
         else
-            render json: @rental_info, status: :unprocessable_entity
+            render json: @rental_info.errors.full_messages, status: 422
         end
     end
 

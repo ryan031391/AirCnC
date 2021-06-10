@@ -4,7 +4,8 @@ export const RECEIVE_HOUSES = 'RECEIVE_HOUSES';
 export const RECEIVE_HOUSE = 'RECEIVE_HOUSE';
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 export const RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
-export const RECEIVE_REVIEW_ERRORS = 'RECEIVE_REVIEW_ERRORS';
+export const RECEIVE_REVIEW_ERRORS = 'RECEIVE_HOUSE_ERRORS';
+export const RECEIVE_RENTAL_ERRORS = 'RECEIVE_RENTAL_ERRORS';
 
 const receiveHouses = houses => ({
     type: RECEIVE_HOUSES,
@@ -27,8 +28,13 @@ const receiveReview = ({ review, average_score, author }) => ({
     author,
 });
 
-const receiveErrors = errors => ({
+const receiveReviewErrors = errors => ({
     type: RECEIVE_REVIEW_ERRORS,
+    errors
+})
+
+const receiveRentalErrors = errors => ({
+    type: RECEIVE_RENTAL_ERRORS,
     errors
 })
 
@@ -58,7 +64,7 @@ export const createReview = review => dispatch => (
     APIUtil.createReview(review)
         .then(
             review => dispatch(receiveReview(review)),
-            error => dispatch(receiveErrors(error.responseJSON))
+            error => dispatch(receiveReviewErrors(error.responseJSON))
             )
 );
 
@@ -94,5 +100,6 @@ export const createRental = rental => dispatch => (
     APIUtil.createRental(rental)
         .then(
             rental => dispatch(receiveRental(rental))
+            // error => dispatch(receiveRentalErrors(error.responseJSON))
             )
 );

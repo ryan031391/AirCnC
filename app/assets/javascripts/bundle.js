@@ -199,6 +199,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
 /* harmony export */   "RECEIVE_RENTAL_INFO": () => (/* binding */ RECEIVE_RENTAL_INFO),
 /* harmony export */   "RECEIVE_REVIEW_ERRORS": () => (/* binding */ RECEIVE_REVIEW_ERRORS),
+/* harmony export */   "RECEIVE_RENTAL_ERRORS": () => (/* binding */ RECEIVE_RENTAL_ERRORS),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
 /* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
@@ -211,7 +212,8 @@ var RECEIVE_HOUSES = 'RECEIVE_HOUSES';
 var RECEIVE_HOUSE = 'RECEIVE_HOUSE';
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 var RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
-var RECEIVE_REVIEW_ERRORS = 'RECEIVE_REVIEW_ERRORS';
+var RECEIVE_REVIEW_ERRORS = 'RECEIVE_HOUSE_ERRORS';
+var RECEIVE_RENTAL_ERRORS = 'RECEIVE_RENTAL_ERRORS';
 
 var receiveHouses = function receiveHouses(houses) {
   return {
@@ -248,9 +250,16 @@ var receiveReview = function receiveReview(_ref2) {
   };
 };
 
-var receiveErrors = function receiveErrors(errors) {
+var receiveReviewErrors = function receiveReviewErrors(errors) {
   return {
     type: RECEIVE_REVIEW_ERRORS,
+    errors: errors
+  };
+};
+
+var receiveRentalErrors = function receiveRentalErrors(errors) {
+  return {
+    type: RECEIVE_RENTAL_ERRORS,
     errors: errors
   };
 };
@@ -284,7 +293,7 @@ var createReview = function createReview(review) {
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (review) {
       return dispatch(receiveReview(review));
     }, function (error) {
-      return dispatch(receiveErrors(error.responseJSON));
+      return dispatch(receiveReviewErrors(error.responseJSON));
     });
   };
 };
@@ -323,7 +332,8 @@ var createRental = function createRental(rental) {
   return function (dispatch) {
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.createRental(rental).then(function (rental) {
       return dispatch(receiveRental(rental));
-    });
+    } // error => dispatch(receiveRentalErrors(error.responseJSON))
+    );
   };
 };
 
@@ -744,6 +754,12 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
     _this.addLeadingZero = _this.addLeadingZero.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.numToMonth = _this.numToMonth.bind(_assertThisInitialized(_this));
+    _this.dayOfMonth = _this.dayOfMonth.bind(_assertThisInitialized(_this));
+    _this.renderDate = _this.renderDate.bind(_assertThisInitialized(_this));
+    _this.renderMonth = _this.renderMonth.bind(_assertThisInitialized(_this));
+    _this.renderYear = _this.renderYear.bind(_assertThisInitialized(_this)); // this.renderErrors = this.renderErrors.bind(this);
+
     return _this;
   }
 
@@ -755,8 +771,6 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderMonth",
     value: function renderMonth(ele) {
-      var _this2 = this;
-
       var today = this.props.today;
       var numMonth = [];
       var tempYear = this.state.check_in_year;
@@ -779,10 +793,8 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
         onChange: this.update("".concat(ele, "_month"))
       }, numMonth.map(function (i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-          value: i,
-          onClick: function onClick() {
-            return _this2.renderDate(ele);
-          },
+          value: i // onClick={() => this.renderDate(ele)}
+          ,
           key: "{month-".concat(i, "}")
         }, i);
       }));
@@ -790,7 +802,7 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderDate",
     value: function renderDate(ele) {
-      var _this3 = this;
+      var _this2 = this;
 
       var today = this.props.today;
       var tempMonth = this.state.check_in_month;
@@ -825,7 +837,7 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
           key: "{day-".concat(i, "}"),
           value: i
-        }, _this3.addLeadingZero(i));
+        }, _this2.addLeadingZero(i));
       }));
     }
   }, {
@@ -864,31 +876,90 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
 
         }, i);
       }));
-    }
+    } // renderErrors() {
+    //     return(
+    //       <ul id="review-error">
+    //         {this.props.errors.map((error, i) => (
+    //           <li key={`error-${i}`}>
+    //             {error}
+    //           </li>
+    //         ))}
+    //       </ul>
+    //     );
+    // }
+
   }, {
     key: "update",
     value: function update(ele) {
-      var _this4 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this4.setState(_defineProperty({}, ele, e.currentTarget.value));
+        return _this3.setState(_defineProperty({}, ele, e.currentTarget.value));
       };
+    }
+  }, {
+    key: "numToMonth",
+    value: function numToMonth(num) {
+      switch (num) {
+        case 1:
+          return 'Januray';
+
+        case 2:
+          return 'February';
+
+        case 3:
+          return 'March';
+
+        case 4:
+          return 'April';
+
+        case 5:
+          return 'May';
+
+        case 6:
+          return 'June';
+
+        case 7:
+          return 'July';
+
+        case 8:
+          return 'August';
+
+        case 9:
+          return 'September';
+
+        case 10:
+          return 'October';
+
+        case 11:
+          return 'November';
+
+        case 12:
+          return 'December';
+      }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      // e.preventDefault();
+      e.preventDefault(); // let month_1 = this.numToMonth(parseInt(this.state.check_in_month));
+      // let month_2 = this.numToMonth(parseInt(this.state.check_out_month))
+      // let tempState = {
+      //     house_id: this.props.houseId,
+      //     check_in: `${month_1} ${this.addLeadingZero(this.state.check_in_day)} ${this.state.check_in_year}`,
+      //     check_out: `${month_2} ${this.addLeadingZero(this.state.check_out_day)} ${this.state.check_out_year}`,
+      // }
+
       var tempState = {
         house_id: this.props.houseId,
-        check_in: "".concat(this.addLeadingZero(this.state.check_in_month), " ").concat(this.addLeadingZero(this.state.check_in_day), " ").concat(this.state.check_in_year),
-        check_out: "".concat(this.addLeadingZero(this.state.check_out_month), " ").concat(this.addLeadingZero(this.state.check_out_day), " ").concat(this.state.check_out_year)
+        check_in: "".concat(this.state.check_in_year, "-").concat(this.addLeadingZero(parseInt(this.state.check_in_month)), "-").concat(this.addLeadingZero(this.state.check_in_day), "T00:00:00.000Z"),
+        check_out: "".concat(this.state.check_out_year, "-").concat(this.addLeadingZero(parseInt(this.state.check_out_month)), "-").concat(this.addLeadingZero(this.state.check_out_day), "T00:00:00.000Z")
       };
+      console.log(tempState);
       this.props.createRental(tempState);
     }
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Check In Date: \xA0 \xA0 "), this.renderYear('check_in'), " \xA0 / \xA0", this.renderMonth('check_in'), " \xA0 / \xA0", this.renderDate('check_in'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Check Out Date: \xA0 "), this.renderYear('check_out'), " \xA0 / \xA0", this.renderMonth('check_out'), " \xA0 / \xA0", this.renderDate('check_out'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -922,6 +993,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var mSTP = function mSTP(state) {
+  return {
+    errors: state.errors.rental
+  };
+};
+
 var mDTP = function mDTP(dispatch) {
   return {
     createRental: function createRental(rental) {
@@ -930,7 +1007,7 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mDTP)(_reservation__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_reservation__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -1079,7 +1156,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    errors: state.errors.house
+    errors: state.errors.review
   };
 };
 
@@ -2242,49 +2319,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
-/* harmony import */ var _house_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./house_errors_reducer */ "./frontend/reducers/house_errors_reducer.js");
+/* harmony import */ var _reviews_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reviews_errors_reducer */ "./frontend/reducers/reviews_errors_reducer.js");
+/* harmony import */ var _rental_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rental_errors_reducer */ "./frontend/reducers/rental_errors_reducer.js");
 
 
 
-var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+
+var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  house: _house_errors_reducer__WEBPACK_IMPORTED_MODULE_1__.default
+  review: _reviews_errors_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  rental: _rental_errors_reducer__WEBPACK_IMPORTED_MODULE_2__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/house_errors_reducer.js":
-/*!***************************************************!*\
-  !*** ./frontend/reducers/house_errors_reducer.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
-
-
-var houseerrosReducer = function houseerrosReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-
-  switch (action.type) {
-    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW_ERRORS:
-      return action.errors;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (houseerrosReducer);
 
 /***/ }),
 
@@ -2369,6 +2417,38 @@ var modalReducer = function modalReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/rental_errors_reducer.js":
+/*!****************************************************!*\
+  !*** ./frontend/reducers/rental_errors_reducer.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
+
+
+var rentalerrorsReducer = function rentalerrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_RENTAL_ERRORS:
+      return action.errors;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (rentalerrorsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/rental_reducer.js":
 /*!*********************************************!*\
   !*** ./frontend/reducers/rental_reducer.js ***!
@@ -2430,6 +2510,38 @@ var renterReducer = function renterReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renterReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/reviews_errors_reducer.js":
+/*!*****************************************************!*\
+  !*** ./frontend/reducers/reviews_errors_reducer.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/house_actions */ "./frontend/actions/house_actions.js");
+
+
+var reviewerrosReducer = function reviewerrosReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW_ERRORS:
+      return action.errors;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reviewerrosReducer);
 
 /***/ }),
 
@@ -2527,7 +2639,6 @@ var selectReviewsForHouse = function selectReviewsForHouse(_ref2, house) {
   return house.reviewIds.map(function (reviewId) {
     return reviews[reviewId];
   }); //   { 
-  //   // console.log(reviews[reviewId])
   //   if (reviews[reviewId] === undefined) {
   //     return 0;
   //   } else {

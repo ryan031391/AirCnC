@@ -3,7 +3,7 @@ import { createReview } from '../../actions/house_actions';
 import ReviewForm from './review_form';
 
 const mSTP = state => ({
-    errors: state.errors.house,
+    errors: state.errors.review,
 });
 
 const mDTP = dispatch => ({

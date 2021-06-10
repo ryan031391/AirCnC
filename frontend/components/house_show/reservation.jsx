@@ -13,7 +13,13 @@ class Reservation extends React.Component{
         }
         this.addLeadingZero = this.addLeadingZero.bind(this);
         this.update = this.update.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.numToMonth = this.numToMonth.bind(this);
+        this.dayOfMonth = this.dayOfMonth.bind(this);
+        this.renderDate = this.renderDate.bind(this);
+        this.renderMonth = this.renderMonth.bind(this);
+        this.renderYear = this.renderYear.bind(this);
+        // this.renderErrors = this.renderErrors.bind(this);
     }
 
     addLeadingZero(str){
@@ -42,7 +48,7 @@ class Reservation extends React.Component{
                 {numMonth.map(i => (
                     <option 
                     value={i}
-                    onClick={() => this.renderDate(ele)}
+                    // onClick={() => this.renderDate(ele)}
                     key={`{month-${i}}`}
                     >{i}</option>
                 ))}
@@ -119,24 +125,73 @@ class Reservation extends React.Component{
         )
     }
 
+    // renderErrors() {
+    //     return(
+    //       <ul id="review-error">
+    //         {this.props.errors.map((error, i) => (
+    //           <li key={`error-${i}`}>
+    //             {error}
+    //           </li>
+    //         ))}
+    //       </ul>
+    //     );
+    // }
+
     update(ele){
         return e => this.setState({
             [ele]: e.currentTarget.value
         })
     }
 
+    numToMonth(num){
+        switch (num) {
+            case 1:
+                return 'Januray';
+            case 2:
+                return 'February';
+            case 3:
+                return 'March';
+            case 4:
+                return 'April';
+            case 5:
+                return 'May';
+            case 6:
+                return 'June';
+            case 7:
+                return 'July';
+            case 8:
+                return 'August';
+            case 9:
+                return 'September';
+            case 10:
+                return 'October';
+            case 11:
+                return 'November';
+            case 12:
+                return 'December';
+
+        }
+    }
+
     handleSubmit(e){
-        // e.preventDefault();
+        e.preventDefault();
+        // let month_1 = this.numToMonth(parseInt(this.state.check_in_month));
+        // let month_2 = this.numToMonth(parseInt(this.state.check_out_month))
+        // let tempState = {
+        //     house_id: this.props.houseId,
+        //     check_in: `${month_1} ${this.addLeadingZero(this.state.check_in_day)} ${this.state.check_in_year}`,
+        //     check_out: `${month_2} ${this.addLeadingZero(this.state.check_out_day)} ${this.state.check_out_year}`,
+        // }
         let tempState = {
             house_id: this.props.houseId,
-            check_in: `${this.addLeadingZero(this.state.check_in_month)} ${this.addLeadingZero(this.state.check_in_day)} ${this.state.check_in_year}`,
-            check_out: `${this.addLeadingZero(this.state.check_out_month)} ${this.addLeadingZero(this.state.check_out_day)} ${this.state.check_out_year}`,
+            check_in: `${this.state.check_in_year}-${this.addLeadingZero(parseInt(this.state.check_in_month))}-${this.addLeadingZero(this.state.check_in_day)}T00:00:00.000Z`,
+            check_out: `${this.state.check_out_year}-${this.addLeadingZero(parseInt(this.state.check_out_month))}-${this.addLeadingZero(this.state.check_out_day)}T00:00:00.000Z`
         }
+        console.log(tempState)
         this.props.createRental(tempState);
     }
 
     render(){
-        // console.log(this.props)
         return(
             <form onSubmit={this.handleSubmit}>
                 <b>Check In Date: &nbsp; &nbsp; </b>

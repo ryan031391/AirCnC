@@ -11,9 +11,9 @@ class HouseIndexItem extends React.Component{
         return(
             <Link to={`/houses/${house.id}`}>
                 <li id={`house-${house.id}`}>
-                    <label>Price: {house.price}/day</label>
+                    <label id="houseitem">location: {house.location}&nbsp;&nbsp;&nbsp;{house.price}/night</label>
                     <br/>
-                    <label>location: {house.location}</label>
+                    <br/>
                 </li>
             </Link>
         )

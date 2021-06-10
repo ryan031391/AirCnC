@@ -78,9 +78,12 @@ class SessionForm extends React.Component{
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    Please {this.props.formType} or {this.props.otherForm}
+                    <div id="change">
+                        Please {this.props.formType} or {this.props.otherForm}
+                    </div>
+                    
                     {this.renderErrors()}
-                    <label className="input">Username: 
+                    <label className="input">Username: &nbsp;
                         <input 
                         type="text" 
                         value={this.state.username} 
@@ -89,7 +92,8 @@ class SessionForm extends React.Component{
                         />
                     </label>
                     <br/>
-                    <label className="input">Password: 
+                    
+                    <label className="input">Password: &nbsp;&nbsp;
                         <input 
                         type="password"
                         value={this.state.password}
@@ -99,7 +103,10 @@ class SessionForm extends React.Component{
                     </label>
                     <button id="signin">{this.props.formType}</button>
                     <br/>
-                    {this.handleGuest()}
+                    <br/>
+                    <div id="guest">
+                        {this.handleGuest()}    
+                    </div>
                 </form>
             </div>
         )

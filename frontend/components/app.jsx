@@ -10,8 +10,6 @@ import My404Component from './my404';
 import UserContainer from './user/user_container';
 import Modal from './modal/modal';
 
-
-
 const App = () => (
     <div>
       <Modal />

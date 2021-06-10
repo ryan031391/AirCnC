@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       store = configureStore();
     }
     const rootEl = document.getElementById("root");
+    // rootEl.style.backgroundImage = 'url(android-chrome-512x512.png)';
 
     ReactDOM.render(<Root store={store}/>, rootEl)
 })

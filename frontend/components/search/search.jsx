@@ -48,6 +48,7 @@ class Search extends React.Component{
                         value={this.state.location} 
                         onChange={this.updateLocation}
                         />
+                    <br/>
                     <div>  
                         <b> Bound: </b>  
                         <select id="myList" onChange={this.updateBound} >  
@@ -58,6 +59,7 @@ class Search extends React.Component{
                             <option value="50"> 50 miles </option>  
                         </select>     
                     </div>
+                    <br/>
                     <button type="submit">Search</button>
                     {/* <input 
                     type="text" 

@@ -6,19 +6,21 @@ const Welcome = ({currentUser, logout, openModal}) => {
     // console.log(currentUser);
 
     const not_logged_in = () => (
-        <nav id="Welcome">
+        <div id="Welcome">
                 <h1>Welcome to AirCnC</h1>
-            <button onClick={() => openModal('login')}>Login</button>
-            &nbsp;or&nbsp;
-            <button onClick={() => openModal('signup')}>SignUp</button>
-        </nav>
+            <button id="welcomebutton" onClick={() => openModal('login')}>&nbsp;Login&nbsp;</button>
+            <br/>
+            <button id="welcomebutton" onClick={() => openModal('signup')}>SignUp</button>
+        </div>
     );
 
     const logged_in = () => (
-        <div>
+        <div id="welcomepage" >
             <h1>Hi, {currentUser.username}</h1>
             <button onClick={logout}>Log out</button>
-            <SearchContainer />
+            <div id="search">
+                <SearchContainer />
+            </div>
         </div>
     );
 

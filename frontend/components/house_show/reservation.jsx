@@ -136,7 +136,7 @@ class Reservation extends React.Component{
     }
 
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <form onSubmit={this.handleSubmit}>
                 <b>Check In Date: &nbsp; &nbsp; </b>

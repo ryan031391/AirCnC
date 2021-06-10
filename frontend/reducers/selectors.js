@@ -5,7 +5,6 @@ export const selectHouse = ({ houses }, houseId) => {
 export const selectReviewsForHouse = ({ reviews }, house) => {
   return house.reviewIds.map(reviewId => reviews[reviewId])
   //   { 
-  //   // console.log(reviews[reviewId])
   //   if (reviews[reviewId] === undefined) {
   //     return 0;
   //   } else {

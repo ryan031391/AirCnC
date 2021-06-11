@@ -11,10 +11,11 @@ import UserContainer from './user/user_container';
 import Modal from './modal/modal';
 
 const App = () => (
-    <div>
+    <div id="mainpage" style={{backgroundImage: `url(${window.backgroundUrl})`}}>
       <Modal />
       <nav id="home-nav">
-        <Link to="/" id="home-symbol">AIRCNC</Link>
+        
+        <Link to="/" id="home-symbol"><img id="logo" src={window.logoUrl}/></Link>
         {/* <WelcomeContainer/> */}
       </nav>
       {/* <header>

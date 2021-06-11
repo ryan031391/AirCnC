@@ -35,7 +35,7 @@ export const fetchHouses = bounds => (
       method: 'POST',
       url: 'api/rental_infos',
       data: { 
-        rental 
+        rental_info: rental
       }
     })
   )

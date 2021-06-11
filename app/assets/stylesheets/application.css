@@ -13,7 +13,19 @@
  *= require_tree .
  *= require_self
  */
+html, body {
+  margin: 0;
+  height: 100%;
+}
 
+#root {
+  margin: 0;
+  height: 100%; 
+}
+
+#logo {
+  margin-top: 9px;
+}
 
 .modal-background {
   position: fixed;
@@ -62,9 +74,15 @@ nav{
 }
 
 body {
-  background: url("https://www.elitetraveler.com/wp-content/uploads/2019/06/InterContinental-Maldives-Outdoor-Pool-Deck-Sunset-Overwater-Pool-Villa.jpg");
   background-size: 100%;
   font-family: 'Viaoda Libre', cursive;
+}
+
+#mainpage {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: 0;
+  height: 100%; 
 }
 
 #guest {
@@ -80,7 +98,8 @@ button {
   border-radius: 8px;
   font-family: 'Viaoda Libre', cursive;
   background-color: wheat;
-  padding: 5px;  
+  padding: 5px;
+  cursor: pointer;
 }
 
 input {
@@ -105,7 +124,8 @@ ul {
 }
 
 #result {
-  background-color: white;
+  background-color: lightgoldenrodyellow;
+  /* background: transparent; */
 }
 
 #houses{
@@ -122,12 +142,40 @@ a:visited {
 }
 
 a:hover {
-  color: rgb(160, 110, 19);
+  color: rgb(160, 111, 22);
 }
 
 #houseitem{
   font-style: italic;
+  cursor: pointer;
+  /* color: whitesmoke; */
 }
+
+#showpage {
+  padding-left: 30px;
+}
+
+#reservationbtn {
+  margin-top: 10px;
+}
+
+#check-in, #check-out {
+  margin-top: 5px;
+}
+
+#review-list, #review {
+  color: wheat;
+}
+
+#review {
+  margin-top: 50px;
+}
+
+textarea {
+  width: 300px;
+  height: 100px;
+}
+
 /* .dropbtn {
   background-color: #3498DB;
   color: white;

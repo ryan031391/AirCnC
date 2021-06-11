@@ -194,22 +194,23 @@ class Reservation extends React.Component{
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-                <b>Check In Date: &nbsp; &nbsp; </b>
-                {this.renderYear('check_in')} &nbsp; / &nbsp;     
-                {this.renderMonth('check_in')} &nbsp; / &nbsp;
-                {this.renderDate('check_in')} 
+                <div id="check-in">
+                    <b>Check In Date: &nbsp; &nbsp; </b>
+                    {this.renderYear('check_in')} &nbsp; <b>/</b> &nbsp;     
+                    {this.renderMonth('check_in')} &nbsp; <b>/</b> &nbsp;
+                    {this.renderDate('check_in')} 
+                </div>
+
+                
+                <div id="check-out">
+                    <b>Check Out Date: &nbsp; </b>
+                    {this.renderYear('check_out')} &nbsp; <b>/</b> &nbsp;
+                    {this.renderMonth('check_out')} &nbsp; <b>/</b> &nbsp;
+                    {this.renderDate('check_out')} 
+                </div>
                 
 
-                <br/>
-
-                <b>Check Out Date: &nbsp; </b>
-                {this.renderYear('check_out')} &nbsp; / &nbsp;
-                {this.renderMonth('check_out')} &nbsp; / &nbsp;
-                {this.renderDate('check_out')} 
-                
-                <br/>
-
-                <button type="submit">Confirm</button>
+                <button id="reservationbtn" type="submit">Confirm</button>
             </form>
         )
     }

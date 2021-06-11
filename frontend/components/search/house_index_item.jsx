@@ -9,13 +9,13 @@ class HouseIndexItem extends React.Component{
     render(){
         const {house} = this.props
         return(
-            <Link to={`/houses/${house.id}`}>
-                <li id={`house-${house.id}`}>
+            <li id={`house-${house.id}`}>
+                <Link id="house-item-link" to={`/houses/${house.id}`}> 
                     <label id="houseitem">location: {house.location}&nbsp;&nbsp;&nbsp;{house.price}/night</label>
                     <br/>
                     <br/>
-                </li>
-            </Link>
+                </Link>
+            </li>
         )
     }
 }

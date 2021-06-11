@@ -2,6 +2,7 @@ class Api::RentalInfosController < ApplicationController
     before_action :require_logged_in
 
     def create
+
         @rental_info = current_user.rentals.new(rental_params)
 
         if @rental_info.save

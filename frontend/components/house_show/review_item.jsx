@@ -8,13 +8,14 @@ class ReviewItem extends React.Component{
     render(){
         const {author, review} = this.props;
         return(
-            <li>
-                User {author.username} -
+            <div>
+                <li id="review-list">
+                    {author.username} said: &nbsp; 
+                        <b>"{review.body}"</b>
+                </li>
                 <br/>
-                Rating: {review.score}
-                <br/>
-                Comment: "{review.body}"
-            </li>
+            </div>
+            
         )
     }
 }

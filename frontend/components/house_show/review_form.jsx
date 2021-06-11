@@ -43,10 +43,11 @@ class ReviewForm extends React.Component{
         // console.log(this.props)
         return(
             <form onSubmit={this.handleSubmit}>
-                <h2>Leave your review:</h2>
+                <h2 id="review-form">Leave your review here:</h2>
                     <textarea value={this.state.body} onChange={this.updateBody} />
-                <b> Score: </b>  
-                <select id="reviewlist" onChange={this.updateScore} >  
+                    &nbsp;&nbsp;
+                <b> Rate: </b>  
+                <select id="rating" id="reviewlist" onChange={this.updateScore} >  
                     <option> --- Rate --- </option> 
                     <option value="5"> 5 </option>  
                     <option value="4"> 4 </option>  
@@ -54,6 +55,7 @@ class ReviewForm extends React.Component{
                     <option value="2"> 2 </option>  
                     <option value="1"> 1 </option>  
                 </select> 
+                &nbsp;&nbsp;
                 <button type="submit">Submit</button>
                 {this.renderErrors()}
             </form>

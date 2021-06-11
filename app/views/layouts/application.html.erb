@@ -10,11 +10,16 @@
 <html>
   <head>
     <title>AirCnC</title>
+    <%= favicon_link_tag image_url('favicon-16x16.png') %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script type="text/javascript">
+      window.backgroundUrl = "<%= image_url('background.jpg') %>";
+      window.logoUrl = "<%= image_url('favicon-32x32.png') %>";
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
   </head>
 

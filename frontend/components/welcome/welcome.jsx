@@ -9,7 +9,7 @@ const Welcome = ({currentUser, logout, openModal}) => {
         <div id="Welcome">
                 <h1>Welcome to AirCnC</h1>
             <button id="welcomebutton" onClick={() => openModal('login')}>&nbsp;Login&nbsp;</button>
-            <br/>
+            <br/><br/>
             <button id="welcomebutton" onClick={() => openModal('signup')}>SignUp</button>
         </div>
     );

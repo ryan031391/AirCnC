@@ -6,13 +6,9 @@ import ReservationContainer from './reservation_container';
 class HouseShow extends React.Component{
     constructor(props){
         super(props);
-        this.today = new Date();
-        
+        this.today = new Date();    
         this.reviewForm = this.reviewForm.bind(this);
-
     }
-
-
 
     componentDidMount(){
         this.props.fetchHouse(this.props.HouseId)
@@ -40,26 +36,31 @@ class HouseShow extends React.Component{
         let num = 0;
         reviews.map(review => num += 1)
         reviews.map(review => sum += review.score)
+        let rating = (sum/num).toFixed(2)
+        if (rating === 'NaN') {rating = "No review yet"}
+        console.log(rating === 'NaN')
         return(
-            <div>
-                <h1>Hi Banana!</h1>
-                <h2>House Info:</h2>
-                <ul>
-                    <li>Rating: {(sum/num).toFixed(2)}</li>
-                    <li>Description: {house.description}</li>
+            <div id="showpage">
+                <h1></h1>
+                <h2>House Information:</h2>
+                <ul id="infolist">
                     <li>Location: {house.location} </li>
-                    
+                    <li>Price: {house.price} / night</li>
+                    <li>Rating: {rating}</li>
+                    <li>Description: {house.description}</li>
                 </ul>
 
                 <h2>Make a reservation now!</h2>
+                
                 <ReservationContainer today={this.today} houseId={this.props.match.params.houseId} />
                 
 
-                <h2>Reviews: </h2>
-
-                {reviews.map(review => (
-                    <ReviewItemContainer key={review.id} review={review}/>
-                ))}
+                <h2 id="review">Reviews: </h2>
+                <ul>
+                    {reviews.map(review => (
+                        <ReviewItemContainer key={review.id} review={review}/>
+                    ))}
+                </ul>
                 {this.reviewForm(this.props.match.params.houseId)}
             </div>
         )

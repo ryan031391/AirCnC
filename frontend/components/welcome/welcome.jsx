@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import SearchContainer from '../search/search_container'
 
 const Welcome = ({currentUser, logout, openModal}) => {
-    // console.log(currentUser);
 
     const not_logged_in = () => (
         <div id="Welcome">

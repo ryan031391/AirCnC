@@ -40,7 +40,6 @@ class ReviewForm extends React.Component{
     }
 
     render(){
-        // console.log(this.props)
         return(
             <form onSubmit={this.handleSubmit}>
                 <h2 id="review-form">Leave your review here:</h2>

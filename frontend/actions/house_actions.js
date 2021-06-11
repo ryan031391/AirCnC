@@ -69,7 +69,6 @@ export const createReview = review => dispatch => (
 );
 
 export const fetchHouses = data => dispatch => {
-    // console.log(data);
     return APIUtil.fetchHouses(data)
             .then(houses => dispatch(receiveHouses(houses)))
 }
@@ -86,7 +85,6 @@ export const fetchHouse = id => dispatch => (
 )
 
 export const fetchLocationInBound = (location, bound) => dispatch => {
-    // console.log(location);
     return APIUtil.fetchLocation(location)
         .then(payload => dispatch(fetchHouses(range(payload, bound))))
 }

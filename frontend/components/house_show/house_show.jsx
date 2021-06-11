@@ -38,7 +38,6 @@ class HouseShow extends React.Component{
         reviews.map(review => sum += review.score)
         let rating = (sum/num).toFixed(2)
         if (rating === 'NaN') {rating = "No review yet"}
-        console.log(rating === 'NaN')
         return(
             <div id="showpage">
                 <h1></h1>

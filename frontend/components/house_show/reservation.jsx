@@ -187,7 +187,6 @@ class Reservation extends React.Component{
             check_in: `${this.state.check_in_year}-${this.addLeadingZero(parseInt(this.state.check_in_month))}-${this.addLeadingZero(this.state.check_in_day)}T00:00:00.000Z`,
             check_out: `${this.state.check_out_year}-${this.addLeadingZero(parseInt(this.state.check_out_month))}-${this.addLeadingZero(this.state.check_out_day)}T00:00:00.000Z`
         }
-        console.log(tempState)
         this.props.createRental(tempState);
     }
 

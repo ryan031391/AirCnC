@@ -1,6 +1,6 @@
 json.partial! "api/users/user", user: @user
 
-@user.rentals.includes(:rental).each do |rental|
+@user.rentals.includes(:house).each do |rental|
     json.rentals do
         json.set! rental.house.id do
             json.extract! rental.house, :id, :location

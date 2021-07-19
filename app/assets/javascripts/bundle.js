@@ -299,7 +299,6 @@ var createReview = function createReview(review) {
 };
 var fetchHouses = function fetchHouses(data) {
   return function (dispatch) {
-    // console.log(data);
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchHouses(data).then(function (houses) {
       return dispatch(receiveHouses(houses));
     });
@@ -318,7 +317,6 @@ var fetchHouse = function fetchHouse(id) {
 };
 var fetchLocationInBound = function fetchLocationInBound(location, bound) {
   return function (dispatch) {
-    // console.log(location);
     return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchLocation(location).then(function (payload) {
       return dispatch(fetchHouses(range(payload, bound)));
     });
@@ -635,7 +633,6 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
         rating = "No review yet";
       }
 
-      console.log(rating === 'NaN');
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "showpage"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "House Information:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
@@ -975,7 +972,6 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
         check_in: "".concat(this.state.check_in_year, "-").concat(this.addLeadingZero(parseInt(this.state.check_in_month)), "-").concat(this.addLeadingZero(this.state.check_in_day), "T00:00:00.000Z"),
         check_out: "".concat(this.state.check_out_year, "-").concat(this.addLeadingZero(parseInt(this.state.check_out_month)), "-").concat(this.addLeadingZero(this.state.check_out_day), "T00:00:00.000Z")
       };
-      console.log(tempState);
       this.props.createRental(tempState);
     }
   }, {
@@ -1134,7 +1130,6 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _React$createElement;
 
-      // console.log(this.props)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
@@ -2168,7 +2163,6 @@ var User = /*#__PURE__*/function (_React$Component) {
   _createClass(User, [{
     key: "render",
     value: function render() {
-      // console.log(this.props)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Welcome, ", this.props.currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.props.logout
       }, "Log out"));
@@ -2245,7 +2239,6 @@ var Welcome = function Welcome(_ref) {
       logout = _ref.logout,
       openModal = _ref.openModal;
 
-  // console.log(currentUser);
   var not_logged_in = function not_logged_in() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       id: "Welcome"

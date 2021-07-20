@@ -6,6 +6,5 @@ json.partial! "api/users/user", user: @user
             json.extract! rental.house, :id, :location
         end
     end
-
     json.extract! rental, :id, :house_id, :check_in, :check_out
 end

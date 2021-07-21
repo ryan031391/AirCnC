@@ -2267,9 +2267,19 @@ var Welcome = function Welcome(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_2__.default, null)));
   };
 
+  var displayNum = function displayNum(arr) {
+    var n = 0;
+
+    for (var i = 0; i < arr.length; i++) {
+      n += 1;
+    }
+
+    return n;
+  };
+
   var displayHouses = function displayHouses() {
     if (currentUser.rentals) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your upcoming events: ", Object.values(currentUser.rentals).map(function (ele) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", displayNum(Object.values(currentUser.rentals)), " upcoming events: ", Object.values(currentUser.rentals).map(function (ele) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: ele.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, ele.location, "\xA0\xA0", ele.check_in, "-", ele.check_out), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));

@@ -27,10 +27,18 @@ const Welcome = ({currentUser, logout, openModal}) => {
         </div>
     );
 
+    const displayNum = (arr) => {
+        let n = 0
+        for (let i = 0; i < arr.length; i++) {
+            n += 1
+        }
+        return n
+    }
+
     const displayHouses = () => {
         if (currentUser.rentals) {
             return (
-                <h2>Your upcoming events: {
+                <h2>Your have {displayNum(Object.values(currentUser.rentals))} upcoming events: {
                     Object.values(currentUser.rentals).map(ele => (
                         <div key={ele.id}>
                             <h2>{ele.location}&nbsp;&nbsp;{ele.check_in}-{ele.check_out}</h2>

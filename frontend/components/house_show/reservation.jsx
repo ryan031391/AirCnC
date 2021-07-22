@@ -190,6 +190,10 @@ class Reservation extends React.Component{
         this.props.createRental(tempState);
     }
 
+    popUp(){
+        
+    }
+
     render(){
         return(
             <form onSubmit={this.handleSubmit}>

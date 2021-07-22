@@ -204,7 +204,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
 /* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
 /* harmony export */   "fetchLocationInBound": () => (/* binding */ fetchLocationInBound),
-/* harmony export */   "createRental": () => (/* binding */ createRental)
+/* harmony export */   "createRental": () => (/* binding */ createRental),
+/* harmony export */   "deleteRental": () => (/* binding */ deleteRental)
 /* harmony export */ });
 /* harmony import */ var _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/house_api_util */ "./frontend/util/house_api_util.js");
 
@@ -332,6 +333,11 @@ var createRental = function createRental(rental) {
       return dispatch(receiveRental(rental));
     } // error => dispatch(receiveRentalErrors(error.responseJSON))
     );
+  };
+};
+var deleteRental = function deleteRental(house_id) {
+  return function (dispatch) {
+    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteRental(house_id);
   };
 };
 
@@ -974,6 +980,9 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
       };
       this.props.createRental(tempState);
     }
+  }, {
+    key: "popUp",
+    value: function popUp() {}
   }, {
     key: "render",
     value: function render() {
@@ -2230,7 +2239,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
-/* harmony import */ var _search_search_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search/search_container */ "./frontend/components/search/search_container.js");
+/* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/session_api_util */ "./frontend/util/session_api_util.js");
+/* harmony import */ var _search_search_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../search/search_container */ "./frontend/components/search/search_container.js");
+
 
 
 
@@ -2239,7 +2250,8 @@ __webpack_require__.r(__webpack_exports__);
 var Welcome = function Welcome(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout,
-      openModal = _ref.openModal;
+      openModal = _ref.openModal,
+      deleteRental = _ref.deleteRental;
 
   var not_logged_in = function not_logged_in() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2264,7 +2276,7 @@ var Welcome = function Welcome(_ref) {
       onClick: logout
     }, "Log out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       id: "search"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_2__.default, null)));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_3__.default, null)));
   };
 
   var displayNum = function displayNum(arr) {
@@ -2277,12 +2289,27 @@ var Welcome = function Welcome(_ref) {
     return n;
   };
 
+  var handleDelete = function handleDelete(ele) {
+    console.log(ele);
+    deleteRental(ele);
+  };
+
   var displayHouses = function displayHouses() {
     if (currentUser.rentals) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", displayNum(Object.values(currentUser.rentals)), " upcoming events: ", Object.values(currentUser.rentals).map(function (ele) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          key: ele.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, ele.location, "\xA0\xA0", ele.check_in, "-", ele.check_out), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
+      var temp = [];
+      var today = new Date();
+      Object.values(currentUser.rentals).forEach(function (ele) {
+        if (new Date(ele.check_in) > today) {
+          temp.push(ele);
+        }
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", displayNum(temp), " upcoming events: ", temp.map(function (ele) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+          key: ele.id,
+          onSubmit: handleDelete(ele.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, ele.location, "\xA0\xA0from\xA0", ele.check_in.replace("T00:00:00.000Z", ""), "\xA0 to \xA0", ele.check_out.replace("T00:00:00.000Z", "")), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "submit"
+        }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
       }));
     }
   };
@@ -2307,8 +2334,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _welcome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./welcome */ "./frontend/components/welcome/welcome.jsx");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_house_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/house_actions */ "./frontend/actions/house_actions.js");
+/* harmony import */ var _welcome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./welcome */ "./frontend/components/welcome/welcome.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -2328,12 +2357,15 @@ var mDTP = function mDTP(dispatch) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.logout)());
     },
     openModal: function openModal(modal) {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)(modal));
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(modal));
+    },
+    deleteRental: function deleteRental(house_id) {
+      return dispatch((0,_actions_house_actions__WEBPACK_IMPORTED_MODULE_2__.deleteRental)(house_id));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_welcome__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_welcome__WEBPACK_IMPORTED_MODULE_3__.default));
 
 /***/ }),
 
@@ -2926,7 +2958,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "fetchLocation": () => (/* binding */ fetchLocation),
-/* harmony export */   "createRental": () => (/* binding */ createRental)
+/* harmony export */   "createRental": () => (/* binding */ createRental),
+/* harmony export */   "deleteRental": () => (/* binding */ deleteRental)
 /* harmony export */ });
 var fetchHouses = function fetchHouses(bounds) {
   return $.ajax({
@@ -2965,6 +2998,12 @@ var createRental = function createRental(rental) {
     data: {
       rental_info: rental
     }
+  });
+};
+var deleteRental = function deleteRental(houseId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "api/rental_infos/".concat(houseId)
   });
 };
 

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {selectHouses} from '../../reducers/selectors'
+import { remove } from '../../util/session_api_util'
 import SearchContainer from '../search/search_container'
 
-const Welcome = ({currentUser, logout, openModal}) => {
+const Welcome = ({currentUser, logout, openModal, deleteRental}) => {
     
 
     const not_logged_in = () => (
@@ -35,15 +36,29 @@ const Welcome = ({currentUser, logout, openModal}) => {
         return n
     }
 
+    const handleDelete = (ele) => {
+        console.log(ele)
+        deleteRental(ele)
+    }
+
     const displayHouses = () => {
         if (currentUser.rentals) {
+            let temp = []
+            let today = new Date()
+            Object.values(currentUser.rentals).forEach(ele => {
+                if (new Date(ele.check_in) > today) {
+                    temp.push(ele)
+                }
+            })
             return (
-                <h2>Your have {displayNum(Object.values(currentUser.rentals))} upcoming events: {
-                    Object.values(currentUser.rentals).map(ele => (
-                        <div key={ele.id}>
-                            <h2>{ele.location}&nbsp;&nbsp;{ele.check_in}-{ele.check_out}</h2>
+                <h2>Your have {displayNum(temp)} upcoming events: {
+                    temp.map(ele => (
+                        <form key={ele.id} onSubmit={handleDelete(ele.id)}>
+                            <h2>{ele.location}&nbsp;&nbsp;from&nbsp;{ele.check_in.replace("T00:00:00.000Z", "")}&nbsp; to &nbsp;{ele.check_out.replace("T00:00:00.000Z", "")}</h2>
+                            &nbsp;
+                            <button type="submit">Cancel</button>
                             <br/>
-                        </div>
+                        </form>
                     ))
                 }</h2>
             )

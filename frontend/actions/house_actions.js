@@ -101,3 +101,7 @@ export const createRental = rental => dispatch => (
             // error => dispatch(receiveRentalErrors(error.responseJSON))
             )
 );
+
+export const deleteRental = house_id => dispatch => (
+    APIUtil.deleteRental(house_id)
+)

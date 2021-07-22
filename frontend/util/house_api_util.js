@@ -39,3 +39,10 @@ export const fetchHouses = bounds => (
       }
     })
   )
+
+  export const deleteRental = houseId => (
+    $.ajax({
+      method: 'DELETE',
+      url: `api/rental_infos/${houseId}`,
+    })
+  )

@@ -12,6 +12,12 @@ class Api::RentalInfosController < ApplicationController
         end
     end
 
+    def destroy
+        @rental_info = current_user.rentals.find_by(params[:house_id])
+        @rental_info.destroy
+        render :show
+    end
+
     private
 
     def rental_params

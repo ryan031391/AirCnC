@@ -25,3 +25,7 @@ export const selectHouses = ({houses}) => (
   Object.keys(houses).map(key => houses[key])
   // Object.values(state.houses)
 );
+
+export const selectReservations = ({reservations}) => (
+  Object.keys(reservations).map(key => reservations[key])
+)

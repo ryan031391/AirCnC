@@ -176,6 +176,50 @@ textarea {
   height: 100px;
 }
 
+.pop-up-content{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    margin: 15% auto;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.2);
+   
+}
+
+.pop-up{
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    color: gray;
+     background-color: rgba(0, 0, 0, 0.4);
+}
+
+.pop-up-button button{
+    font-size: 12px;
+    text-align: center;
+    color: black;
+    border-radius: 5px;
+    padding: 6px;
+    background-color: #D4E9ED;
+    cursor: pointer;
+}
+
+
+.yes{
+    margin-right: 70px;
+    cursor: pointer;
+    background-color: #D4E9ED;
+     border-radius: 5px;
+      padding: 6px;
+      margin-top: 10px;
+}
+.pop-up-button{
+    padding-top: 23px;
+}
+
 /* .dropbtn {
   background-color: #3498DB;
   color: white;

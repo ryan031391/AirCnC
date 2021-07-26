@@ -6,6 +6,7 @@ export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 export const RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
 export const RECEIVE_REVIEW_ERRORS = 'RECEIVE_HOUSE_ERRORS';
 export const RECEIVE_RENTAL_ERRORS = 'RECEIVE_RENTAL_ERRORS';
+export const RECEIVE_RESERVATION = 'RECEIVE_RESERVATION';
 
 const receiveHouses = houses => ({
     type: RECEIVE_HOUSES,
@@ -41,6 +42,11 @@ const receiveRentalErrors = errors => ({
 const receiveRental = rental => ({
     type: RECEIVE_RENTAL_INFO,
     rental
+})
+
+const receiveReservation = rentals => ({
+    type: RECEIVE_RESERVATION,
+    rentals
 })
 
 const range = (payload, bound) => {
@@ -101,6 +107,13 @@ export const createRental = rental => dispatch => (
             // error => dispatch(receiveRentalErrors(error.responseJSON))
             )
 );
+
+export const fetchRental = () => dispatch => {
+    return APIUtil.fetchRental()
+        .then(
+            rentals => dispatch(receiveReservation(rentals))
+        )
+}
 
 export const deleteRental = house_id => dispatch => (
     APIUtil.deleteRental(house_id)

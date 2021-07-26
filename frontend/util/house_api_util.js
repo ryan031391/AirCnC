@@ -46,3 +46,12 @@ export const fetchHouses = bounds => (
       url: `api/rental_infos/${houseId}`,
     })
   )
+
+  export const fetchRental = () => (
+    $.ajax({
+      method: 'GET',
+      url: 'api/rental_infos'
+    })
+  )
+
+  

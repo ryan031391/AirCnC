@@ -12,6 +12,16 @@ class Api::RentalInfosController < ApplicationController
         end
     end
 
+    def index
+        rental_infos = current_user.rentals.all
+        @rental_infos = rental_infos.includes(:house)
+        if @rental_infos
+            render :index
+        else
+            render json: @rental_infos.errors.full_messages, status: 422
+        end
+    end
+
     def destroy
         @rental_info = current_user.rentals.find_by(params[:house_id])
         @rental_info.destroy

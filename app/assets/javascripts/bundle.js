@@ -790,7 +790,9 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
       check_in_year: props.today.getFullYear(),
       check_out_month: props.today.getMonth() + 1,
       check_out_day: props.today.getDate(),
-      check_out_year: props.today.getFullYear()
+      check_out_year: props.today.getFullYear(),
+      showup: false,
+      errorMessage: ""
     };
     _this.addLeadingZero = _this.addLeadingZero.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
@@ -799,7 +801,9 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
     _this.dayOfMonth = _this.dayOfMonth.bind(_assertThisInitialized(_this));
     _this.renderDate = _this.renderDate.bind(_assertThisInitialized(_this));
     _this.renderMonth = _this.renderMonth.bind(_assertThisInitialized(_this));
-    _this.renderYear = _this.renderYear.bind(_assertThisInitialized(_this)); // this.renderErrors = this.renderErrors.bind(this);
+    _this.renderYear = _this.renderYear.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.popup = _this.popup.bind(_assertThisInitialized(_this)); // this.renderErrors = this.renderErrors.bind(this);
 
     return _this;
   }
@@ -980,6 +984,14 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleClick",
+    value: function handleClick(e) {
+      e.preventDefault();
+      this.setState({
+        showup: true
+      });
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault(); // let month_1 = this.numToMonth(parseInt(this.state.check_in_month));
@@ -995,17 +1007,83 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
         check_in: "".concat(this.state.check_in_year, "-").concat(this.addLeadingZero(parseInt(this.state.check_in_month)), "-").concat(this.addLeadingZero(this.state.check_in_day), "T00:00:00.000Z"),
         check_out: "".concat(this.state.check_out_year, "-").concat(this.addLeadingZero(parseInt(this.state.check_out_month)), "-").concat(this.addLeadingZero(this.state.check_out_day), "T00:00:00.000Z")
       };
-      this.props.createRental(tempState);
+
+      if (tempState.check_in < tempState.check_out) {
+        this.props.createRental(tempState);
+        this.setState({
+          showup: false
+        });
+      } else {
+        this.setState({
+          errorMessage: "Invalid Date"
+        });
+      }
     }
   }, {
-    key: "popUp",
-    value: function popUp() {}
+    key: "popup",
+    value: function popup() {
+      var _this4 = this;
+
+      if (!this.state.showup) {
+        return null;
+      } else {
+        console.log("POPUP!!!!");
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "pop-up"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "pop-up-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Confirm Reservation?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "pop-up-button"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "yes",
+          style: {
+            width: "100px"
+          },
+          onClick: this.handleSubmit
+        }, "Yes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          onClick: function onClick() {
+            return _this4.setState({
+              showup: false
+            });
+          },
+          style: {
+            width: "100px"
+          }
+        }, "No"))));
+      }
+    }
+  }, {
+    key: "errorPopup",
+    value: function errorPopup() {
+      var _this5 = this;
+
+      if (!this.state.errorMessage) {
+        return null;
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "pop-up"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "pop-up-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Invalid Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "yes",
+          style: {
+            width: "100px"
+          },
+          onClick: function onClick() {
+            return _this5.setState({
+              showup: false,
+              errorMessage: ""
+            });
+          }
+        }, "OK"))));
+      }
+    }
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        onSubmit: this.handleClick
+      }, this.popup(), this.errorPopup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "check-in"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Check In Date: \xA0 \xA0 "), this.renderYear('check_in'), " \xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "/"), " \xA0", this.renderMonth('check_in'), " \xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "/"), " \xA0", this.renderDate('check_in')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "check-out"
@@ -1043,7 +1121,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    errors: state.errors.rental
+    errors: state.errors.rental,
+    rentals: state.entities.rentals
   };
 };
 
@@ -2380,7 +2459,6 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
             temp.push(ele);
           }
         });
-        console.log(temp);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.popup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", this.displayNum(temp), " upcoming events: ", temp.map(function (ele) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             key: ele.id

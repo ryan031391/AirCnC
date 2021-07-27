@@ -78,7 +78,6 @@ class DisplayReservation extends React.Component{
                     temp.push(ele)
                 }
             })
-            console.log(temp)
             return(
                 <div>
                     {this.popup()}

@@ -55759,3 +55759,2167 @@ Processing by Api::RentalInfosController#index as JSON
 Completed 200 OK in 27ms (Views: 21.5ms | ActiveRecord: 2.1ms)
 
 
+Started GET "/" for ::1 at 2021-07-27 10:44:05 -0700
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/guocong/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.6/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 2004ms (Views: 2002.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/session" for ::1 at 2021-07-27 10:44:22 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"ryan", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ryan"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (3.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["updated_at", "2021-07-27 17:44:22.425993"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+  [1m[36mRentalInfo Load (2.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (41.2ms)
+Completed 200 OK in 337ms (Views: 45.0ms | ActiveRecord: 28.7ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 10:44:22 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (1.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/index.json.jbuilder (3.2ms)
+Completed 200 OK in 54ms (Views: 7.7ms | ActiveRecord: 16.7ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 10:44:41 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (2.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (3.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (90.0ms)
+Completed 200 OK in 107ms (Views: 77.0ms | ActiveRecord: 19.1ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 10:44:42 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (1.0ms)
+  Rendered api/houses/show.json.jbuilder (87.9ms)
+Completed 200 OK in 118ms (Views: 80.0ms | ActiveRecord: 17.9ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 10:45:33 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (1.1ms)
+Completed 200 OK in 466ms (Views: 463.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 10:45:34 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (1.0ms)
+  Rendered api/houses/show.json.jbuilder (32.6ms)
+Completed 200 OK in 54ms (Views: 43.2ms | ActiveRecord: 4.2ms)
+
+
+Started POST "/api/rental_infos" for ::1 at 2021-07-27 10:45:45 -0700
+Processing by Api::RentalInfosController#create as JSON
+  Parameters: {"rental_info"=>{"house_id"=>"108", "check_in"=>"2021-08-08T00:00:00.000Z", "check_out"=>"2021-08-09T00:00:00.000Z"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mRentalInfo Create (4.4ms)[0m  [1m[32mINSERT INTO "rental_infos" ("user_id", "house_id", "check_in", "check_out", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["house_id", 108], ["check_in", "2021-08-08 00:00:00"], ["check_out", "2021-08-09 00:00:00"], ["created_at", "2021-07-27 17:45:45.613944"], ["updated_at", "2021-07-27 17:45:45.613944"]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.7ms)
+Completed 200 OK in 40ms (Views: 9.6ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 10:46:08 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (1.5ms)
+Completed 200 OK in 593ms (Views: 587.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 10:46:09 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (1.9ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (2.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/houses/show.json.jbuilder (36.8ms)
+Completed 200 OK in 62ms (Views: 46.6ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 10:46:10 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 108]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.0ms)
+  Rendered api/rental_infos/index.json.jbuilder (9.8ms)
+Completed 200 OK in 25ms (Views: 15.7ms | ActiveRecord: 2.7ms)
+
+
+Started DELETE "/api/rental_infos/18" for ::1 at 2021-07-27 10:46:14 -0700
+Processing by Api::RentalInfosController#destroy as JSON
+  Parameters: {"id"=>"18"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT  "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:26
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  [1m[36mRentalInfo Destroy (1.2ms)[0m  [1m[31mDELETE FROM "rental_infos" WHERE "rental_infos"."id" = $1[0m  [["id", 18]]
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.4ms)
+Completed 200 OK in 20ms (Views: 10.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 10:46:18 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 68ms (Views: 64.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 10:46:19 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (1.1ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/index.json.jbuilder (3.9ms)
+Completed 200 OK in 19ms (Views: 15.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.24088113333333&bounds%5Bsouth%5D=37.643144663768105&bounds%5Bwest%5D=-122.57421446666667&bounds%5Bnorth%5D=37.93299973623187" for ::1 at 2021-07-27 11:04:47 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.24088113333333", "south"=>"37.643144663768105", "west"=>"-122.57421446666667", "north"=>"37.93299973623187"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (1.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.93299973623187') AND (latitude > '37.643144663768105') AND (longitude > '-122.57421446666667') AND (longitude < '-122.24088113333333')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (1.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 106], ["house_id", 107], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111], ["house_id", 112], ["house_id", 113], ["house_id", 114], ["house_id", 115]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (1.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)[0m  [["house_id", 106], ["house_id", 107], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111], ["house_id", 112], ["house_id", 113], ["house_id", 114], ["house_id", 115]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (26.9ms)
+Completed 200 OK in 33ms (Views: 28.5ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/api/houses/112" for ::1 at 2021-07-27 11:04:48 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"112"}
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 112], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 112]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 112]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 112]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 112]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/houses/show.json.jbuilder (15.0ms)
+Completed 200 OK in 34ms (Views: 21.8ms | ActiveRecord: 4.1ms)
+
+
+Started POST "/api/rental_infos" for ::1 at 2021-07-27 11:04:56 -0700
+Processing by Api::RentalInfosController#create as JSON
+  Parameters: {"rental_info"=>{"house_id"=>"112", "check_in"=>"2021-08-08T00:00:00.000Z", "check_out"=>"2021-07-27T00:00:00.000Z"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 112], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mRentalInfo Create (1.0ms)[0m  [1m[32mINSERT INTO "rental_infos" ("user_id", "house_id", "check_in", "check_out", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["house_id", 112], ["check_in", "2021-08-08 00:00:00"], ["check_out", "2021-07-27 00:00:00"], ["created_at", "2021-07-27 18:04:56.172793"], ["updated_at", "2021-07-27 18:04:56.172793"]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.1ms)
+Completed 200 OK in 28ms (Views: 9.0ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:05:08 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 112]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/index.json.jbuilder (8.9ms)
+Completed 200 OK in 26ms (Views: 21.6ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/api/rental_infos/19" for ::1 at 2021-07-27 11:05:12 -0700
+Processing by Api::RentalInfosController#destroy as JSON
+  Parameters: {"id"=>"19"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT  "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:26
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  [1m[36mRentalInfo Destroy (0.6ms)[0m  [1m[31mDELETE FROM "rental_infos" WHERE "rental_infos"."id" = $1[0m  [["id", 19]]
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.9ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.6ms)
+Completed 200 OK in 19ms (Views: 9.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:05:13 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+Completed 200 OK in 65ms (Views: 62.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:05:14 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (1.1ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/index.json.jbuilder (3.2ms)
+Completed 200 OK in 30ms (Views: 13.7ms | ActiveRecord: 8.1ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-07-27 11:05:17 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "dYkBCxMYOQ3nn9ZsGtcrpg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "EDyBKkVYZXgWcDSKHDfncQ"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (1.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "EDyBKkVYZXgWcDSKHDfncQ"], ["updated_at", "2021-07-27 18:05:17.953641"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (4.2ms)
+Completed 200 OK in 25ms (Views: 11.3ms | ActiveRecord: 5.1ms)
+
+
+Started POST "/api/session" for ::1 at 2021-07-27 11:06:21 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"ryan", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ryan"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:22
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["updated_at", "2021-07-27 18:06:21.626200"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (4.6ms)
+Completed 200 OK in 254ms (Views: 10.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:06:21 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/index.json.jbuilder (3.2ms)
+Completed 200 OK in 23ms (Views: 18.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:06:22 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (1.4ms)
+Completed 200 OK in 461ms (Views: 458.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:06:23 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (1.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/index.json.jbuilder (5.5ms)
+Completed 200 OK in 26ms (Views: 21.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 11:06:29 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (1.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (1.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (18.5ms)
+Completed 200 OK in 26ms (Views: 22.3ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:06:29 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/houses/show.json.jbuilder (27.3ms)
+Completed 200 OK in 57ms (Views: 32.5ms | ActiveRecord: 3.7ms)
+
+
+Started POST "/api/rental_infos" for ::1 at 2021-07-27 11:06:35 -0700
+Processing by Api::RentalInfosController#create as JSON
+  Parameters: {"rental_info"=>{"house_id"=>"106", "check_in"=>"2021-08-27T00:00:00.000Z", "check_out"=>"2021-07-27T00:00:00.000Z"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mRentalInfo Create (1.3ms)[0m  [1m[32mINSERT INTO "rental_infos" ("user_id", "house_id", "check_in", "check_out", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["house_id", 106], ["check_in", "2021-08-27 00:00:00"], ["check_out", "2021-07-27 00:00:00"], ["created_at", "2021-07-27 18:06:35.377560"], ["updated_at", "2021-07-27 18:06:35.377560"]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/show.json.jbuilder (3.3ms)
+Completed 200 OK in 29ms (Views: 13.5ms | ActiveRecord: 3.9ms)
+
+
+Started POST "/api/rental_infos" for ::1 at 2021-07-27 11:06:44 -0700
+Processing by Api::RentalInfosController#create as JSON
+  Parameters: {"rental_info"=>{"house_id"=>"106", "check_in"=>"2021-08-27T00:00:00.000Z", "check_out"=>"2021-09-27T00:00:00.000Z"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mHouse Load (0.9ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mRentalInfo Create (0.9ms)[0m  [1m[32mINSERT INTO "rental_infos" ("user_id", "house_id", "check_in", "check_out", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["house_id", 106], ["check_in", "2021-08-27 00:00:00"], ["check_out", "2021-09-27 00:00:00"], ["created_at", "2021-07-27 18:06:44.235344"], ["updated_at", "2021-07-27 18:06:44.235344"]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.5ms)
+Completed 200 OK in 34ms (Views: 13.2ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:07:04 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 443ms (Views: 438.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:07:05 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (1.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.9ms)
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (2.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (4.1ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (6.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (1.0ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.9ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/houses/show.json.jbuilder (80.6ms)
+Completed 200 OK in 105ms (Views: 78.8ms | ActiveRecord: 17.5ms)
+
+
+Started POST "/api/rental_infos" for ::1 at 2021-07-27 11:07:07 -0700
+Processing by Api::RentalInfosController#create as JSON
+  Parameters: {"rental_info"=>{"house_id"=>"106", "check_in"=>"2021-07-27T00:00:00.000Z", "check_out"=>"2021-07-27T00:00:00.000Z"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mRentalInfo Create (1.3ms)[0m  [1m[32mINSERT INTO "rental_infos" ("user_id", "house_id", "check_in", "check_out", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["house_id", 106], ["check_in", "2021-07-27 00:00:00"], ["check_out", "2021-07-27 00:00:00"], ["created_at", "2021-07-27 18:07:07.383136"], ["updated_at", "2021-07-27 18:07:07.383136"]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.6ms)
+Completed 200 OK in 27ms (Views: 12.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:07:19 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+Completed 200 OK in 72ms (Views: 68.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:07:20 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (6.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (2.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (0.7ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (1.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.9ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (66.2ms)
+Completed 200 OK in 87ms (Views: 67.5ms | ActiveRecord: 12.1ms)
+
+
+Started POST "/api/rental_infos" for ::1 at 2021-07-27 11:07:22 -0700
+Processing by Api::RentalInfosController#create as JSON
+  Parameters: {"rental_info"=>{"house_id"=>"106", "check_in"=>"2021-07-27T00:00:00.000Z", "check_out"=>"2021-07-27T00:00:00.000Z"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[36mRentalInfo Create (0.3ms)[0m  [1m[32mINSERT INTO "rental_infos" ("user_id", "house_id", "check_in", "check_out", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 1], ["house_id", 106], ["check_in", "2021-07-27 00:00:00"], ["check_out", "2021-07-27 00:00:00"], ["created_at", "2021-07-27 18:07:22.598780"], ["updated_at", "2021-07-27 18:07:22.598780"]]
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:8
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.4ms)
+Completed 200 OK in 24ms (Views: 11.8ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:07:28 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (1.0ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.9ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/index.json.jbuilder (14.6ms)
+Completed 200 OK in 30ms (Views: 22.2ms | ActiveRecord: 2.9ms)
+
+
+Started DELETE "/api/rental_infos/20" for ::1 at 2021-07-27 11:07:32 -0700
+Processing by Api::RentalInfosController#destroy as JSON
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT  "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:26
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  [1m[36mRentalInfo Destroy (0.5ms)[0m  [1m[31mDELETE FROM "rental_infos" WHERE "rental_infos"."id" = $1[0m  [["id", 20]]
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.2ms)
+Completed 200 OK in 17ms (Views: 9.7ms | ActiveRecord: 2.3ms)
+
+
+Started DELETE "/api/rental_infos/21" for ::1 at 2021-07-27 11:07:34 -0700
+Processing by Api::RentalInfosController#destroy as JSON
+  Parameters: {"id"=>"21"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT  "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/rental_infos_controller.rb:26
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  [1m[36mRentalInfo Destroy (0.4ms)[0m  [1m[31mDELETE FROM "rental_infos" WHERE "rental_infos"."id" = $1[0m  [["id", 21]]
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rental_infos_controller.rb:27
+  Rendering api/rental_infos/show.json.jbuilder
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/show.json.jbuilder (2.4ms)
+Completed 200 OK in 18ms (Views: 10.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:07:35 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 84ms (Views: 80.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:07:35 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (1.0ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (1.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.1ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/index.json.jbuilder (15.3ms)
+Completed 200 OK in 31ms (Views: 21.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:10:08 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.9ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+Completed 200 OK in 663ms (Views: 660.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:10:09 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.8ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (1.1ms)
+  Rendered api/rental_infos/index.json.jbuilder (11.2ms)
+Completed 200 OK in 30ms (Views: 25.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 11:10:14 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/index.json.jbuilder (15.8ms)
+Completed 200 OK in 24ms (Views: 21.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:10:16 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.9ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (33.0ms)
+Completed 200 OK in 47ms (Views: 38.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:16:33 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 431ms (Views: 425.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:16:34 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (2.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.9ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (15.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.7ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/houses/show.json.jbuilder (89.6ms)
+Completed 200 OK in 111ms (Views: 76.6ms | ActiveRecord: 25.7ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:17:24 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 435ms (Views: 432.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:17:24 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.8ms)
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (1.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.7ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.9ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (1.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (49.4ms)
+Completed 200 OK in 72ms (Views: 58.3ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:18:31 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (1.8ms)
+Completed 200 OK in 479ms (Views: 475.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:18:32 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (1.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (2.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (1.0ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (1.1ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (1.0ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/houses/show.json.jbuilder (84.0ms)
+Completed 200 OK in 109ms (Views: 95.1ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:20:37 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+Completed 200 OK in 74ms (Views: 70.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:20:38 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (5.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/houses/show.json.jbuilder (66.0ms)
+Completed 200 OK in 87ms (Views: 78.3ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:20:41 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (1.1ms)
+  Rendered api/rental_infos/index.json.jbuilder (10.1ms)
+Completed 200 OK in 25ms (Views: 20.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:20:42 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (37.5ms)
+Completed 200 OK in 53ms (Views: 44.2ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:21:13 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.2ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/index.json.jbuilder (14.2ms)
+Completed 200 OK in 29ms (Views: 21.8ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:21:15 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+Completed 200 OK in 73ms (Views: 69.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:21:15 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.9ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (3.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (1.4ms)
+  Rendered api/rental_infos/index.json.jbuilder (26.6ms)
+Completed 200 OK in 39ms (Views: 34.9ms | ActiveRecord: 2.3ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-07-27 11:21:18 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "myi_zmJMDV-r04ReG25cFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "VAq-bmXgJr-4kogtY0Hf6w"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (1.1ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "VAq-bmXgJr-4kogtY0Hf6w"], ["updated_at", "2021-07-27 18:21:18.855647"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (6.8ms)
+Completed 200 OK in 30ms (Views: 13.9ms | ActiveRecord: 5.8ms)
+
+
+Started POST "/api/session" for ::1 at 2021-07-27 11:21:27 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"ryan", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ryan"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["updated_at", "2021-07-27 18:21:27.263192"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (7.0ms)
+Completed 200 OK in 258ms (Views: 13.2ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:21:27 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.2ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/index.json.jbuilder (16.0ms)
+Completed 200 OK in 31ms (Views: 26.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 11:21:54 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (13.6ms)
+Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:21:57 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (2.1ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/houses/show.json.jbuilder (33.4ms)
+Completed 200 OK in 52ms (Views: 40.7ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:22:18 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.7ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+Completed 200 OK in 57ms (Views: 51.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:22:19 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (1.2ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (1.2ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (4.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/houses/show.json.jbuilder (58.8ms)
+Completed 200 OK in 83ms (Views: 64.1ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:22:21 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.8ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/index.json.jbuilder (12.2ms)
+Completed 200 OK in 23ms (Views: 18.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:22:21 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.9ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (34.5ms)
+Completed 200 OK in 51ms (Views: 42.2ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:23:22 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/index.json.jbuilder (8.0ms)
+Completed 200 OK in 21ms (Views: 17.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:23:24 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+Completed 200 OK in 62ms (Views: 58.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:23:24 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (3.0ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.9ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/index.json.jbuilder (14.9ms)
+Completed 200 OK in 27ms (Views: 19.3ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:45:02 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+Completed 200 OK in 430ms (Views: 421.5ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:45:02 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (1.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (1.8ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.1ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/index.json.jbuilder (18.2ms)
+Completed 200 OK in 36ms (Views: 28.9ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 11:45:08 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (1.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (14.1ms)
+Completed 200 OK in 22ms (Views: 18.1ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:45:08 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (1.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (37.0ms)
+Completed 200 OK in 56ms (Views: 44.0ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:46:19 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.0ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/index.json.jbuilder (9.0ms)
+Completed 200 OK in 23ms (Views: 14.7ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:46:20 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (1.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/houses/show.json.jbuilder (35.7ms)
+Completed 200 OK in 57ms (Views: 42.5ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:46:25 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.8ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/index.json.jbuilder (10.7ms)
+Completed 200 OK in 21ms (Views: 15.6ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 11:46:25 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 89ms (Views: 85.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 11:46:26 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.8ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/index.json.jbuilder (14.2ms)
+Completed 200 OK in 31ms (Views: 22.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 11:46:31 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.9ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (15.4ms)
+Completed 200 OK in 22ms (Views: 19.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 11:46:34 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (1.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.8ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.8ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (34.5ms)
+Completed 200 OK in 52ms (Views: 40.1ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:01:39 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (2.0ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (1.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/index.json.jbuilder (12.1ms)
+Completed 200 OK in 23ms (Views: 14.7ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 12:01:42 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.9ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.8ms)
+  Rendered api/houses/show.json.jbuilder (26.2ms)
+Completed 200 OK in 43ms (Views: 31.8ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 12:02:57 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 427ms (Views: 424.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 12:02:58 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (1.2ms)
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (1.7ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (2.0ms)
+  Rendered api/houses/show.json.jbuilder (52.4ms)
+Completed 200 OK in 71ms (Views: 56.7ms | ActiveRecord: 8.1ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:02:59 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (2.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/index.json.jbuilder (13.5ms)
+Completed 200 OK in 30ms (Views: 21.0ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 12:03:05 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (1.0ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.8ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (16.3ms)
+Completed 200 OK in 24ms (Views: 21.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 12:03:06 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.9ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (7.1ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/houses/show.json.jbuilder (37.7ms)
+Completed 200 OK in 52ms (Views: 41.9ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:03:08 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/index.json.jbuilder (11.1ms)
+Completed 200 OK in 26ms (Views: 21.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 12:03:09 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (1.8ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/houses/show.json.jbuilder (21.5ms)
+Completed 200 OK in 39ms (Views: 27.0ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 12:05:27 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 460ms (Views: 456.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 12:05:28 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (7.4ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.7ms)
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  [1m[36mRentalInfo Load (1.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/houses/show.json.jbuilder (48.9ms)
+Completed 200 OK in 70ms (Views: 58.3ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:05:29 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.7ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/index.json.jbuilder (12.3ms)
+Completed 200 OK in 22ms (Views: 17.4ms | ActiveRecord: 1.9ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-07-27 12:05:30 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wfQ2vH8wj--cVDIfn4xMAw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hOlEkggoDO9i47iB0imCWw"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (1.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (6.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "hOlEkggoDO9i47iB0imCWw"], ["updated_at", "2021-07-27 19:05:30.587280"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (8.0ms)
+Completed 200 OK in 37ms (Views: 13.9ms | ActiveRecord: 13.0ms)
+
+
+Started POST "/api/session" for ::1 at 2021-07-27 12:05:35 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"ryan", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ryan"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["updated_at", "2021-07-27 19:05:35.865917"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (9.5ms)
+Completed 200 OK in 267ms (Views: 15.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:05:35 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (2.1ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (1.2ms)
+  Rendered api/rental_infos/index.json.jbuilder (14.8ms)
+Completed 200 OK in 33ms (Views: 26.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 12:05:36 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 81ms (Views: 75.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:05:36 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.9ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.0ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/index.json.jbuilder (16.7ms)
+Completed 200 OK in 32ms (Views: 26.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 12:05:49 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.9ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.7ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.6ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (19.6ms)
+Completed 200 OK in 31ms (Views: 27.1ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 12:05:50 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.7ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/houses/show.json.jbuilder (37.3ms)
+Completed 200 OK in 55ms (Views: 43.3ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:05:54 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.1ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/index.json.jbuilder (9.7ms)
+Completed 200 OK in 24ms (Views: 20.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 12:05:54 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (1.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.3ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.9ms)
+  Rendered api/houses/show.json.jbuilder (23.9ms)
+Completed 200 OK in 39ms (Views: 31.7ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:05:56 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/index.json.jbuilder (27.4ms)
+Completed 200 OK in 41ms (Views: 34.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 12:09:21 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+Completed 200 OK in 430ms (Views: 426.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:09:22 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.8ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/rental_infos/index.json.jbuilder (31.6ms)
+Completed 200 OK in 53ms (Views: 41.2ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/api/houses?bounds%5Beast%5D=-122.32421446666667&bounds%5Bsouth%5D=37.71560843188404&bounds%5Bwest%5D=-122.49088113333333&bounds%5Bnorth%5D=37.86053596811593" for ::1 at 2021-07-27 12:09:29 -0700
+Processing by Api::HousesController#index as JSON
+  Parameters: {"bounds"=>{"east"=>"-122.32421446666667", "south"=>"37.71560843188404", "west"=>"-122.49088113333333", "north"=>"37.86053596811593"}}
+  Rendering api/houses/index.json.jbuilder
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE (latitude < '37.86053596811593') AND (latitude > '37.71560843188404') AND (longitude > '-122.49088113333333') AND (longitude < '-122.32421446666667')[0m
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mReview Load (0.6ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  [1m[36mRentalInfo Load (0.6ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" IN ($1, $2, $3, $4, $5)[0m  [["house_id", 106], ["house_id", 108], ["house_id", 109], ["house_id", 110], ["house_id", 111]]
+  ↳ app/views/api/houses/index.json.jbuilder:1
+  Rendered api/houses/_house.json.jbuilder (0.5ms)
+  Rendered api/houses/_house.json.jbuilder (0.2ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/_house.json.jbuilder (0.1ms)
+  Rendered api/houses/index.json.jbuilder (14.3ms)
+Completed 200 OK in 22ms (Views: 19.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/houses/106" for ::1 at 2021-07-27 12:09:29 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"106"}
+  [1m[36mHouse Load (2.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 106], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 4], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 106]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3)[0m  [["id", 2], ["id", 3], ["id", 1]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (1.0ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.4ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.3ms)
+  Rendered api/houses/show.json.jbuilder (29.9ms)
+Completed 200 OK in 51ms (Views: 39.6ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:09:33 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (1.1ms)
+  Rendered api/rental_infos/index.json.jbuilder (11.2ms)
+Completed 200 OK in 23ms (Views: 19.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 12:09:36 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.5ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.5ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.8ms)
+  Rendered api/houses/show.json.jbuilder (25.1ms)
+Completed 200 OK in 38ms (Views: 29.0ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for ::1 at 2021-07-27 12:11:14 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+Completed 200 OK in 64ms (Views: 60.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 12:11:15 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.7ms)
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.6ms)
+  Rendered api/reviews/_review.json.jbuilder (0.1ms)
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (1.7ms)
+  Rendered api/houses/show.json.jbuilder (40.1ms)
+Completed 200 OK in 62ms (Views: 54.2ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:11:19 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (1.5ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.5ms)
+  Rendered api/rental_infos/index.json.jbuilder (12.3ms)
+Completed 200 OK in 25ms (Views: 19.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/houses/108" for ::1 at 2021-07-27 12:11:20 -0700
+Processing by Api::HousesController#show as JSON
+  Parameters: {"id"=>"108"}
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 108], ["LIMIT", 1]]
+  ↳ app/controllers/api/houses_controller.rb:13
+  Rendering api/houses/show.json.jbuilder
+  Rendered api/houses/_house.json.jbuilder (0.4ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:3
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "rental_infos"."id" FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:4
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 2], ["id", 3]]
+  ↳ app/views/api/houses/show.json.jbuilder:7
+  Rendered api/reviews/_review.json.jbuilder (0.4ms)
+  Rendered api/reviews/_review.json.jbuilder (0.2ms)
+  [1m[36mRentalInfo Load (0.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."house_id" = $1[0m  [["house_id", 108]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/views/api/houses/show.json.jbuilder:21
+  Rendered api/rental_infos/_rental.json.jbuilder (0.6ms)
+  Rendered api/houses/show.json.jbuilder (22.2ms)
+Completed 200 OK in 39ms (Views: 29.6ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/api/rental_infos" for ::1 at 2021-07-27 12:11:21 -0700
+Processing by Api::RentalInfosController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  Rendering api/rental_infos/index.json.jbuilder
+  [1m[36mRentalInfo Load (0.3ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/rental_infos/index.json.jbuilder:1
+  Rendered api/rental_infos/_rental.json.jbuilder (0.8ms)
+  Rendered api/rental_infos/_rental.json.jbuilder (0.7ms)
+  Rendered api/rental_infos/index.json.jbuilder (10.5ms)
+Completed 200 OK in 21ms (Views: 16.7ms | ActiveRecord: 1.1ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-07-27 15:07:54 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hX8vb_09UcoW25auSX0SCw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:10
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "wdGJhGGyYMvrhmJ8AwvZkw"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:58
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:42
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "ryan"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:42
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "wdGJhGGyYMvrhmJ8AwvZkw"], ["updated_at", "2021-07-27 22:07:54.436771"], ["id", 1]]
+  ↳ app/models/user.rb:42
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:42
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[36mRentalInfo Load (1.4ms)[0m  [1m[34mSELECT "rental_infos".* FROM "rental_infos" WHERE "rental_infos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mHouse Load (1.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 106]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (10.0ms)
+Completed 200 OK in 31ms (Views: 15.1ms | ActiveRecord: 8.0ms)
+
+

@@ -10,6 +10,8 @@ class Reservation extends React.Component{
             check_out_month: props.today.getMonth()+1,
             check_out_day: props.today.getDate(),
             check_out_year: props.today.getFullYear(),
+            showup: false,
+            errorMessage: ""
         }
         this.addLeadingZero = this.addLeadingZero.bind(this);
         this.update = this.update.bind(this);
@@ -19,6 +21,8 @@ class Reservation extends React.Component{
         this.renderDate = this.renderDate.bind(this);
         this.renderMonth = this.renderMonth.bind(this);
         this.renderYear = this.renderYear.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.popup = this.popup.bind(this)
         // this.renderErrors = this.renderErrors.bind(this);
     }
 
@@ -173,6 +177,11 @@ class Reservation extends React.Component{
         }
     }
 
+    handleClick(e){
+        e.preventDefault();
+        this.setState({ showup: true })
+    }
+
     handleSubmit(e){
         e.preventDefault();
         // let month_1 = this.numToMonth(parseInt(this.state.check_in_month));
@@ -187,16 +196,73 @@ class Reservation extends React.Component{
             check_in: `${this.state.check_in_year}-${this.addLeadingZero(parseInt(this.state.check_in_month))}-${this.addLeadingZero(this.state.check_in_day)}T00:00:00.000Z`,
             check_out: `${this.state.check_out_year}-${this.addLeadingZero(parseInt(this.state.check_out_month))}-${this.addLeadingZero(this.state.check_out_day)}T00:00:00.000Z`
         }
-        this.props.createRental(tempState);
+        if (tempState.check_in < tempState.check_out) {
+            this.props.createRental(tempState);
+            this.setState({ showup: false })
+        } else {
+            this.setState({ errorMessage: "Invalid Date" })
+        }
     }
 
-    popUp(){
-        
+    popup(){
+        if (!this.state.showup){
+            return null
+        } else {
+            console.log("POPUP!!!!")
+            return(
+                <div className="pop-up">
+                <div className="pop-up-content">
+                    <h3>Confirm Reservation?</h3>
+                    <div className="pop-up-button">
+                    <button
+                        className="yes"
+                        style={{ width: "100px" }}
+                        onClick={this.handleSubmit}
+                    >
+                        Yes
+                    </button>
+
+                    <button
+                        onClick={() => this.setState({ showup: false })}
+                        style={{ width: "100px" }}
+                    >
+                        No
+                    </button>
+                    </div>
+                </div>
+                </div>
+            );
+        }    
+    }
+
+    errorPopup(){
+        if (!this.state.errorMessage) {
+            return null
+        } else {
+            return(
+                <div className="pop-up">
+                    <div className="pop-up-content">
+                        <h3>Invalid Date</h3>
+                        <div>
+                            <button
+                                className="yes"
+                                style={{ width: "100px" }}
+                                onClick={() => this.setState({ showup: false, errorMessage: "" })}
+                            >
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleClick}>
+                {this.popup()}
+                {this.errorPopup()}
                 <div id="check-in">
                     <b>Check In Date: &nbsp; &nbsp; </b>
                     {this.renderYear('check_in')} &nbsp; <b>/</b> &nbsp;     

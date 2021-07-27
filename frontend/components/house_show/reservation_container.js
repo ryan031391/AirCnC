@@ -4,6 +4,7 @@ import Reservation from './reservation';
 
 const mSTP = state => ({
     errors: state.errors.rental,
+    rentals: state.entities.rentals
 })
 
 const mDTP = dispatch => ({

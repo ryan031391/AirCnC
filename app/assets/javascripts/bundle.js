@@ -658,7 +658,6 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getDisabledDays",
     value: function getDisabledDays() {
-      // console.log(this.props.rentals)
       var result = [];
       this.props.rentals.forEach(function (_ref) {
         var check_in = _ref.check_in,
@@ -667,8 +666,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
           after: new Date(new Date(check_in).getFullYear(), new Date(check_in).getMonth(), new Date(check_in).getDate()),
           before: new Date(new Date(check_out).getFullYear(), new Date(check_out).getMonth(), new Date(check_out).getDate() + 2)
         });
-      }); // console.log(result)
-
+      });
       return result; // {
       //   after: new Date(2017, 3, 20),
       //   before: new Date(2017, 3, 25),
@@ -908,7 +906,6 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var today = this.props.today;
-      console.log(this.state);
       var tempMonth = this.state.check_in_month;
       var tempYear = this.state.check_in_year;
 
@@ -997,10 +994,6 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
     key: "update",
     value: function update(ele) {
       var _this3 = this;
-
-      (function (e) {
-        return console.log(e.currentTarget.value);
-      });
 
       return function (e) {
         return _this3.setState(_defineProperty({}, ele, e.currentTarget.value));
@@ -1091,7 +1084,6 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
       if (!this.state.showup) {
         return null;
       } else {
-        console.log("POPUP!!!!");
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "pop-up"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1516,8 +1508,6 @@ var Logout = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      console.log(this.props);
-
       if (this.props.bool) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           className: "Nav-logout",
@@ -1561,10 +1551,8 @@ var mSTP = function mSTP(_ref) {
   var bool = "";
 
   if (session.session_token) {
-    console.log("1");
     bool = true;
   } else {
-    console.log("2");
     bool = false;
   }
 
@@ -2608,7 +2596,6 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
       if (!this.state.showup) {
         return null;
       } else {
-        console.log("POPUP!!!!");
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "pop-up"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3377,7 +3364,6 @@ var usersReducer = function usersReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var nextState = Object.assign({}, state);
-  console.log(action);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:

@@ -5,10 +5,8 @@ import Logout from './logout'
 const mSTP = ({session}) => {
     let bool = ""
     if (session.session_token) {
-        console.log("1")
         bool = true;
     } else {
-        console.log("2")
         bool = false
     }
     return {

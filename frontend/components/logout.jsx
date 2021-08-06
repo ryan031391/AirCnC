@@ -6,7 +6,6 @@ class Logout extends React.Component {
     }
 
     render(){
-        console.log(this.props)
         if (this.props.bool) {
             return(
                 <button className="Nav-logout" onClick={() => this.props.logout()}>Log Out</button>

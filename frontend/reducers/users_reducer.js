@@ -5,7 +5,6 @@ import { RECEIVE_REVIEW, RECEIVE_HOUSE } from '../actions/house_actions';
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
   const nextState = Object.assign({}, state);
-  console.log(action)
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       nextState[action.currentUser.session_token] = action.currentUser;

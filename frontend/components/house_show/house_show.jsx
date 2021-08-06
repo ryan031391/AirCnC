@@ -35,7 +35,6 @@ class HouseShow extends React.Component{
     }
 
     getDisabledDays(){
-        // console.log(this.props.rentals)
         let result = [];
         this.props.rentals.forEach(({check_in, check_out}) => {
             result.push({
@@ -47,7 +46,6 @@ class HouseShow extends React.Component{
                             new Date(check_out).getDate()+2)
             })
         })
-        // console.log(result)
         return result
         // {
         //   after: new Date(2017, 3, 20),

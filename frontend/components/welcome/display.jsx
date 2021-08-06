@@ -36,7 +36,6 @@ class DisplayReservation extends React.Component{
         if (!this.state.showup){
             return null
         } else {
-            console.log("POPUP!!!!")
             return(
                 <div className="pop-up">
                 <div className="pop-up-content">

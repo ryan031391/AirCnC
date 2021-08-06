@@ -67,7 +67,6 @@ class Reservation extends React.Component{
 
     renderDate(ele){        
         const { today } = this.props;
-        console.log(this.state)
         let tempMonth = this.state.check_in_month;
         let tempYear = this.state.check_in_year;
         if (ele !== 'check_in') {
@@ -149,7 +148,6 @@ class Reservation extends React.Component{
     // }
 
     update(ele){
-        e => console.log(e.currentTarget.value)
         return e => this.setState({
             [ele]: e.currentTarget.value
         })
@@ -216,7 +214,6 @@ class Reservation extends React.Component{
         if (!this.state.showup){
             return null
         } else {
-            console.log("POPUP!!!!")
             return(
                 <div className="pop-up">
                 <div className="pop-up-content">

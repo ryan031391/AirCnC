@@ -9,14 +9,17 @@ import HouseShowContainer from './house_show/house_show_container';
 import My404Component from './my404';
 import UserContainer from './user/user_container';
 import Modal from './modal/modal';
+import LogoutContainer from './logout_container'
 
 const App = () => (
-    <div id="mainpage" style={{backgroundImage: `url(${window.backgroundUrl})`}}>
+  // style={{backgroundImage: `url(${window.backgroundUrl})`}}
+    <div id="mainpage" >
       <Modal />
       <nav id="home-nav">
         
         <Link to="/" id="home-symbol"><img id="logo" src={window.logoUrl}/></Link>
         {/* <WelcomeContainer/> */}
+        <LogoutContainer />
       </nav>
       {/* <header>
         

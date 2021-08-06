@@ -41,7 +41,7 @@ class ReviewForm extends React.Component{
 
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
+            <form className="review" onSubmit={this.handleSubmit}>
                 <h2 id="review-form">Leave your review here:</h2>
                     <textarea value={this.state.body} onChange={this.updateBody} />
                     &nbsp;&nbsp;
@@ -57,6 +57,7 @@ class ReviewForm extends React.Component{
                 &nbsp;&nbsp;
                 <button type="submit">Submit</button>
                 {this.renderErrors()}
+
             </form>
         )
     }

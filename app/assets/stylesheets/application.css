@@ -50,18 +50,21 @@ html, body {
 nav{
   background-color: blue;
   height: 50px;
+  display: flex;
 }
 
 #home-symbol{
   color:white;
-  margin: 20px;
+  /* margin: 20px; */
+  padding-left: 20px;
 }
 
 #Welcome {
   position: initial;
   text-align: center;
   font-size: 20px;
-  margin-top: 150px;
+  height: 100%;
+  /* margin-top: 50px; */
 }
 
 #welcomebutton {
@@ -113,6 +116,8 @@ h1 {
 
 #welcomepage {
   text-align: center;
+  height: 100%;
+  /* background-color: rgb(235, 225, 205); */
 }
 
 #search {
@@ -125,7 +130,7 @@ ul {
 
 #result {
   background-color: lightgoldenrodyellow;
-  /* background: transparent; */
+  background: transparent;
 }
 
 #houses{
@@ -151,10 +156,6 @@ a:hover {
   /* color: whitesmoke; */
 }
 
-#showpage {
-  padding-left: 30px;
-}
-
 #reservationbtn {
   margin-top: 10px;
 }
@@ -164,7 +165,12 @@ a:hover {
 }
 
 #review-list, #review {
-  color: wheat;
+  /* color: wheat; */
+  padding-left: 30px;
+}
+
+.review {
+  padding-left: 30px;
 }
 
 #review {
@@ -216,10 +222,153 @@ textarea {
       padding: 6px;
       margin-top: 10px;
 }
+
 .pop-up-button{
     padding-top: 23px;
 }
 
+.session-form {
+    display: flex;
+    flex-direction: row;
+    background: #F2EBDC;
+}
+
+.session-form-left{
+    width: 70%;
+}
+.session-form-left img {
+    width: 100%;
+    height: 1050px;
+    object-fit: fill;
+    object-position: left bottom;
+}
+
+
+.session-form-right {
+    width: 30%;
+    padding-left: 110px;
+    box-sizing: border-box;
+    padding-right: 110px;
+    padding-top: 50px;
+}
+
+.top-img {
+  object-fit: none;
+  height: 150px;
+  width: 100%;
+  object-position: top;
+}
+
+.bot-img {
+  object-fit: none;
+  height: 100px;
+  width: 100%;
+  object-position: bottom;
+}
+
+.house-top-img {
+  object-fit: none;
+  height: 100px;
+  width: 100%;
+  object-position: top;
+  padding-left: 0px;
+}
+
+.house-bot-img {
+  object-fit: none;
+  height: 100px;
+  width: 100%;
+  object-position: bottom;
+  padding-left: 0px;
+}
+
+.sticky-image-wrapper{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.house-sticky-image-wrapper{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.welcomepage-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.reservation-list {
+    width: 30%;
+}
+
+.search {
+    width: 70%;
+    padding-left: 110px;
+    box-sizing: border-box;
+    padding-right: 110px;
+    padding-top: 50px;
+}
+
+.Nav-logout {
+  margin-left: auto;
+  padding: 0%;
+  height: 32px;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.grid-header {
+  display: flex;
+
+}
+
+.grid-item-left {
+  margin-left: 27%;
+}
+
+.grid-item-right {
+  margin-left: auto;
+  margin-right: 25%;
+}
+
+.house-index-left {
+  margin-left: 20%;
+  text-align: center;
+}
+
+.house-index-right {
+  margin-left: auto;
+  margin-right: 30%;
+  text-align: center;
+}
+
+#house-item-link {
+  text-decoration: none;
+}
+
+.house-info {
+  display: flex;
+  padding-left: 30px;
+}
+
+.reservation {
+  margin-left: auto;
+  margin-right: 5%;
+}
+
+.react-calendar{
+  width: 380px;
+}
+
+.calendar{
+  /* width: 60%; */
+  padding-top: 100px;
+  margin-right: 150px;
+  min-width: 500px;
+}
 /* .dropbtn {
   background-color: #3498DB;
   color: white;

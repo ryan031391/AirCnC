@@ -201,6 +201,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_REVIEW_ERRORS": () => (/* binding */ RECEIVE_REVIEW_ERRORS),
 /* harmony export */   "RECEIVE_RENTAL_ERRORS": () => (/* binding */ RECEIVE_RENTAL_ERRORS),
 /* harmony export */   "RECEIVE_RESERVATION": () => (/* binding */ RECEIVE_RESERVATION),
+/* harmony export */   "REMOVE_RESERVATION": () => (/* binding */ REMOVE_RESERVATION),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "fetchHouses": () => (/* binding */ fetchHouses),
 /* harmony export */   "fetchHouse": () => (/* binding */ fetchHouse),
@@ -218,6 +219,7 @@ var RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
 var RECEIVE_REVIEW_ERRORS = 'RECEIVE_HOUSE_ERRORS';
 var RECEIVE_RENTAL_ERRORS = 'RECEIVE_RENTAL_ERRORS';
 var RECEIVE_RESERVATION = 'RECEIVE_RESERVATION';
+var REMOVE_RESERVATION = 'REMOVE_RESERVATION';
 
 var receiveHouses = function receiveHouses(houses) {
   return {
@@ -279,6 +281,13 @@ var receiveReservation = function receiveReservation(rentals) {
   return {
     type: RECEIVE_RESERVATION,
     rentals: rentals
+  };
+};
+
+var removeReservation = function removeReservation(house_id) {
+  return {
+    type: REMOVE_RESERVATION,
+    house_id: house_id
   };
 };
 
@@ -354,7 +363,9 @@ var fetchRental = function fetchRental() {
 };
 var deleteRental = function deleteRental(house_id) {
   return function (dispatch) {
-    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteRental(house_id);
+    return _util_house_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteRental(house_id).then(function () {
+      return dispatch(removeReservation(house_id));
+    });
   };
 };
 
@@ -499,8 +510,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session_form/signup_form_container */ "./frontend/components/session_form/signup_form_container.jsx");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session_form/login_form_container */ "./frontend/components/session_form/login_form_container.jsx");
@@ -509,6 +520,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _my404__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./my404 */ "./frontend/components/my404.jsx");
 /* harmony import */ var _user_user_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user/user_container */ "./frontend/components/user/user_container.js");
 /* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modal/modal */ "./frontend/components/modal/modal.jsx");
+/* harmony import */ var _logout_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./logout_container */ "./frontend/components/logout_container.js");
+
 
 
 
@@ -522,29 +535,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    id: "mainpage",
-    style: {
-      backgroundImage: "url(".concat(window.backgroundUrl, ")")
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_9__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
-    id: "home-nav"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
-    to: "/",
-    id: "home-symbol"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    id: "logo",
-    src: window.logoUrl
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-    exact: true,
-    path: "/",
-    component: _welcome_welcome_container__WEBPACK_IMPORTED_MODULE_5__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
-    path: "/houses/:houseId",
-    component: _house_show_house_show_container__WEBPACK_IMPORTED_MODULE_6__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
-    component: _my404__WEBPACK_IMPORTED_MODULE_7__.default
-  })));
+  return (
+    /*#__PURE__*/
+    // style={{backgroundImage: `url(${window.backgroundUrl})`}}
+    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      id: "mainpage"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_9__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
+      id: "home-nav"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
+      to: "/",
+      id: "home-symbol"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      id: "logo",
+      src: window.logoUrl
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_logout_container__WEBPACK_IMPORTED_MODULE_10__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      exact: true,
+      path: "/",
+      component: _welcome_welcome_container__WEBPACK_IMPORTED_MODULE_5__.default
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
+      path: "/houses/:houseId",
+      component: _house_show_house_show_container__WEBPACK_IMPORTED_MODULE_6__.default
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      component: _my404__WEBPACK_IMPORTED_MODULE_7__.default
+    })))
+  );
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -566,6 +580,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _review_item_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./review_item_container */ "./frontend/components/house_show/review_item_container.js");
 /* harmony import */ var _review_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form_container */ "./frontend/components/house_show/review_form_container.js");
 /* harmony import */ var _reservation_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reservation_container */ "./frontend/components/house_show/reservation_container.js");
+/* harmony import */ var react_day_picker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-day-picker */ "./node_modules/react-day-picker/lib/react-day-picker.min.js");
+/* harmony import */ var react_day_picker__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_day_picker__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -592,6 +608,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+ // import '../../../node_modules/react-day-picker/lib/style.css';
+// import Calendar from "react-calendar";
 
 var HouseShow = /*#__PURE__*/function (_React$Component) {
   _inherits(HouseShow, _React$Component);
@@ -606,6 +624,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.today = new Date();
     _this.reviewForm = _this.reviewForm.bind(_assertThisInitialized(_this));
+    _this.getDisabledDays = _this.getDisabledDays.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -637,6 +656,25 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "getDisabledDays",
+    value: function getDisabledDays() {
+      // console.log(this.props.rentals)
+      var result = [];
+      this.props.rentals.forEach(function (_ref) {
+        var check_in = _ref.check_in,
+            check_out = _ref.check_out;
+        result.push({
+          after: new Date(new Date(check_in).getFullYear(), new Date(check_in).getMonth(), new Date(check_in).getDate()),
+          before: new Date(new Date(check_out).getFullYear(), new Date(check_out).getMonth(), new Date(check_out).getDate() + 2)
+        });
+      }); // console.log(result)
+
+      return result; // {
+      //   after: new Date(2017, 3, 20),
+      //   before: new Date(2017, 3, 25),
+      // },
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -658,19 +696,34 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "showpage"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "House Information:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "house-top-img",
+        src: window.backgroundUrl
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-info"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "House Information:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         id: "infolist"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Location: ", house.location, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Price: ", house.price, " / night"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Rating: ", rating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Description: ", house.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Make a reservation now!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservation_container__WEBPACK_IMPORTED_MODULE_3__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Location: ", house.location, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Price: ", house.price, " / night"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Rating: ", rating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Description: ", house.description))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "reservation"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Make a reservation now!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservation_container__WEBPACK_IMPORTED_MODULE_3__.default, {
         today: this.today,
         houseId: this.props.match.params.houseId
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_day_picker__WEBPACK_IMPORTED_MODULE_4___default()), {
+        initialMonth: new Date(this.today.getFullYear(), this.today.getMonth()),
+        disabledDays: this.getDisabledDays()
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         id: "review"
       }, "Reviews: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviews.map(function (review) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           key: review.id,
           review: review
         });
-      })), this.reviewForm(this.props.match.params.houseId));
+      })), this.reviewForm(this.props.match.params.houseId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-sticky-image-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "house-bot-img",
+        src: window.backgroundUrl
+      })));
     }
   }]);
 
@@ -809,6 +862,11 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Reservation, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {// e.preventDefault()
+      // this.props
+    }
+  }, {
     key: "addLeadingZero",
     value: function addLeadingZero(str) {
       if (str < 10) return "0" + str;else return str;
@@ -850,6 +908,7 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var today = this.props.today;
+      console.log(this.state);
       var tempMonth = this.state.check_in_month;
       var tempYear = this.state.check_in_year;
 
@@ -888,12 +947,13 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "dayOfMonth",
     value: function dayOfMonth(month) {
+      var temp = parseInt(month) - 1;
       var large = [0, 2, 4, 6, 7, 9, 11];
       var small = [3, 5, 8, 10];
 
-      if (large.includes(month)) {
+      if (large.includes(temp)) {
         return 31;
-      } else if (small.includes(month)) {
+      } else if (small.includes(temp)) {
         return 30;
       } else if (this.props.today.getFullYear() % 4 === 0) {
         return 29;
@@ -937,6 +997,10 @@ var Reservation = /*#__PURE__*/function (_React$Component) {
     key: "update",
     value: function update(ele) {
       var _this3 = this;
+
+      (function (e) {
+        return console.log(e.currentTarget.value);
+      });
 
       return function (e) {
         return _this3.setState(_defineProperty({}, ele, e.currentTarget.value));
@@ -1236,6 +1300,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       var _React$createElement;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        className: "review",
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         id: "review-form"
@@ -1396,6 +1461,127 @@ var mSTP = function mSTP(_ref, _ref2) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP)(_review_item__WEBPACK_IMPORTED_MODULE_2__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/logout.jsx":
+/*!****************************************!*\
+  !*** ./frontend/components/logout.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var Logout = /*#__PURE__*/function (_React$Component) {
+  _inherits(Logout, _React$Component);
+
+  var _super = _createSuper(Logout);
+
+  function Logout(props) {
+    _classCallCheck(this, Logout);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(Logout, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      console.log(this.props);
+
+      if (this.props.bool) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "Nav-logout",
+          onClick: function onClick() {
+            return _this.props.logout();
+          }
+        }, "Log Out");
+      } else {
+        return null;
+      }
+    }
+  }]);
+
+  return Logout;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Logout);
+
+/***/ }),
+
+/***/ "./frontend/components/logout_container.js":
+/*!*************************************************!*\
+  !*** ./frontend/components/logout_container.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _logout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./logout */ "./frontend/components/logout.jsx");
+
+
+
+
+var mSTP = function mSTP(_ref) {
+  var session = _ref.session;
+  var bool = "";
+
+  if (session.session_token) {
+    console.log("1");
+    bool = true;
+  } else {
+    console.log("2");
+    bool = false;
+  }
+
+  return {
+    bool: bool
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    logout: function logout() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.logout)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_logout__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -1688,8 +1874,14 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
         id: "houses"
       }, "Houses: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-        id: "house-list"
-      }, this.props.houses.map(function (house) {
+        className: "grid-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "grid-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "grid-item-left"
+      }, "Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "grid-item-right"
+      }, "Price ($/per night)")), this.props.houses.map(function (house) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index_item__WEBPACK_IMPORTED_MODULE_1__.default, {
           key: house.id,
           house: house
@@ -1763,9 +1955,13 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         id: "house-item-link",
         to: "/houses/".concat(house.id)
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        id: "houseitem"
-      }, "location: ", house.location, "\xA0\xA0\xA0", house.price, "/night"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "grid-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+        className: "house-index-left"
+      }, house.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+        className: "house-index-right"
+      }, house.price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)));
     }
   }]);
 
@@ -2445,6 +2641,7 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
       this.setState({
         showup: false
       });
+      this.props.fetchRental();
     }
   }, {
     key: "render",
@@ -2462,7 +2659,7 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.popup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", this.displayNum(temp), " upcoming events: ", temp.map(function (ele) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             key: ele.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, ele.location, "\xA0\xA0from\xA0", ele.check_in.replace("T00:00:00.000Z", ""), "\xA0 to \xA0", ele.check_out.replace("T00:00:00.000Z", "")), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, ele.location, "\xA0\xA0from\xA0", ele.check_in.replace("T00:00:00.000Z", ""), "\xA0 to \xA0", ele.check_out.replace("T00:00:00.000Z", "")), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
             value: ele.id,
             onClick: _this3.handleClick
           }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
@@ -2511,7 +2708,14 @@ var Welcome = function Welcome(_ref) {
 
   var not_logged_in = function not_logged_in() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      id: "Welcome"
+      id: "Welcome",
+      className: "session-form"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "session-form-left"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      src: window.backgroundUrl
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "session-form-right"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Welcome to AirCnC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       id: "welcomebutton",
       onClick: function onClick() {
@@ -2522,21 +2726,31 @@ var Welcome = function Welcome(_ref) {
       onClick: function onClick() {
         return openModal('signup');
       }
-    }, "SignUp"));
+    }, "SignUp")));
   };
 
   var logged_in = function logged_in() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       id: "welcomepage"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hi, ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_display__WEBPACK_IMPORTED_MODULE_3__.default, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      className: "house-top-img",
+      src: window.backgroundUrl
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hi, ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "welcomepage-content"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "reservation-list"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_display__WEBPACK_IMPORTED_MODULE_3__.default, {
       rentals: reservations,
       deleteRental: deleteRental,
       fetchRental: fetchRental
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      onClick: logout
-    }, "Log out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      id: "search"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_2__.default, null)));
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "search"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_2__.default, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "sticky-image-wrapper"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      className: "house-bot-img",
+      src: window.backgroundUrl
+    })));
   };
 
   return currentUser ? logged_in() : not_logged_in(); // return not_logged_in();
@@ -2865,6 +3079,11 @@ var reservationReducer = function reservationReducer() {
   switch (action.type) {
     case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_RESERVATION:
       return Object.assign({}, state, action.rentals);
+
+    case _actions_house_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_RESERVATION:
+      var nextState = Object.assign({}, state);
+      delete nextState[action.house_id];
+      return nextState;
 
     default:
       return state;
@@ -5974,6 +6193,17 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
+
+/***/ }),
+
+/***/ "./node_modules/react-day-picker/lib/react-day-picker.min.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-day-picker/lib/react-day-picker.min.js ***!
+  \*******************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t(__webpack_require__(/*! react */ "./node_modules/react/index.js")):0}("undefined"!=typeof self?self:this,function(e){return function(e){function t(o){if(n[o])return n[o].exports;var r=n[o]={i:o,l:!1,exports:{}};return e[o].call(r.exports,r,r.exports,t),r.l=!0,r.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,o){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:o})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=8)}([function(t,n){t.exports=e},function(e,t,n){"use strict";function o(e){return new Date(e.getTime())}function r(e){return e instanceof Date&&!isNaN(e.valueOf())}function a(e,t){var n=o(e);return n.setMonth(e.getMonth()+t),n}function s(e,t){return!(!e||!t)&&(e.getDate()===t.getDate()&&e.getMonth()===t.getMonth()&&e.getFullYear()===t.getFullYear())}function i(e,t){return!(!e||!t)&&(e.getMonth()===t.getMonth()&&e.getFullYear()===t.getFullYear())}function u(e,t){return o(e).setHours(0,0,0,0)<o(t).setHours(0,0,0,0)}function l(e,t){return o(e).setHours(0,0,0,0)>o(t).setHours(0,0,0,0)}function c(e){var t=new Date;return t.setHours(0,0,0,0),u(e,t)}function p(e){var t=new Date((new Date).getTime()+864e5);return t.setHours(0,0,0,0),e>=t}function f(e,t,n){var r=o(e);return r.setHours(0,0,0,0),l(r,t)&&u(r,n)||l(r,n)&&u(r,t)}function h(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{from:null,to:null},n=t.from,o=t.to;return n?n&&o&&s(n,o)&&s(e,n)?(n=null,o=null):o&&u(e,n)?n=e:o&&s(e,o)?(n=e,o=e):(o=e,u(o,n)&&(o=n,n=e)):n=e,{from:n,to:o}}function d(e,t){var n=t.from,o=t.to;return n&&s(e,n)||o&&s(e,o)||n&&o&&f(e,n,o)}function y(e){var t=o(e);return t.setHours(0,0,0),t.setDate(t.getDate()+4-(t.getDay()||7)),Math.ceil(((t-new Date(t.getFullYear(),0,1))/864e5+1)/7)}Object.defineProperty(t,"__esModule",{value:!0}),t.clone=o,t.isDate=r,t.addMonths=a,t.isSameDay=s,t.isSameMonth=i,t.isDayBefore=u,t.isDayAfter=l,t.isPastDay=c,t.isFutureDay=p,t.isDayBetween=f,t.addDayToRange=h,t.isDayInRange=d,t.getWeekNumber=y,t.default={addDayToRange:h,addMonths:a,clone:o,getWeekNumber:y,isDate:r,isDayAfter:l,isDayBefore:u,isDayBetween:f,isDayInRange:d,isFutureDay:p,isPastDay:c,isSameDay:s,isSameMonth:i}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.LEFT=37,t.UP=38,t.RIGHT=39,t.DOWN=40,t.ENTER=13,t.SPACE=32,t.ESC=27,t.TAB=9},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={container:"DayPicker",wrapper:"DayPicker-wrapper",interactionDisabled:"DayPicker--interactionDisabled",months:"DayPicker-Months",month:"DayPicker-Month",navBar:"DayPicker-NavBar",navButtonPrev:"DayPicker-NavButton DayPicker-NavButton--prev",navButtonNext:"DayPicker-NavButton DayPicker-NavButton--next",navButtonInteractionDisabled:"DayPicker-NavButton--interactionDisabled",caption:"DayPicker-Caption",weekdays:"DayPicker-Weekdays",weekdaysRow:"DayPicker-WeekdaysRow",weekday:"DayPicker-Weekday",body:"DayPicker-Body",week:"DayPicker-Week",weekNumber:"DayPicker-WeekNumber",day:"DayPicker-Day",footer:"DayPicker-Footer",todayButton:"DayPicker-TodayButton",today:"today",selected:"selected",disabled:"disabled",outside:"outside"}},function(e,t,n){"use strict";function o(e){e.preventDefault(),e.stopPropagation()}function r(e){return new Date(e.getFullYear(),e.getMonth(),1,12)}function a(e){var t=r(e);return t.setMonth(t.getMonth()+1),t.setDate(t.getDate()-1),t.getDate()}function s(e){var t=y({},e.modifiers);return e.selectedDays&&(t[e.classNames.selected]=e.selectedDays),e.disabledDays&&(t[e.classNames.disabled]=e.disabledDays),t}function i(e){var t=e.firstDayOfWeek,n=e.locale,o=void 0===n?"en":n,r=e.localeUtils,a=void 0===r?{}:r;return isNaN(t)?a.getFirstDayOfWeek?a.getFirstDayOfWeek(o):0:t}function u(e){return!!(e&&e.from&&e.to)}function l(e,t){return t.getMonth()-e.getMonth()+12*(t.getFullYear()-e.getFullYear())}function c(e){for(var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:(0,m.getFirstDayOfWeek)(),n=arguments[2],o=a(e),r=[],s=[],i=[],u=1;u<=o;u+=1)r.push(new Date(e.getFullYear(),e.getMonth(),u,12));r.forEach(function(e){s.length>0&&e.getDay()===t&&(i.push(s),s=[]),s.push(e),r.indexOf(e)===r.length-1&&i.push(s)});for(var l=i[0],c=7-l.length;c>0;c-=1){var p=(0,v.clone)(l[0]);p.setDate(l[0].getDate()-1),l.unshift(p)}for(var f=i[i.length-1],h=f.length;h<7;h+=1){var d=(0,v.clone)(f[f.length-1]);d.setDate(f[f.length-1].getDate()+1),f.push(d)}if(n&&i.length<6)for(var y=void 0,k=i.length;k<6;k+=1){y=i[i.length-1];for(var D=y[y.length-1],b=[],g=0;g<7;g+=1){var w=(0,v.clone)(D);w.setDate(D.getDate()+g+1),b.push(w)}i.push(b)}return i}function p(e){var t=(0,v.clone)(e);return t.setDate(1),t.setHours(12,0,0,0),t}function f(e,t){var n=void 0;n=t===D.default?t.day+"--"+t.outside:""+t.outside;var o=t.day.replace(/ /g,"."),r=n.replace(/ /g,"."),a="."+o+":not(."+r+")";return e.querySelectorAll(a)}function h(e){return Array.prototype.slice.call(e,0)}function d(e,t){return Object.prototype.hasOwnProperty.call(e,t)}Object.defineProperty(t,"__esModule",{value:!0});var y=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e};t.cancelEvent=o,t.getFirstDayOfMonth=r,t.getDaysInMonth=a,t.getModifiersFromProps=s,t.getFirstDayOfWeekFromProps=i,t.isRangeOfDates=u,t.getMonthsDiff=l,t.getWeekArray=c,t.startOfMonth=p,t.getDayNodes=f,t.nodeListToArray=h,t.hasOwnProp=d;var v=n(1),m=n(5),k=n(3),D=function(e){return e&&e.__esModule?e:{default:e}}(k)},function(e,t,n){"use strict";function o(e){return e.toDateString()}function r(e){return p[e.getMonth()]+" "+e.getFullYear()}function a(e){return c[e]}function s(e){return l[e]}function i(){return 0}function u(){return p}Object.defineProperty(t,"__esModule",{value:!0}),t.formatDay=o,t.formatMonthTitle=r,t.formatWeekdayShort=a,t.formatWeekdayLong=s,t.getFirstDayOfWeek=i,t.getMonths=u;var l=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],c=["Su","Mo","Tu","We","Th","Fr","Sa"],p=["January","February","March","April","May","June","July","August","September","October","November","December"];t.default={formatDay:o,formatMonthTitle:r,formatWeekdayShort:a,formatWeekdayLong:s,getFirstDayOfWeek:i,getMonths:u}},function(e,t,n){"use strict";function o(e,t){return!!t&&(Array.isArray(t)?t:[t]).some(function(t){return!!t&&(t instanceof Date?(0,a.isSameDay)(e,t):(0,s.isRangeOfDates)(t)?(0,a.isDayInRange)(e,t):t.after&&t.before&&(0,a.isDayAfter)(t.before,t.after)?(0,a.isDayAfter)(e,t.after)&&(0,a.isDayBefore)(e,t.before):t.after&&t.before&&((0,a.isDayAfter)(t.after,t.before)||(0,a.isSameDay)(t.after,t.before))?(0,a.isDayAfter)(e,t.after)||(0,a.isDayBefore)(e,t.before):t.after?(0,a.isDayAfter)(e,t.after):t.before?(0,a.isDayBefore)(e,t.before):t.daysOfWeek?t.daysOfWeek.some(function(t){return e.getDay()===t}):"function"==typeof t&&t(e))})}function r(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return Object.keys(t).reduce(function(n,r){var a=t[r];return o(e,a)&&n.push(r),n},[])}Object.defineProperty(t,"__esModule",{value:!0}),t.dayMatchesModifier=o,t.getModifiersForDay=r;var a=n(1),s=n(4);t.default={dayMatchesModifier:o,getModifiersForDay:r}},function(e,t,n){"use strict";function o(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t.default=e,t}function r(e){return e&&e.__esModule?e:{default:e}}function a(e,t){var n={};for(var o in e)t.indexOf(o)>=0||Object.prototype.hasOwnProperty.call(e,o)&&(n[o]=e[o]);return n}function s(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function u(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0}),t.ModifiersUtils=t.LocaleUtils=t.DateUtils=t.DayPicker=void 0;var l=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},c=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),p=n(0),f=r(p),h=n(9),d=r(h),y=n(10),v=r(y),m=n(11),k=r(m),D=n(14),b=r(D),g=n(4),w=o(g),M=n(1),P=o(M),O=n(5),N=o(O),C=n(6),E=o(C),_=n(3),j=r(_),x=n(2),T=t.DayPicker=function(e){function t(e){s(this,t);var n=i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));n.dayPicker=null,n.showNextMonth=function(e){if(n.allowNextMonth()){var t=n.props.pagedNavigation?n.props.numberOfMonths:1,o=P.addMonths(n.state.currentMonth,t);n.showMonth(o,e)}},n.showPreviousMonth=function(e){if(n.allowPreviousMonth()){var t=n.props.pagedNavigation?n.props.numberOfMonths:1,o=P.addMonths(n.state.currentMonth,-t);n.showMonth(o,e)}},n.handleKeyDown=function(e){switch(e.persist(),e.keyCode){case x.LEFT:"rtl"===n.props.dir?n.showNextMonth():n.showPreviousMonth(),w.cancelEvent(e);break;case x.RIGHT:"rtl"===n.props.dir?n.showPreviousMonth():n.showNextMonth(),w.cancelEvent(e);break;case x.UP:n.showPreviousYear(),w.cancelEvent(e);break;case x.DOWN:n.showNextYear(),w.cancelEvent(e)}n.props.onKeyDown&&n.props.onKeyDown(e)},n.handleDayKeyDown=function(e,t,o){switch(o.persist(),o.keyCode){case x.LEFT:w.cancelEvent(o),"rtl"===n.props.dir?n.focusNextDay(o.target):n.focusPreviousDay(o.target);break;case x.RIGHT:w.cancelEvent(o),"rtl"===n.props.dir?n.focusPreviousDay(o.target):n.focusNextDay(o.target);break;case x.UP:w.cancelEvent(o),n.focusPreviousWeek(o.target);break;case x.DOWN:w.cancelEvent(o),n.focusNextWeek(o.target);break;case x.ENTER:case x.SPACE:w.cancelEvent(o),n.props.onDayClick&&n.handleDayClick(e,t,o)}n.props.onDayKeyDown&&n.props.onDayKeyDown(e,t,o)},n.handleDayClick=function(e,t,o){o.persist(),t[n.props.classNames.outside]&&n.props.enableOutsideDaysClick&&n.handleOutsideDayClick(e),n.props.onDayClick&&n.props.onDayClick(e,t,o)},n.handleTodayButtonClick=function(e){var t=new Date,o=new Date(t.getFullYear(),t.getMonth());n.showMonth(o),e.target.blur(),n.props.onTodayButtonClick&&(e.persist(),n.props.onTodayButtonClick(new Date(t.getFullYear(),t.getMonth(),t.getDate()),E.getModifiersForDay(t,n.props.modifiers),e))};var o=n.getCurrentMonthFromProps(e);return n.state={currentMonth:o},n}return u(t,e),c(t,[{key:"componentDidUpdate",value:function(e){if(e.month!==this.props.month&&!P.isSameMonth(e.month,this.props.month)){var t=this.getCurrentMonthFromProps(this.props);this.setState({currentMonth:t})}}},{key:"getCurrentMonthFromProps",value:function(e){var t=w.startOfMonth(e.month||e.initialMonth||new Date),n=t;if(e.pagedNavigation&&e.numberOfMonths>1&&e.fromMonth){var o=w.startOfMonth(e.fromMonth),r=w.getMonthsDiff(o,n);n=P.addMonths(o,Math.floor(r/e.numberOfMonths)*e.numberOfMonths)}else e.toMonth&&e.numberOfMonths>1&&w.getMonthsDiff(n,e.toMonth)<=0&&(n=P.addMonths(w.startOfMonth(e.toMonth),1-this.props.numberOfMonths));return n}},{key:"getNextNavigableMonth",value:function(){return P.addMonths(this.state.currentMonth,this.props.numberOfMonths)}},{key:"getPreviousNavigableMonth",value:function(){return P.addMonths(this.state.currentMonth,-1)}},{key:"allowPreviousMonth",value:function(){var e=P.addMonths(this.state.currentMonth,-1);return this.allowMonth(e)}},{key:"allowNextMonth",value:function(){var e=P.addMonths(this.state.currentMonth,this.props.numberOfMonths);return this.allowMonth(e)}},{key:"allowMonth",value:function(e){var t=this.props,n=t.fromMonth,o=t.toMonth;return!(!t.canChangeMonth||n&&w.getMonthsDiff(n,e)<0||o&&w.getMonthsDiff(o,e)>0)}},{key:"allowYearChange",value:function(){return this.props.canChangeMonth}},{key:"showMonth",value:function(e,t){var n=this;this.allowMonth(e)&&this.setState({currentMonth:w.startOfMonth(e)},function(){t&&t(),n.props.onMonthChange&&n.props.onMonthChange(n.state.currentMonth)})}},{key:"showNextYear",value:function(){if(this.allowYearChange()){var e=P.addMonths(this.state.currentMonth,12);this.showMonth(e)}}},{key:"showPreviousYear",value:function(){if(this.allowYearChange()){var e=P.addMonths(this.state.currentMonth,-12);this.showMonth(e)}}},{key:"focus",value:function(){this.wrapper.focus()}},{key:"focusFirstDayOfMonth",value:function(){w.getDayNodes(this.dayPicker,this.props.classNames)[0].focus()}},{key:"focusLastDayOfMonth",value:function(){var e=w.getDayNodes(this.dayPicker,this.props.classNames);e[e.length-1].focus()}},{key:"focusPreviousDay",value:function(e){var t=this,n=w.getDayNodes(this.dayPicker,this.props.classNames),o=w.nodeListToArray(n).indexOf(e);-1!==o&&(0===o?this.showPreviousMonth(function(){return t.focusLastDayOfMonth()}):n[o-1].focus())}},{key:"focusNextDay",value:function(e){var t=this,n=w.getDayNodes(this.dayPicker,this.props.classNames),o=w.nodeListToArray(n).indexOf(e);-1!==o&&(o===n.length-1?this.showNextMonth(function(){return t.focusFirstDayOfMonth()}):n[o+1].focus())}},{key:"focusNextWeek",value:function(e){var t=this,n=w.getDayNodes(this.dayPicker,this.props.classNames),o=w.nodeListToArray(n).indexOf(e);o>n.length-8?this.showNextMonth(function(){var e=n.length-o,r=7-e;w.getDayNodes(t.dayPicker,t.props.classNames)[r].focus()}):n[o+7].focus()}},{key:"focusPreviousWeek",value:function(e){var t=this,n=w.getDayNodes(this.dayPicker,this.props.classNames),o=w.nodeListToArray(n).indexOf(e);o<=6?this.showPreviousMonth(function(){var e=w.getDayNodes(t.dayPicker,t.props.classNames);e[e.length-7+o].focus()}):n[o-7].focus()}},{key:"handleOutsideDayClick",value:function(e){var t=this.state.currentMonth,n=this.props.numberOfMonths,o=w.getMonthsDiff(t,e);o>0&&o>=n?this.showNextMonth():o<0&&this.showPreviousMonth()}},{key:"renderNavbar",value:function(){var e=this.props,t=e.labels,n=e.locale,o=e.localeUtils,r=e.canChangeMonth,s=e.navbarElement,i=a(e,["labels","locale","localeUtils","canChangeMonth","navbarElement"]);if(!r)return null;var u={month:this.state.currentMonth,classNames:this.props.classNames,className:this.props.classNames.navBar,nextMonth:this.getNextNavigableMonth(),previousMonth:this.getPreviousNavigableMonth(),showPreviousButton:this.allowPreviousMonth(),showNextButton:this.allowNextMonth(),onNextClick:this.showNextMonth,onPreviousClick:this.showPreviousMonth,dir:i.dir,labels:t,locale:n,localeUtils:o};return f.default.isValidElement(s)?f.default.cloneElement(s,u):f.default.createElement(s,u)}},{key:"renderMonths",value:function(){for(var e=[],t=w.getFirstDayOfWeekFromProps(this.props),n=0;n<this.props.numberOfMonths;n+=1){var o=P.addMonths(this.state.currentMonth,n);e.push(f.default.createElement(k.default,l({key:n},this.props,{month:o,firstDayOfWeek:t,onDayKeyDown:this.handleDayKeyDown,onDayClick:this.handleDayClick})))}return this.props.reverseMonths&&e.reverse(),e}},{key:"renderFooter",value:function(){return this.props.todayButton?f.default.createElement("div",{className:this.props.classNames.footer},this.renderTodayButton()):null}},{key:"renderTodayButton",value:function(){return f.default.createElement("button",{type:"button",tabIndex:0,className:this.props.classNames.todayButton,"aria-label":this.props.todayButton,onClick:this.handleTodayButtonClick},this.props.todayButton)}},{key:"render",value:function(){var e=this,t=this.props.classNames.container;return this.props.onDayClick||(t=t+" "+this.props.classNames.interactionDisabled),this.props.className&&(t=t+" "+this.props.className),f.default.createElement("div",l({},this.props.containerProps,{className:t,ref:function(t){return e.dayPicker=t},lang:this.props.locale}),f.default.createElement("div",{className:this.props.classNames.wrapper,ref:function(t){return e.wrapper=t},tabIndex:this.props.canChangeMonth&&void 0!==this.props.tabIndex?this.props.tabIndex:-1,onKeyDown:this.handleKeyDown,onFocus:this.props.onFocus,onBlur:this.props.onBlur},this.renderNavbar(),f.default.createElement("div",{className:this.props.classNames.months},this.renderMonths()),this.renderFooter()))}}]),t}(p.Component);T.defaultProps={classNames:j.default,tabIndex:0,numberOfMonths:1,labels:{previousMonth:"Previous Month",nextMonth:"Next Month"},locale:"en",localeUtils:N,showOutsideDays:!1,enableOutsideDaysClick:!0,fixedWeeks:!1,canChangeMonth:!0,reverseMonths:!1,pagedNavigation:!1,showWeekNumbers:!1,showWeekDays:!0,renderDay:function(e){return e.getDate()},renderWeek:function(e){return e},weekdayElement:f.default.createElement(b.default,null),navbarElement:f.default.createElement(v.default,{classNames:j.default}),captionElement:f.default.createElement(d.default,{classNames:j.default})},T.VERSION="7.4.10",T.DateUtils=P,T.LocaleUtils=N,T.ModifiersUtils=E,t.DateUtils=P,t.LocaleUtils=N,t.ModifiersUtils=E,t.default=T},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var o=n(7).default;o.Input=n(15).default,t.default=o},function(e,t,n){"use strict";function o(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function s(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),u=n(0),l=o(u),c=n(5),p=o(c),f=n(2),h=function(e){function t(e){r(this,t);var n=a(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.handleKeyUp=n.handleKeyUp.bind(n),n}return s(t,e),i(t,[{key:"shouldComponentUpdate",value:function(e){return e.locale!==this.props.locale||e.classNames!==this.props.classNames||e.date.getMonth()!==this.props.date.getMonth()||e.date.getFullYear()!==this.props.date.getFullYear()}},{key:"handleKeyUp",value:function(e){e.keyCode===f.ENTER&&this.props.onClick(e)}},{key:"render",value:function(){var e=this.props,t=e.classNames,n=e.date,o=e.months,r=e.locale,a=e.localeUtils,s=e.onClick;return l.default.createElement("div",{className:t.caption,role:"heading","aria-live":"polite"},l.default.createElement("div",{onClick:s,onKeyUp:this.handleKeyUp},o?o[n.getMonth()]+" "+n.getFullYear():a.formatMonthTitle(n,r)))}}]),t}(u.Component);h.defaultProps={localeUtils:p.default},t.default=h},function(e,t,n){"use strict";function o(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function s(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),u=n(0),l=o(u),c=n(3),p=o(c),f=n(2),h=function(e){function t(){var e,n,o,s;r(this,t);for(var i=arguments.length,u=Array(i),l=0;l<i;l++)u[l]=arguments[l];return n=o=a(this,(e=t.__proto__||Object.getPrototypeOf(t)).call.apply(e,[this].concat(u))),o.handleNextClick=function(){o.props.onNextClick&&o.props.onNextClick()},o.handlePreviousClick=function(){o.props.onPreviousClick&&o.props.onPreviousClick()},o.handleNextKeyDown=function(e){e.keyCode!==f.ENTER&&e.keyCode!==f.SPACE||(e.preventDefault(),o.handleNextClick())},o.handlePreviousKeyDown=function(e){e.keyCode!==f.ENTER&&e.keyCode!==f.SPACE||(e.preventDefault(),o.handlePreviousClick())},s=n,a(o,s)}return s(t,e),i(t,[{key:"shouldComponentUpdate",value:function(e){return e.labels!==this.props.labels||e.dir!==this.props.dir||this.props.showPreviousButton!==e.showPreviousButton||this.props.showNextButton!==e.showNextButton}},{key:"render",value:function(){var e=this.props,t=e.classNames,n=e.className,o=e.showPreviousButton,r=e.showNextButton,a=e.labels,s=e.dir,i=void 0,u=void 0,c=void 0,p=void 0,f=void 0,h=void 0;"rtl"===s?(i=this.handleNextClick,u=this.handlePreviousClick,c=this.handleNextKeyDown,p=this.handlePreviousKeyDown,h=o,f=r):(i=this.handlePreviousClick,u=this.handleNextClick,c=this.handlePreviousKeyDown,p=this.handleNextKeyDown,h=r,f=o);var d=f?t.navButtonPrev:t.navButtonPrev+" "+t.navButtonInteractionDisabled,y=h?t.navButtonNext:t.navButtonNext+" "+t.navButtonInteractionDisabled,v=l.default.createElement("span",{tabIndex:"0",role:"button","aria-label":a.previousMonth,key:"previous",className:d,onKeyDown:f?c:void 0,onClick:f?i:void 0}),m=l.default.createElement("span",{tabIndex:"0",role:"button","aria-label":a.nextMonth,key:"right",className:y,onKeyDown:h?p:void 0,onClick:h?u:void 0});return l.default.createElement("div",{className:n||t.navBar},"rtl"===s?[m,v]:[v,m])}}]),t}(u.Component);h.defaultProps={classNames:p.default,dir:"ltr",labels:{previousMonth:"Previous Month",nextMonth:"Next Month"},showPreviousButton:!0,showNextButton:!0},t.default=h},function(e,t,n){"use strict";function o(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t.default=e,t}function r(e){return e&&e.__esModule?e:{default:e}}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function s(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var u=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),l=n(0),c=r(l),p=n(12),f=r(p),h=n(13),d=r(h),y=n(2),v=n(6),m=o(v),k=n(4),D=o(k),b=n(1),g=o(b),w=function(e){function t(){var e,n,o,r;a(this,t);for(var i=arguments.length,u=Array(i),l=0;l<i;l++)u[l]=arguments[l];return n=o=s(this,(e=t.__proto__||Object.getPrototypeOf(t)).call.apply(e,[this].concat(u))),o.renderDay=function(e){var t=o.props.month.getMonth(),n=D.getModifiersFromProps(o.props),r=m.getModifiersForDay(e,n);g.isSameDay(e,new Date)&&!Object.prototype.hasOwnProperty.call(n,o.props.classNames.today)&&r.push(o.props.classNames.today),e.getMonth()!==t&&r.push(o.props.classNames.outside);var a=e.getMonth()!==t,s=-1;o.props.onDayClick&&!a&&1===e.getDate()&&(s=o.props.tabIndex);var i=""+e.getFullYear()+e.getMonth()+e.getDate(),u={};return r.forEach(function(e){u[e]=!0}),c.default.createElement(d.default,{key:(a?"outside-":"")+i,classNames:o.props.classNames,day:e,modifiers:u,modifiersStyles:o.props.modifiersStyles,empty:a&&!o.props.showOutsideDays&&!o.props.fixedWeeks,tabIndex:s,ariaLabel:o.props.localeUtils.formatDay(e,o.props.locale),ariaDisabled:a||r.indexOf(o.props.classNames.disabled)>-1,ariaSelected:r.indexOf(o.props.classNames.selected)>-1,onClick:o.props.onDayClick,onFocus:o.props.onDayFocus,onKeyDown:o.props.onDayKeyDown,onMouseEnter:o.props.onDayMouseEnter,onMouseLeave:o.props.onDayMouseLeave,onMouseDown:o.props.onDayMouseDown,onMouseUp:o.props.onDayMouseUp,onTouchEnd:o.props.onDayTouchEnd,onTouchStart:o.props.onDayTouchStart},o.props.renderDay(e,u))},r=n,s(o,r)}return i(t,e),u(t,[{key:"render",value:function(){var e=this,t=this.props,n=t.classNames,o=t.month,r=t.months,a=t.fixedWeeks,s=t.captionElement,i=t.weekdayElement,u=t.locale,l=t.localeUtils,p=t.weekdaysLong,h=t.weekdaysShort,d=t.firstDayOfWeek,v=t.onCaptionClick,m=t.showWeekNumbers,k=t.showWeekDays,b=t.onWeekClick,w={date:o,classNames:n,months:r,localeUtils:l,locale:u,onClick:v?function(e){return v(o,e)}:void 0},M=c.default.isValidElement(s)?c.default.cloneElement(s,w):c.default.createElement(s,w),P=D.getWeekArray(o,d,a);return c.default.createElement("div",{className:n.month,role:"grid"},M,k&&c.default.createElement(f.default,{classNames:n,weekdaysShort:h,weekdaysLong:p,firstDayOfWeek:d,showWeekNumbers:m,locale:u,localeUtils:l,weekdayElement:i}),c.default.createElement("div",{className:n.body,role:"rowgroup"},P.map(function(t){var r=void 0;return m&&(r=g.getWeekNumber(t[6])),c.default.createElement("div",{key:t[0].getTime(),className:n.week,role:"row"},m&&c.default.createElement("div",{className:n.weekNumber,tabIndex:b?0:-1,role:"gridcell",onClick:b?function(e){return b(r,t,e)}:void 0,onKeyUp:b?function(e){return e.keyCode===y.ENTER&&b(r,t,e)}:void 0},e.props.renderWeek(r,t,o)),t.map(e.renderDay))})))}}]),t}(l.Component);t.default=w},function(e,t,n){"use strict";function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var s=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),i=n(0),u=function(e){return e&&e.__esModule?e:{default:e}}(i),l=function(e){function t(){return o(this,t),r(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return a(t,e),s(t,[{key:"shouldComponentUpdate",value:function(e){return this.props!==e}},{key:"render",value:function(){for(var e=this.props,t=e.classNames,n=e.firstDayOfWeek,o=e.showWeekNumbers,r=e.weekdaysLong,a=e.weekdaysShort,s=e.locale,i=e.localeUtils,l=e.weekdayElement,c=[],p=0;p<7;p+=1){var f=(p+n)%7,h={key:p,className:t.weekday,weekday:f,weekdaysLong:r,weekdaysShort:a,localeUtils:i,locale:s},d=u.default.isValidElement(l)?u.default.cloneElement(l,h):u.default.createElement(l,h);c.push(d)}return u.default.createElement("div",{className:t.weekdays,role:"rowgroup"},u.default.createElement("div",{className:t.weekdaysRow,role:"row"},o&&u.default.createElement("div",{className:t.weekday}),c))}}]),t}(i.Component);t.default=l},function(e,t,n){"use strict";function o(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function s(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}function i(e,t,n){if(e)return function(o){o.persist(),e(t,n,o)}}Object.defineProperty(t,"__esModule",{value:!0});var u=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},l=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),c=n(0),p=o(c),f=n(1),h=n(4),d=n(3),y=o(d),v=function(e){function t(){return r(this,t),a(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return s(t,e),l(t,[{key:"shouldComponentUpdate",value:function(e){var t=this,n=Object.keys(this.props),o=Object.keys(e);return n.length!==o.length||n.some(function(n){if("modifiers"===n||"modifiersStyles"===n||"classNames"===n){var o=t.props[n],r=e[n],a=Object.keys(o),s=Object.keys(r);return a.length!==s.length||a.some(function(e){return!(0,h.hasOwnProp)(r,e)||o[e]!==r[e]})}return"day"===n?!(0,f.isSameDay)(t.props[n],e[n]):!(0,h.hasOwnProp)(e,n)||t.props[n]!==e[n]})}},{key:"render",value:function(){var e=this.props,t=e.classNames,n=e.modifiersStyles,o=e.day,r=e.tabIndex,a=e.empty,s=e.modifiers,l=e.onMouseEnter,c=e.onMouseLeave,f=e.onMouseUp,h=e.onMouseDown,d=e.onClick,v=e.onKeyDown,m=e.onTouchStart,k=e.onTouchEnd,D=e.onFocus,b=e.ariaLabel,g=e.ariaDisabled,w=e.ariaSelected,M=e.children,P=t.day;t!==y.default?P+=" "+Object.keys(s).join(" "):P+=Object.keys(s).map(function(e){return" "+P+"--"+e}).join("");var O=void 0;return n&&Object.keys(s).filter(function(e){return!!n[e]}).forEach(function(e){O=u({},O,n[e])}),a?p.default.createElement("div",{"aria-disabled":!0,className:P,style:O}):p.default.createElement("div",{className:P,tabIndex:r,style:O,role:"gridcell","aria-label":b,"aria-disabled":g,"aria-selected":w,onClick:i(d,o,s),onKeyDown:i(v,o,s),onMouseEnter:i(l,o,s),onMouseLeave:i(c,o,s),onMouseUp:i(f,o,s),onMouseDown:i(h,o,s),onTouchEnd:i(k,o,s),onTouchStart:i(m,o,s),onFocus:i(D,o,s)},M)}}]),t}(c.Component);v.defaultProps={tabIndex:-1},v.defaultProps={modifiers:{},modifiersStyles:{},empty:!1},t.default=v},function(e,t,n){"use strict";function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var s=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),i=n(0),u=function(e){return e&&e.__esModule?e:{default:e}}(i),l=function(e){function t(){return o(this,t),r(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return a(t,e),s(t,[{key:"shouldComponentUpdate",value:function(e){return this.props!==e}},{key:"render",value:function(){var e=this.props,t=e.weekday,n=e.className,o=e.weekdaysLong,r=e.weekdaysShort,a=e.localeUtils,s=e.locale,i=void 0;i=o?o[t]:a.formatWeekdayLong(t,s);var l=void 0;return l=r?r[t]:a.formatWeekdayShort(t,s),u.default.createElement("div",{className:n,role:"columnheader"},u.default.createElement("abbr",{title:i},l))}}]),t}(i.Component);t.default=l},function(e,t,n){"use strict";function o(e){return e&&e.__esModule?e:{default:e}}function r(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function s(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}function u(e,t){var n={};for(var o in e)t.indexOf(o)>=0||Object.prototype.hasOwnProperty.call(e,o)&&(n[o]=e[o]);return n}function l(e){var t=(e.input,e.selectedDay,e.month,e.children),n=e.classNames,o=u(e,["input","selectedDay","month","children","classNames"]);return y.default.createElement("div",h({className:n.overlayWrapper},o),y.default.createElement("div",{className:n.overlay},t))}function c(e){if((0,k.isDate)(e)){return e.getFullYear()+"-"+(""+(e.getMonth()+1))+"-"+(""+e.getDate())}return""}function p(e){if("string"==typeof e){var t=e.split("-");if(3===t.length){var n=parseInt(t[0],10),o=parseInt(t[1],10)-1,r=parseInt(t[2],10);if(!(isNaN(n)||String(n).length>4||isNaN(o)||isNaN(r)||r<=0||r>31||o<0||o>=12))return new Date(n,o,r,12,0,0,0)}}}Object.defineProperty(t,"__esModule",{value:!0}),t.HIDE_TIMEOUT=void 0;var f=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),h=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e};t.OverlayComponent=l,t.defaultFormat=c,t.defaultParse=p;var d=n(0),y=o(d),v=n(7),m=o(v),k=n(1),D=n(6),b=n(2),g=t.HIDE_TIMEOUT=100,w=function(e){function t(e){a(this,t);var n=s(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.input=null,n.daypicker=null,n.clickTimeout=null,n.hideTimeout=null,n.inputBlurTimeout=null,n.inputFocusTimeout=null,n.state=n.getInitialStateFromProps(e),n.state.showOverlay=e.showOverlay,n.hideAfterDayClick=n.hideAfterDayClick.bind(n),n.handleInputClick=n.handleInputClick.bind(n),n.handleInputFocus=n.handleInputFocus.bind(n),n.handleInputBlur=n.handleInputBlur.bind(n),n.handleInputChange=n.handleInputChange.bind(n),n.handleInputKeyDown=n.handleInputKeyDown.bind(n),n.handleInputKeyUp=n.handleInputKeyUp.bind(n),n.handleDayClick=n.handleDayClick.bind(n),n.handleMonthChange=n.handleMonthChange.bind(n),n.handleOverlayFocus=n.handleOverlayFocus.bind(n),n.handleOverlayBlur=n.handleOverlayBlur.bind(n),n}return i(t,e),f(t,[{key:"componentDidUpdate",value:function(e){var t={},n=this.props,o=n.value,r=n.formatDate,a=n.format,s=n.dayPickerProps;o===e.value&&s.locale===e.dayPickerProps.locale&&a===e.format||((0,k.isDate)(o)?t.value=r(o,a,s.locale):t.value=o);var i=e.dayPickerProps.month;s.month&&s.month!==i&&!(0,k.isSameMonth)(s.month,i)&&(t.month=s.month),e.dayPickerProps.selectedDays!==s.selectedDays&&(t.selectedDays=s.selectedDays),Object.keys(t).length>0&&this.setState(t)}},{key:"componentWillUnmount",value:function(){clearTimeout(this.clickTimeout),clearTimeout(this.hideTimeout),clearTimeout(this.inputFocusTimeout),clearTimeout(this.inputBlurTimeout),clearTimeout(this.overlayBlurTimeout)}},{key:"getInitialMonthFromProps",value:function(e){var t=e.dayPickerProps,n=e.format,o=void 0;return e.value&&(o=(0,k.isDate)(e.value)?e.value:e.parseDate(e.value,n,t.locale)),t.initialMonth||t.month||o||new Date}},{key:"getInitialStateFromProps",value:function(e){var t=e.dayPickerProps,n=e.formatDate,o=e.format,r=e.typedValue,a=e.value;return e.value&&(0,k.isDate)(e.value)&&(a=n(e.value,o,t.locale)),{value:a,typedValue:r,month:this.getInitialMonthFromProps(e),selectedDays:t.selectedDays}}},{key:"getInput",value:function(){return this.input}},{key:"getDayPicker",value:function(){return this.daypicker}},{key:"updateState",value:function(e,t,n){var o=this,a=this.props,s=a.dayPickerProps,i=a.onDayChange;this.setState({month:e,value:t,typedValue:""},function(){if(n&&n(),i){var t=h({disabled:s.disabledDays,selected:s.selectedDays},s.modifiers),a=(0,D.getModifiersForDay)(e,t).reduce(function(e,t){return h({},e,r({},t,!0))},{});i(e,a,o)}})}},{key:"showDayPicker",value:function(){var e=this,t=this.props,n=t.parseDate,o=t.format,r=t.dayPickerProps,a=this.state,s=a.value;if(!a.showOverlay){var i=s?n(s,o,r.locale):this.getInitialMonthFromProps(this.props);this.setState(function(e){return{showOverlay:!0,month:i||e.month}},function(){e.props.onDayPickerShow&&e.props.onDayPickerShow()})}}},{key:"hideDayPicker",value:function(){var e=this;!1!==this.state.showOverlay&&this.setState({showOverlay:!1},function(){e.props.onDayPickerHide&&e.props.onDayPickerHide()})}},{key:"hideAfterDayClick",value:function(){var e=this;this.props.hideOnDayClick&&(this.hideTimeout=setTimeout(function(){e.overlayHasFocus=!1,e.hideDayPicker()},g))}},{key:"handleInputClick",value:function(e){this.showDayPicker(),this.props.inputProps.onClick&&(e.persist(),this.props.inputProps.onClick(e))}},{key:"handleInputFocus",value:function(e){var t=this;this.showDayPicker(),this.inputFocusTimeout=setTimeout(function(){t.overlayHasFocus=!1},2),this.props.inputProps.onFocus&&(e.persist(),this.props.inputProps.onFocus(e))}},{key:"handleInputBlur",value:function(e){var t=this;this.inputBlurTimeout=setTimeout(function(){t.overlayHasFocus||t.hideDayPicker()},1),this.props.inputProps.onBlur&&(e.persist(),this.props.inputProps.onBlur(e))}},{key:"handleOverlayFocus",value:function(e){e.preventDefault(),this.overlayHasFocus=!0,this.props.keepFocus&&this.input&&"function"==typeof this.input.focus&&this.input.focus()}},{key:"handleOverlayBlur",value:function(){var e=this;this.overlayBlurTimeout=setTimeout(function(){e.overlayHasFocus=!1},3)}},{key:"handleInputChange",value:function(e){var t=this.props,n=t.dayPickerProps,o=t.format,r=t.inputProps,a=t.onDayChange,s=t.parseDate;r.onChange&&(e.persist(),r.onChange(e));var i=e.target.value;if(""===i.trim())return this.setState({value:i,typedValue:""}),void(a&&a(void 0,{},this));var u=s(i,o,n.locale);if(!u)return this.setState({value:i,typedValue:i}),void(a&&a(void 0,{},this));this.updateState(u,i)}},{key:"handleInputKeyDown",value:function(e){e.keyCode===b.TAB?this.hideDayPicker():this.showDayPicker(),this.props.inputProps.onKeyDown&&(e.persist(),this.props.inputProps.onKeyDown(e))}},{key:"handleInputKeyUp",value:function(e){e.keyCode===b.ESC?this.hideDayPicker():this.showDayPicker(),this.props.inputProps.onKeyUp&&(e.persist(),this.props.inputProps.onKeyUp(e))}},{key:"handleMonthChange",value:function(e){var t=this;this.setState({month:e},function(){t.props.dayPickerProps&&t.props.dayPickerProps.onMonthChange&&t.props.dayPickerProps.onMonthChange(e)})}},{key:"handleDayClick",value:function(e,t,n){var o=this,r=this.props,a=r.clickUnselectsDay,s=r.dayPickerProps,i=r.onDayChange,u=r.formatDate,l=r.format;if(s.onDayClick&&s.onDayClick(e,t,n),!(t.disabled||s&&s.classNames&&t[s.classNames.disabled])){if(t.selected&&a){var c=this.state.selectedDays;if(Array.isArray(c)){c=c.slice(0);var p=c.indexOf(e);c.splice(p,1)}else c&&(c=null);return this.setState({value:"",typedValue:"",selectedDays:c},this.hideAfterDayClick),void(i&&i(void 0,t,this))}var f=u(e,l,s.locale);this.setState({value:f,typedValue:"",month:e},function(){i&&i(e,t,o),o.hideAfterDayClick()})}}},{key:"renderOverlay",value:function(){var e=this,t=this.props,n=t.classNames,o=t.dayPickerProps,r=t.parseDate,a=t.formatDate,s=t.format,i=this.state,u=i.selectedDays,l=i.value,c=void 0;if(!u&&l){var p=r(l,s,o.locale);p&&(c=p)}else u&&(c=u);var f=void 0;o.todayButton&&(f=function(){return e.updateState(new Date,a(new Date,s,o.locale),e.hideAfterDayClick)});var d=this.props.overlayComponent;return y.default.createElement(d,{classNames:n,month:this.state.month,selectedDay:c,input:this.input,tabIndex:0,onFocus:this.handleOverlayFocus,onBlur:this.handleOverlayBlur},y.default.createElement(m.default,h({ref:function(t){return e.daypicker=t},onTodayButtonClick:f},o,{month:this.state.month,selectedDays:c,onDayClick:this.handleDayClick,onMonthChange:this.handleMonthChange})))}},{key:"render",value:function(){var e=this,t=this.props.component,n=this.props.inputProps;return y.default.createElement("div",{className:this.props.classNames.container,style:this.props.style},y.default.createElement(t,h({ref:function(t){return e.input=t},placeholder:this.props.placeholder},n,{value:this.state.value||this.state.typedValue,onChange:this.handleInputChange,onFocus:this.handleInputFocus,onBlur:this.handleInputBlur,onKeyDown:this.handleInputKeyDown,onKeyUp:this.handleInputKeyUp,onClick:n.disabled?void 0:this.handleInputClick})),this.state.showOverlay&&this.renderOverlay())}}]),t}(y.default.Component);w.defaultProps={dayPickerProps:{},value:"",typedValue:"",placeholder:"YYYY-M-D",format:"L",formatDate:c,parseDate:p,showOverlay:!1,hideOnDayClick:!0,clickUnselectsDay:!1,keepFocus:!0,component:"input",inputProps:{},overlayComponent:l,classNames:{container:"DayPickerInput",overlayWrapper:"DayPickerInput-OverlayWrapper",overlay:"DayPickerInput-Overlay"}},t.default=w}]).default});
+//# sourceMappingURL=react-day-picker.min.js.map
 
 /***/ }),
 
@@ -39857,8 +40087,8 @@ document.addEventListener("DOMContentLoaded", function () {
     store = (0,_store_store__WEBPACK_IMPORTED_MODULE_3__.default)();
   }
 
-  var rootEl = document.getElementById("root");
-  rootEl.style.backgroundImage = window.backgroundUrl;
+  var rootEl = document.getElementById("root"); // rootEl.style.backgroundImage = window.backgroundUrl;
+
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: store
   }), rootEl);

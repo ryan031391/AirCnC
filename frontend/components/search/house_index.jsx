@@ -10,7 +10,11 @@ class HouseIndex extends React.Component{
         return(
             <div id="result">
                 <h1 id="houses">Houses: </h1>
-                <ul id="house-list">
+                <ul className="grid-container">
+                    <div className="grid-header">
+                        <h2 className="grid-item-left">Location</h2>
+                        <h2 className="grid-item-right">Price ($/per night)</h2>
+                    </div>
                     {this.props.houses.map(house => (
                         <HouseIndexItem key={house.id} house={house}/>
                     ))}

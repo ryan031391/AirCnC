@@ -7,6 +7,7 @@ export const RECEIVE_RENTAL_INFO = 'RECEIVE_RENTAL_INFO';
 export const RECEIVE_REVIEW_ERRORS = 'RECEIVE_HOUSE_ERRORS';
 export const RECEIVE_RENTAL_ERRORS = 'RECEIVE_RENTAL_ERRORS';
 export const RECEIVE_RESERVATION = 'RECEIVE_RESERVATION';
+export const REMOVE_RESERVATION = 'REMOVE_RESERVATION';
 
 const receiveHouses = houses => ({
     type: RECEIVE_HOUSES,
@@ -47,6 +48,11 @@ const receiveRental = rental => ({
 const receiveReservation = rentals => ({
     type: RECEIVE_RESERVATION,
     rentals
+})
+
+const removeReservation = house_id => ({
+    type: REMOVE_RESERVATION,
+    house_id
 })
 
 const range = (payload, bound) => {
@@ -117,4 +123,5 @@ export const fetchRental = () => dispatch => {
 
 export const deleteRental = house_id => dispatch => (
     APIUtil.deleteRental(house_id)
+        .then(() => dispatch(removeReservation(house_id)))
 )

@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       store = configureStore();
     }
     const rootEl = document.getElementById("root");
-    rootEl.style.backgroundImage = window.backgroundUrl;
+    // rootEl.style.backgroundImage = window.backgroundUrl;
     
 
     ReactDOM.render(<Root store={store}/>, rootEl)

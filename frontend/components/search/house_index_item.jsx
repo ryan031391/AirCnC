@@ -11,7 +11,11 @@ class HouseIndexItem extends React.Component{
         return(
             <li id={`house-${house.id}`}>
                 <Link id="house-item-link" to={`/houses/${house.id}`}> 
-                    <label id="houseitem">location: {house.location}&nbsp;&nbsp;&nbsp;{house.price}/night</label>
+                    {/* <label id="houseitem">location: {house.location}&nbsp;&nbsp;&nbsp;{house.price}/night</label> */}
+                    <div className="grid-header">
+                        <h4 className="house-index-left">{house.location}</h4>
+                        <h4 className="house-index-right">{house.price}</h4>
+                    </div>
                     <br/>
                     <br/>
                 </Link>

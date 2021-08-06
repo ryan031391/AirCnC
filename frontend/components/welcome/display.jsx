@@ -67,6 +67,7 @@ class DisplayReservation extends React.Component{
         e.preventDefault();
         this.props.deleteRental(this.state.house_id)
         this.setState({ showup: false })
+        this.props.fetchRental()
     }
 
     render(){
@@ -84,7 +85,7 @@ class DisplayReservation extends React.Component{
                     <h2>Your have {this.displayNum(temp)} upcoming events: {
                         temp.map(ele => (
                             <div key={ele.id}>
-                                <h2>{ele.location}&nbsp;&nbsp;from&nbsp;{ele.check_in.replace("T00:00:00.000Z", "")}&nbsp; to &nbsp;{ele.check_out.replace("T00:00:00.000Z", "")}</h2>
+                                <h4>{ele.location}&nbsp;&nbsp;from&nbsp;{ele.check_in.replace("T00:00:00.000Z", "")}&nbsp; to &nbsp;{ele.check_out.replace("T00:00:00.000Z", "")}</h4>
                                 &nbsp;
                                 <button value={ele.id} onClick={this.handleClick}>Cancel</button>
                                 <br/>

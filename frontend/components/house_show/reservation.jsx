@@ -26,6 +26,11 @@ class Reservation extends React.Component{
         // this.renderErrors = this.renderErrors.bind(this);
     }
 
+    componentDidMount(){
+        // e.preventDefault()
+        // this.props
+    }
+
     addLeadingZero(str){
         if (str < 10) return "0" + str;
         else return str;
@@ -62,6 +67,7 @@ class Reservation extends React.Component{
 
     renderDate(ele){        
         const { today } = this.props;
+        console.log(this.state)
         let tempMonth = this.state.check_in_month;
         let tempYear = this.state.check_in_year;
         if (ele !== 'check_in') {
@@ -94,11 +100,12 @@ class Reservation extends React.Component{
     }
 
     dayOfMonth(month){
+        let temp = parseInt(month)-1
         let large = [0, 2, 4, 6, 7, 9, 11];
         let small = [3, 5, 8, 10];
-        if (large.includes(month)) {
+        if (large.includes(temp)) {
             return 31;
-        } else if (small.includes(month)) {
+        } else if (small.includes(temp)) {
             return 30;
         } else if (this.props.today.getFullYear()%4 === 0) {
             return 29;
@@ -142,6 +149,7 @@ class Reservation extends React.Component{
     // }
 
     update(ele){
+        e => console.log(e.currentTarget.value)
         return e => this.setState({
             [ele]: e.currentTarget.value
         })

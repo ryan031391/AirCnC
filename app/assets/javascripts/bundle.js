@@ -2719,10 +2719,14 @@ var Welcome = function Welcome(_ref) {
   var logged_in = function logged_in() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       id: "welcomepage"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "background-img"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "search"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_2__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       className: "house-top-img",
       src: window.backgroundUrl
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hi, ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "welcomepage-content"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "reservation-list"
@@ -2730,14 +2734,7 @@ var Welcome = function Welcome(_ref) {
       rentals: reservations,
       deleteRental: deleteRental,
       fetchRental: fetchRental
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "search"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_2__.default, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "sticky-image-wrapper"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      className: "house-bot-img",
-      src: window.backgroundUrl
-    })));
+    }))));
   };
 
   return currentUser ? logged_in() : not_logged_in(); // return not_logged_in();
@@ -3468,7 +3465,8 @@ var createReview = function createReview(review) {
 var fetchLocation = function fetchLocation(location) {
   return $.ajax({
     method: 'GET',
-    url: "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(location, "&key=AIzaSyAUADNSH9nyJqtTLTKdArLj6OhTs918GGg")
+    url: "https://maps.googleapis.com/maps/api/geocode/json?address=".concat(location, "&key=AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk") //AIzaSyAUADNSH9nyJqtTLTKdArLj6OhTs918GGg
+
   });
 };
 var createRental = function createRental(rental) {

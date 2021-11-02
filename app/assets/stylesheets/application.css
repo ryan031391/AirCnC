@@ -48,7 +48,7 @@ html, body {
 }
 
 nav{
-  background-color: blue;
+  background-color: rgb(219, 189, 88);
   height: 50px;
   display: flex;
 }
@@ -267,11 +267,14 @@ textarea {
 }
 
 .house-top-img {
-  object-fit: none;
-  height: 100px;
-  width: 100%;
-  object-position: top;
-  padding-left: 0px;
+  /* position: absolute; */
+  /* background-attachment: fixed; */
+  /* object-fit: none; */
+  /* height: 100px; */
+  width: 80%;
+  z-index: -100;
+  /* object-position: top; */
+  /* padding-left: 0px; */
 }
 
 .house-bot-img {
@@ -304,12 +307,22 @@ textarea {
     width: 30%;
 }
 
+.background-img{
+  /* display: inline-block; */
+  position: relative;
+  width: 100%;
+  left: 0%;
+}
+
 .search {
-    width: 70%;
+    position: absolute;
+    padding-left: 37%;
+    padding-top: 50px;
+    /* width: 70%;
     padding-left: 110px;
     box-sizing: border-box;
     padding-right: 110px;
-    padding-top: 50px;
+    padding-top: 50px; */
 }
 
 .Nav-logout {
@@ -369,6 +382,8 @@ textarea {
   margin-right: 150px;
   min-width: 500px;
 }
+
+
 /* .dropbtn {
   background-color: #3498DB;
   color: white;

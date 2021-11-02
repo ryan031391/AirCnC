@@ -23,10 +23,15 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
 
     const logged_in = () => (
         <div id="welcomepage" >
-            <div >
+            <div className="background-img">
+                <div className="search">
+                    <SearchContainer />
+                </div>
                 <img className="house-top-img" src={window.backgroundUrl} />
+                {/* <h1>Hi, {currentUser.username}</h1> */}
+
             </div>
-            <h1>Hi, {currentUser.username}</h1>
+            
             {/* <button onClick={logout}>Log out</button> */}
             <div className="welcomepage-content">
                 <div className="reservation-list">
@@ -34,13 +39,11 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
                 </div>
                 {/* {displayHouses()} */}
                 {/* <h2>Your upcoming events: {currentUser.rentals.foreach(ele => {return ele})}</h2> */}
-                <div className="search">
-                    <SearchContainer />
-                </div>
+
             </div>
-            <div className="sticky-image-wrapper">
+            {/* <div className="sticky-image-wrapper">
                 <img className="house-bot-img" src={window.backgroundUrl} />
-            </div>
+            </div> */}
         </div>
     );
 

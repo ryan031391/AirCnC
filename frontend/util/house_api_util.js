@@ -26,7 +26,7 @@ export const fetchHouses = bounds => (
   export const fetchLocation = location => (
     $.ajax({
       method: 'GET',
-      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyAUADNSH9nyJqtTLTKdArLj6OhTs918GGg`
+    url: `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk` //AIzaSyAUADNSH9nyJqtTLTKdArLj6OhTs918GGg
     })
   )
 

@@ -128,9 +128,11 @@ ul {
   list-style: none;
 }
 
-#result {
-  background-color: lightgoldenrodyellow;
-  background: transparent;
+.result {
+  /* background-color: lightgoldenrodyellow; */
+  background: rgb(0 0 0 / 20%);
+  color:rgb(219, 189, 88);
+  margin-top: 210px;
 }
 
 #houses{
@@ -277,6 +279,14 @@ textarea {
   /* padding-left: 0px; */
 }
 
+.houseshow-top-img {
+  object-fit: none;
+  height: 100px;
+  width: 100%;
+  object-position: top;
+  padding-left: 0px;
+}
+
 .house-bot-img {
   object-fit: none;
   height: 100px;
@@ -318,11 +328,54 @@ textarea {
     position: absolute;
     padding-left: 37%;
     padding-top: 50px;
+    margin-top: 200px;
     /* width: 70%;
     padding-left: 110px;
     box-sizing: border-box;
     padding-right: 110px;
     padding-top: 50px; */
+}
+
+.search-box {
+    display: flex;
+    flex: 1 1 0%;
+    border: 1 solid #DDDDDD;
+    border-radius: 32px;
+    color: #222222;
+    box-shadow: 0px 16px 32px rgb(0 0 0 / 15%), 0px 3px 8px rgb(0 0 0 / 10%);
+    --big-search-form-background: #FFFFFF;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 66px;
+    text-align: center;
+}
+
+.location {
+  flex: 1.6 0 0%;
+  margin-top: 8px;
+  width: 400px;
+}
+
+.bound {
+  flex: 1 0 0%;
+  width: 120px;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.input-location {
+  text-align: center;
+  border: aliceblue;
+  width: 80%;
+}
+
+.input-bound {
+  text-align: center;
+  border: aliceblue;
+}
+
+.search-button {
+  /* background-color: rgb(70, 133, 214); */
 }
 
 .Nav-logout {
@@ -335,27 +388,31 @@ textarea {
 
 .grid-header {
   display: flex;
-
+  flex: 1 1 0%;
 }
 
 .grid-item-left {
-  margin-left: 27%;
+  /* margin-left: 27%; */
+  flex: 2 0 0%;
 }
 
 .grid-item-right {
-  margin-left: auto;
-  margin-right: 25%;
+  /* margin-left: auto;
+  margin-right: 25%; */
+  flex: 1 0 0%;
 }
 
 .house-index-left {
-  margin-left: 20%;
-  text-align: center;
+  /* margin-left: 20%;
+  text-align: center; */
+  flex: 2 0 0%;
 }
 
 .house-index-right {
-  margin-left: auto;
+  /* margin-left: auto;
   margin-right: 30%;
-  text-align: center;
+  text-align: center; */
+  flex: 1 0 0%;
 }
 
 #house-item-link {

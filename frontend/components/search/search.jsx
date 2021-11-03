@@ -40,27 +40,33 @@ class Search extends React.Component{
 
     render(){
         return(
-            <div>
+            <div >
                 <form onSubmit={this.handleSubmit}>
-                    <b>Location: </b>
-                        <input 
-                        type="text" 
-                        value={this.state.location} 
-                        onChange={this.updateLocation}
-                        />
-                    <br/>
-                    <div>  
-                        <b> Bound: </b>  
-                        <select id="myList" onChange={this.updateBound} >  
-                            <option> ---Choose Bound--- </option>  
-                            <option value="5"> 5 miles </option>  
-                            <option value="10"> 10 miles </option>  
-                            <option value="20"> 20 miles </option>  
-                            <option value="50"> 50 miles </option>  
-                        </select>     
+                    <div className="search-box">
+                        <div className="location">
+                            <b>Location: </b>
+                                <input 
+                                className="input-location"
+                                type="text"
+                                placeholder="where are you going" 
+                                value={this.state.location} 
+                                onChange={this.updateLocation}
+                                />
+                        </div>
+                        {/* <br/> */}
+                        <div className="bound">  
+                            <b> Bound: </b>  
+                            <select className="input-bound" id="myList" onChange={this.updateBound} >  
+                                <option > choose bound </option>  
+                                <option value="5"> 5 miles </option>  
+                                <option value="10"> 10 miles </option>  
+                                <option value="20"> 20 miles </option>  
+                                <option value="50"> 50 miles </option>  
+                            </select>     
+                        </div>
                     </div>
                     <br/>
-                    <button type="submit">Search</button>
+                    <button className="search-button" type="submit">Search</button>
                     {/* <input 
                     type="text" 
                     value={this.state.bound} 

@@ -64,7 +64,7 @@ class HouseShow extends React.Component{
         return(
             <div id="showpage">
                 <div >
-                    <img className="house-top-img" src={window.backgroundUrl} />
+                    <img className="houseshow-top-img" src={window.backgroundUrl} />
                 </div>
                 <div className="house-info">
                     <div>

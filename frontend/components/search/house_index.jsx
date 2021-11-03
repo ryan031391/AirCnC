@@ -8,8 +8,8 @@ class HouseIndex extends React.Component{
 
     render(){
         return(
-            <div id="result">
-                <h1 id="houses">Houses: </h1>
+            <div className="result">
+                {/* <h1 id="houses">Houses: </h1> */}
                 <ul className="grid-container">
                     <div className="grid-header">
                         <h2 className="grid-item-left">Location</h2>

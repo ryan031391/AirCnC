@@ -695,7 +695,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "showpage"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        className: "house-top-img",
+        className: "houseshow-top-img",
         src: window.backgroundUrl
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "house-info"
@@ -1858,10 +1858,8 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        id: "result"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
-        id: "houses"
-      }, "Houses: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        className: "result"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "grid-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "grid-header"
@@ -2059,14 +2057,23 @@ var Search = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "search-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "location"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        className: "input-location",
         type: "text",
+        placeholder: "where are you going",
         value: this.state.location,
         onChange: this.updateLocation
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "bound"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+        className: "input-bound",
         id: "myList",
         onChange: this.updateBound
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " ---Choose Bound--- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " choose bound "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "5"
       }, " 5 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "10"
@@ -2074,7 +2081,8 @@ var Search = /*#__PURE__*/function (_React$Component) {
         value: "20"
       }, " 20 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "50"
-      }, " 50 miles "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, " 50 miles ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "search-button",
         type: "submit"
       }, "Search")), this.showHouses());
     }

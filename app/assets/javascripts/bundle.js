@@ -2643,7 +2643,7 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      if (this.props.rentals) {
+      if (this.props.rentals.length !== 0) {
         var temp = [];
         var today = new Date();
         this.props.rentals.forEach(function (ele) {
@@ -2651,10 +2651,12 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
             temp.push(ele);
           }
         });
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.popup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", this.displayNum(temp), " upcoming events: ", temp.map(function (ele) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "show-reservation"
+        }, this.popup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", this.displayNum(temp), " upcoming events: ", temp.map(function (ele) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             key: ele.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, ele.location, "\xA0\xA0from\xA0", ele.check_in.replace("T00:00:00.000Z", ""), "\xA0 to \xA0", ele.check_out.replace("T00:00:00.000Z", "")), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, ele.location, "\xA0\xA0\xA0", ele.check_in.replace("T00:00:00.000Z", ""), "\xA0 to \xA0", ele.check_out.replace("T00:00:00.000Z", "")), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
             value: ele.id,
             onClick: _this3.handleClick
           }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));

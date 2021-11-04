@@ -70,7 +70,7 @@ class DisplayReservation extends React.Component{
     }
 
     render(){
-        if (this.props.rentals) {
+        if (this.props.rentals.length !== 0) {
             let temp = []
             let today = new Date()
             this.props.rentals.forEach(ele => {
@@ -79,12 +79,12 @@ class DisplayReservation extends React.Component{
                 }
             })
             return(
-                <div>
+                <div className="show-reservation">
                     {this.popup()}
                     <h2>Your have {this.displayNum(temp)} upcoming events: {
                         temp.map(ele => (
                             <div key={ele.id}>
-                                <h4>{ele.location}&nbsp;&nbsp;from&nbsp;{ele.check_in.replace("T00:00:00.000Z", "")}&nbsp; to &nbsp;{ele.check_out.replace("T00:00:00.000Z", "")}</h4>
+                                <h4>{ele.location}&nbsp;&nbsp;&nbsp;{ele.check_in.replace("T00:00:00.000Z", "")}&nbsp; to &nbsp;{ele.check_out.replace("T00:00:00.000Z", "")}</h4>
                                 &nbsp;
                                 <button value={ele.id} onClick={this.handleClick}>Cancel</button>
                                 <br/>

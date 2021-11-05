@@ -16,6 +16,10 @@ class DisplayReservation extends React.Component{
         this.props.fetchRental()
     }
 
+    componentDidUpdate(){
+        this.props.fetchRental()
+    }
+
     displayNum (arr){
         let n = 0
         for (let i = 0; i < arr.length; i++) {
@@ -25,7 +29,8 @@ class DisplayReservation extends React.Component{
     }
 
     handleClick(e){
-        e.preventDefault();
+        // e.preventDefault();
+        console.log("working")
         this.setState({
             house_id: e.currentTarget.value,
             showup: true

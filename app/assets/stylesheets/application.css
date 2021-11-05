@@ -419,14 +419,10 @@ textarea {
 }
 
 .grid-item-right {
-  /* margin-left: auto;
-  margin-right: 25%; */
   flex: 1 0 0%;
 }
 
 .house-index-left {
-  /* margin-left: 20%;
-  text-align: center; */
   flex: 2 0 0%;
 }
 

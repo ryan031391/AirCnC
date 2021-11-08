@@ -2575,7 +2575,11 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchRental();
-    }
+    } // componentDidUpdate(){
+    //     // e.preventDefault();
+    //     this.props.fetchRental()
+    // }
+
   }, {
     key: "displayNum",
     value: function displayNum(arr) {
@@ -2590,8 +2594,8 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleClick",
     value: function handleClick(e) {
-      // e.preventDefault();
-      console.log("working");
+      e.preventDefault(); // console.log("working")
+
       this.setState({
         house_id: e.currentTarget.value,
         showup: true

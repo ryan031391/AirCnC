@@ -16,11 +16,6 @@ class DisplayReservation extends React.Component{
         this.props.fetchRental()
     }
 
-    // componentDidUpdate(){
-    //     // e.preventDefault();
-    //     this.props.fetchRental()
-    // }
-
     displayNum (arr){
         let n = 0
         for (let i = 0; i < arr.length; i++) {

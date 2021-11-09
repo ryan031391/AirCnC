@@ -28,7 +28,6 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
                     <SearchContainer />
                 </div>
                 <img className="house-top-img" src={window.backgroundUrl} />
-                {/* <h1>Hi, {currentUser.username}</h1> */}
 
             </div>
             

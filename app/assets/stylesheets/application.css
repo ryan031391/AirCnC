@@ -115,6 +115,7 @@ h1 {
 }
 
 #welcomepage {
+  display: flex;
   text-align: center;
   height: 100%;
   /* background-color: rgb(235, 225, 205); */
@@ -331,16 +332,19 @@ textarea {
 }
 
 .welcomepage-content {
+  flex: 1 0 0;
     display: flex;
     flex-direction: row;
 }
 
 .reservation-list {
-    width: 30%;
+  margin-right: 10px;
+    /* width: 30%; */
 }
 
 .background-img{
   /* display: inline-block; */
+  flex: 3 0 0;
   position: relative;
   width: 100%;
   left: 0%;
@@ -348,7 +352,7 @@ textarea {
 
 .search {
     position: absolute;
-    padding-left: 37%;
+    padding-left: 25%;
     padding-top: 50px;
     margin-top: 200px;
     /* width: 70%;
@@ -411,6 +415,10 @@ textarea {
 .grid-header {
   display: flex;
   flex: 1 1 0%;
+}
+
+.grid-container {
+  display: contents;
 }
 
 .grid-item-left {

@@ -14,9 +14,6 @@ class Search extends React.Component{
         this.showHouses = this.showHouses.bind(this);
     }
 
-    // componentDidMount(){
-    //     this.props.fetchHouses();
-    // }
     showHouses(){
         if (this.props.houses.length !== 0){
             return <HouseIndex houses={this.props.houses} />

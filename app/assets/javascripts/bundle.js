@@ -2016,10 +2016,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.showHouses = _this.showHouses.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount(){
-  //     this.props.fetchHouses();
-  // }
-
+  }
 
   _createClass(Search, [{
     key: "showHouses",
@@ -2575,11 +2572,7 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchRental();
-    } // componentDidUpdate(){
-    //     // e.preventDefault();
-    //     this.props.fetchRental()
-    // }
-
+    }
   }, {
     key: "displayNum",
     value: function displayNum(arr) {

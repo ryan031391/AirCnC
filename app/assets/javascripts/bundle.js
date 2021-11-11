@@ -716,12 +716,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
           key: review.id,
           review: review
         });
-      })), this.reviewForm(this.props.match.params.houseId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "house-sticky-image-wrapper"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        className: "house-bot-img",
-        src: window.backgroundUrl
-      })));
+      })), this.reviewForm(this.props.match.params.houseId));
     }
   }]);
 
@@ -2651,14 +2646,17 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
         });
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "show-reservation"
-        }, this.popup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", this.displayNum(temp), " upcoming events: ", temp.map(function (ele) {
+        }, this.popup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your have ", this.displayNum(temp), " upcoming events:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, temp.map(function (ele) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "mainpage-reservation",
             key: ele.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, ele.location, "\xA0\xA0\xA0", ele.check_in.replace("T00:00:00.000Z", ""), "\xA0 to \xA0", ele.check_out.replace("T00:00:00.000Z", "")), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h6", {
+            className: "mainpage-reservation-font"
+          }, ele.location, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), " ", ele.check_in.replace("T00:00:00.000Z", ""), "\xA0 to \xA0", ele.check_out.replace("T00:00:00.000Z", "")), "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
             value: ele.id,
             onClick: _this3.handleClick
           }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
-        })));
+        }))));
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "You don't have any Reservation yet!");
       }

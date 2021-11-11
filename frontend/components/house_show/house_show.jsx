@@ -105,9 +105,9 @@ class HouseShow extends React.Component{
                     ))}
                 </ul>
                 {this.reviewForm(this.props.match.params.houseId)}
-                <div className="house-sticky-image-wrapper">
+                {/* <div className="house-sticky-image-wrapper">
                     <img className="house-bot-img" src={window.backgroundUrl} />
-                </div>
+                </div> */}
             </div>
         )
     }

@@ -82,16 +82,22 @@ class DisplayReservation extends React.Component{
             return(
                 <div className="show-reservation">
                     {this.popup()}
-                    <h2>Your have {this.displayNum(temp)} upcoming events: {
-                        temp.map(ele => (
-                            <div key={ele.id}>
-                                <h4>{ele.location}&nbsp;&nbsp;&nbsp;{ele.check_in.replace("T00:00:00.000Z", "")}&nbsp; to &nbsp;{ele.check_out.replace("T00:00:00.000Z", "")}</h4>
-                                &nbsp;
-                                <button value={ele.id} onClick={this.handleClick}>Cancel</button>
-                                <br/>
-                            </div>
-                        ))
-                    }</h2>
+                    <h2>Your have {this.displayNum(temp)} upcoming events: 
+                        <div>
+                            {
+                                
+                                temp.map(ele => (
+                                    <div className="mainpage-reservation" key={ele.id}>
+                                        <h6 className="mainpage-reservation-font">{ele.location} <br/> {ele.check_in.replace("T00:00:00.000Z", "")}&nbsp; to &nbsp;{ele.check_out.replace("T00:00:00.000Z", "")}</h6>
+                                        &nbsp;
+                                        <button value={ele.id} onClick={this.handleClick}>Cancel</button>
+                                        <br/>
+                                    </div>
+                                ))
+                                
+                            }
+                        </div>
+                    </h2>
                 </div>
             )
         } else {

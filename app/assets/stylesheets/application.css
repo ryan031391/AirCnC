@@ -468,6 +468,11 @@ textarea {
   margin-right: 5%;
 }
 
+.date-div {
+  display: flex;
+  flex-direction: row;
+}
+
 .react-calendar{
   width: 380px;
 }

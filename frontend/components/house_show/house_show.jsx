@@ -71,31 +71,33 @@ class HouseShow extends React.Component{
                         <h2>House Information:<br/></h2>
                         
                         <ul id="infolist">
-                            <li>Location: {house.location} </li>
-                            <li>Price: {house.price} / night</li>
-                            <li>Rating: {rating}</li>
-                            <li>Description: {house.description}</li>
+                            <li><h3>Location: {house.location} </h3></li>
+                            <li><h3>Price: {house.price} / night</h3></li>
+                            <li><h3>Rating: {rating}</h3></li>
+                            <li><h3>Description: {house.description}</h3></li>
                         </ul>
                     </div>
-                    <div className="reservation">
-                        <h2 >Make a reservation now!</h2>
-                        
-                        <ReservationContainer today={this.today} houseId={this.props.match.params.houseId} />
-                    </div>
-                    <div >
-                        {/* <Calendar
-                            onChange={this.showAvailability()}
-                            onChange={(date) => this.setState({ date })}
-                            value={this.state.date}
-                            maxDate={new Date()}
-                        /> */}
-                        <DayPicker
-                            initialMonth={new Date(this.today.getFullYear(), this.today.getMonth())}
-                            disabledDays={
-                                this.getDisabledDays()
-                            }
-                        />
-                    </div>
+                    {/* <div className="date-div"> */}
+                        <div className="reservation">
+                            <h2 >Make a reservation now!</h2>
+                            
+                            <ReservationContainer today={this.today} houseId={this.props.match.params.houseId} />
+                        </div>
+                        <div >
+                            {/* <Calendar
+                                onChange={this.showAvailability()}
+                                onChange={(date) => this.setState({ date })}
+                                value={this.state.date}
+                                maxDate={new Date()}
+                            /> */}
+                            <DayPicker
+                                initialMonth={new Date(this.today.getFullYear(), this.today.getMonth())}
+                                disabledDays={
+                                    this.getDisabledDays()
+                                }
+                            />
+                        </div>
+                    {/* </div> */}
                 </div>
 
                 <h2 id="review">Reviews: </h2>

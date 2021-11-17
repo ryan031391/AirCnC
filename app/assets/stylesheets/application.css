@@ -48,7 +48,7 @@ html, body {
 }
 
 nav{
-  background-color: rgba(219, 189, 88);
+  background-color: rgb(219, 189, 88);
   height: 50px;
   display: flex;
 }
@@ -184,7 +184,7 @@ a:visited {
 }
 
 a:hover {
-  color: rgba(160, 111, 22);
+  color: rgb(160, 111, 22);
 }
 
 #houseitem{

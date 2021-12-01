@@ -19,6 +19,9 @@ class HouseIndex extends React.Component{
                         <HouseIndexItem key={house.id} house={house}/>
                     ))}
                 </ul>
+                {/* <div className="map">
+                    <Map houses={this.props.houses} />
+                </div> */}
             </div>
         )
     }

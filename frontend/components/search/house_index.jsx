@@ -1,5 +1,9 @@
 import React from 'react';
-import HouseIndexItem from './house_index_item'
+import HouseIndexItem from './house_index_item';
+import HouseMap from './house_map';
+// import { Wrapper, Status } from "@googlemaps/react-wrapper";
+
+
 
 class HouseIndex extends React.Component{
     constructor(props){
@@ -19,9 +23,12 @@ class HouseIndex extends React.Component{
                         <HouseIndexItem key={house.id} house={house}/>
                     ))}
                 </ul>
-                {/* <div className="map">
-                    <Map houses={this.props.houses} />
-                </div> */}
+                <div className="map">
+                    <HouseMap houses={this.props.houses} />
+                </div>
+                {/* <Wrapper apiKey={"AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk"} render={render}>
+                    <Map />
+                </Wrapper> */}
             </div>
         )
     }

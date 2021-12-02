@@ -2486,6 +2486,8 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "result-map"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "result"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "grid-container"
@@ -2500,7 +2502,7 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
           key: house.id,
           house: house
         });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "map"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_map__WEBPACK_IMPORTED_MODULE_2__.default, {
         houses: this.props.houses
@@ -2658,31 +2660,30 @@ var HouseMap = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, HouseMap);
 
     _this = _super.call(this, props); // this.myRef = React.createRef();
+    // console.log(this.props)
 
-    console.log(_this.props);
     _this.center = {
       lat: _this.props.houses[0].latitude,
       lng: _this.props.houses[0].longitude
-    };
-    console.log(_this.props.houses);
+    }; // console.log(this.props.houses)
+
     return _this;
-  }
+  } // componentDidMount(){
+  //     const ref = React.useRef<HTMLDivElement>(null);
+  //     const [map, setMap] = React.useState<google.maps.Map>();
+  //     React.useEffect(() => {
+  //     if (ref.current && !map) {
+  //         setMap(new window.google.maps.Map(ref.current, {}));
+  //     }
+  //     }, [ref, map]);
+  // }
+
 
   _createClass(HouseMap, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// const ref = React.useRef<HTMLDivElement>(null);
-      // const [map, setMap] = React.useState<google.maps.Map>();
-      // React.useEffect(() => {
-      // if (ref.current && !map) {
-      //     setMap(new window.google.maps.Map(ref.current, {}));
-      // }
-      // }, [ref, map]);
-    }
-  }, {
     key: "render",
     value: function render() {
-      console.log(mapOptions.center);
-      console.log(this.center);
+      // console.log(mapOptions.center)
+      // console.log(this.center)
       return (
         /*#__PURE__*/
         // Important! Always set the container height explicitly
@@ -2733,25 +2734,104 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MyMarker = function MyMarker(_ref) {
-  var text = _ref.text,
-      tooltip = _ref.tooltip,
-      $hover = _ref.$hover;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  var handleClick = function handleClick() {
-    console.log("You clicked on ".concat(tooltip));
-  };
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: $hover ? "circle hover" : "circle",
-    onClick: handleClick
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    className: "circleText",
-    title: tooltip
-  }, text));
-};
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+ // const MyMarker = ({ text, tooltip, $hover }) => {
+//   const handleClick = () => {
+//     console.log(`You clicked on ${tooltip}`);
+//   };
+//   return (
+//     <div className={$hover ? "circle hover" : "circle"} onClick={handleClick}>
+//       <span className="circleText" title={tooltip}>
+//         {text}
+//       </span>
+//     </div>
+//   );
+// };
+
+var MyMarker = /*#__PURE__*/function (_React$Component) {
+  _inherits(MyMarker, _React$Component);
+
+  var _super = _createSuper(MyMarker);
+
+  function MyMarker(props) {
+    var _this;
+
+    _classCallCheck(this, MyMarker);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      house_id: "",
+      showup: false
+    };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.popup = _this.popup.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(MyMarker, [{
+    key: "handleClick",
+    value: function handleClick(e) {
+      e.preventDefault();
+      this.setState({
+        house_id: e.currentTarget.key,
+        showup: true
+      });
+    }
+  }, {
+    key: "popup",
+    value: function popup() {
+      if (!this.state.showup) {
+        return null;
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "map-pop-up"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "map-pop-up-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, this.props.text)));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          $hover = _this$props.$hover,
+          tooltip = _this$props.tooltip,
+          text = _this$props.text,
+          key = _this$props.key;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: $hover ? "circle hover" : "circle",
+        onClick: this.handleClick,
+        id: key
+      }, this.popup(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "circleText",
+        title: tooltip
+      }));
+    }
+  }]);
+
+  return MyMarker;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyMarker);
 
@@ -2852,7 +2932,8 @@ var Search = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        onSubmit: this.handleSubmit
+        onSubmit: this.handleSubmit,
+        className: "search-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "search-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

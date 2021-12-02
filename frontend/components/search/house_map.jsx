@@ -18,28 +18,28 @@ class HouseMap extends React.Component{
     constructor(props){
         super(props)
         // this.myRef = React.createRef();
-        console.log(this.props)
+        // console.log(this.props)
         this.center = {
             lat: this.props.houses[0].latitude,
             lng: this.props.houses[0].longitude
         }
-        console.log(this.props.houses)
+        // console.log(this.props.houses)
     }
 
-    componentDidMount(){
-        // const ref = React.useRef<HTMLDivElement>(null);
-        // const [map, setMap] = React.useState<google.maps.Map>();
+    // componentDidMount(){
+    //     const ref = React.useRef<HTMLDivElement>(null);
+    //     const [map, setMap] = React.useState<google.maps.Map>();
 
-        // React.useEffect(() => {
-        // if (ref.current && !map) {
-        //     setMap(new window.google.maps.Map(ref.current, {}));
-        // }
-        // }, [ref, map]);
-    }
+    //     React.useEffect(() => {
+    //     if (ref.current && !map) {
+    //         setMap(new window.google.maps.Map(ref.current, {}));
+    //     }
+    //     }, [ref, map]);
+    // }
 
     render() {
-        console.log(mapOptions.center)
-        console.log(this.center)
+        // console.log(mapOptions.center)
+        // console.log(this.center)
         return (
         // Important! Always set the container height explicitly
         <div style={{ height: '100vh', width: '100%' }}>

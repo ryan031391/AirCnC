@@ -131,11 +131,13 @@ ul {
 
 .result {
   /* background-color: lightgoldenrodyellow; */
+  /* display: flex; */
   border-radius: 32px;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 15%), 0px 3px 8px rgba(0, 0, 0, 10%);
   background: rgba(0, 0, 0, 20%);
   /* color:rgb(219, 189, 88); */
   margin-top: 210px;
+  width: 35%;
 }
 
 .result ul li:after {
@@ -229,6 +231,16 @@ textarea {
    
 }
 
+.map-pop-up-content{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    /* margin: 15% auto;
+    padding: 20px;
+    width: 30%; */
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.2);
+   
+}
+
 .pop-up{
     z-index: 1;
     position: fixed;
@@ -236,6 +248,19 @@ textarea {
     top: 0;
     height: 100%;
     width: 100%;
+    color: gray;
+     background-color: rgba(0, 0, 0, 0.4);
+}
+
+.map-pop-up{
+    z-index: 1;
+    position: relative;
+    margin-top: 30px;
+    /* margin-left: -200px; */
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100px;
     color: gray;
      background-color: rgba(0, 0, 0, 0.4);
 }
@@ -375,6 +400,10 @@ textarea {
     padding-top: 50px; */
 }
 
+.search-bar{
+  width: 500px;
+}
+
 .search-box {
     display: flex;
     flex: 1 1 0%;
@@ -482,6 +511,17 @@ textarea {
   padding-top: 100px;
   margin-right: 150px;
   min-width: 500px;
+}
+
+.result-map{
+  display: flex;
+  width: 1300px;
+}
+
+.map{
+  flex: 1 0 0%;
+  margin: 50px;
+  margin-top: 220px;
 }
 
 .circle {

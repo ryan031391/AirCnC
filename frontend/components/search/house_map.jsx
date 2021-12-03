@@ -41,7 +41,6 @@ class HouseMap extends React.Component{
         // console.log(mapOptions.center)
         // console.log(this.center)
         return (
-        // Important! Always set the container height explicitly
         <div style={{ height: '100vh', width: '100%' }}>
             <GoogleMapReact
             bootstrapURLKeys={{ key: 'AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk' }}

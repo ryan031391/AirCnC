@@ -2684,34 +2684,30 @@ var HouseMap = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       // console.log(mapOptions.center)
       // console.log(this.center)
-      return (
-        /*#__PURE__*/
-        // Important! Always set the container height explicitly
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          style: {
-            height: '100vh',
-            width: '100%'
-          }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(google_map_react__WEBPACK_IMPORTED_MODULE_2__.default, {
-          bootstrapURLKeys: {
-            key: 'AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk'
-          },
-          defaultCenter: this.center,
-          defaultZoom: mapOptions.zoom
-        }, this.props.houses.map(function (_ref2) {
-          var id = _ref2.id,
-              location = _ref2.location,
-              latitude = _ref2.latitude,
-              longitude = _ref2.longitude;
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_my_marker__WEBPACK_IMPORTED_MODULE_3__.default, {
-            key: id,
-            lat: latitude,
-            lng: longitude,
-            text: location,
-            tooltip: location
-          });
-        })))
-      );
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        style: {
+          height: '100vh',
+          width: '100%'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(google_map_react__WEBPACK_IMPORTED_MODULE_2__.default, {
+        bootstrapURLKeys: {
+          key: 'AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk'
+        },
+        defaultCenter: this.center,
+        defaultZoom: mapOptions.zoom
+      }, this.props.houses.map(function (_ref2) {
+        var id = _ref2.id,
+            location = _ref2.location,
+            latitude = _ref2.latitude,
+            longitude = _ref2.longitude;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_my_marker__WEBPACK_IMPORTED_MODULE_3__.default, {
+          key: id,
+          lat: latitude,
+          lng: longitude,
+          text: location,
+          tooltip: location
+        });
+      })));
     }
   }]);
 
@@ -3453,6 +3449,9 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchRental();
     }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {}
   }, {
     key: "displayNum",
     value: function displayNum(arr) {

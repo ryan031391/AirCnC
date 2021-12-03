@@ -54,7 +54,8 @@ class MyMarker extends React.Component{
       <div className={$hover ? "circle hover" : "circle"} onClick={this.handleClick} id={key}>
         {this.popup()}
         <span className="circleText" title={tooltip}>
-          {/* {text} */}
+          {/* {text} */} 
+          {/* <div></div> */}
         </span>
       </div>
   );

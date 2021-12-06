@@ -18,12 +18,10 @@ class HouseMap extends React.Component{
     constructor(props){
         super(props)
         // this.myRef = React.createRef();
-        // console.log(this.props)
         this.center = {
             lat: this.props.houses[0].latitude,
             lng: this.props.houses[0].longitude
         }
-        // console.log(this.props.houses)
     }
 
     // componentDidMount(){

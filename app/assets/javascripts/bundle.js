@@ -2660,17 +2660,16 @@ var HouseMap = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, HouseMap);
 
     _this = _super.call(this, props); // this.myRef = React.createRef();
-    // console.log(this.props)
 
     _this.center = {
       lat: _this.props.houses[0].latitude,
       lng: _this.props.houses[0].longitude
-    }; // console.log(this.props.houses)
-
+    };
     return _this;
   } // componentDidMount(){
   //     const ref = React.useRef<HTMLDivElement>(null);
   //     const [map, setMap] = React.useState<google.maps.Map>();
+  //     const num = 0;
   //     React.useEffect(() => {
   //     if (ref.current && !map) {
   //         setMap(new window.google.maps.Map(ref.current, {}));

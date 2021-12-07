@@ -4,7 +4,7 @@ import React from "react";
 //   const handleClick = () => {
 //     console.log(`You clicked on ${tooltip}`);
 //   };
-//   br/br/
+
 //   return (
 //     <div className={$hover ? "circle hover" : "circle"} onClick={handleClick}>
 //       <span className="circleText" title={tooltip}>

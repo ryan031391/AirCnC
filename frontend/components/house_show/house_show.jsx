@@ -3,6 +3,7 @@ import ReviewItemContainer from './review_item_container';
 import ReviewFormContainer from './review_form_container';
 import ReservationContainer from './reservation_container';
 import DayPicker from 'react-day-picker';
+
 // import '../../../node_modules/react-day-picker/lib/style.css';
 // import Calendar from "react-calendar";
 
@@ -12,6 +13,8 @@ class HouseShow extends React.Component{
         this.today = new Date();    
         this.reviewForm = this.reviewForm.bind(this);
         this.getDisabledDays = this.getDisabledDays.bind(this)
+        
+        this.houseimage = ""
     }
 
     componentDidMount(){
@@ -54,6 +57,7 @@ class HouseShow extends React.Component{
     }
 
     render(){
+        // console.log(this.props.match.params.houseId)
         const {house, reviews} = this.props;
         let sum = 0;
         let num = 0;
@@ -76,6 +80,9 @@ class HouseShow extends React.Component{
                             <li><h3>Rating: {rating}</h3></li>
                             <li><h3>Description: {house.description}</h3></li>
                         </ul>
+                    </div>
+                    <div className="house-img">
+                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_${this.props.match.params.houseId}.jpg`} alt="image"/>
                     </div>
                     {/* <div className="date-div"> */}
                         <div className="reservation">

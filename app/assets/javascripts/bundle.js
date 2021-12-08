@@ -1256,6 +1256,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     _this.today = new Date();
     _this.reviewForm = _this.reviewForm.bind(_assertThisInitialized(_this));
     _this.getDisabledDays = _this.getDisabledDays.bind(_assertThisInitialized(_this));
+    _this.houseimage = "";
     return _this;
   }
 
@@ -1306,6 +1307,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // console.log(this.props.match.params.houseId)
       var _this$props = this.props,
           house = _this$props.house,
           reviews = _this$props.reviews;
@@ -1333,6 +1335,11 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "House Information:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         id: "infolist"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Location: ", house.location, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Price: ", house.price, " / night")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Rating: ", rating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Description: ", house.description)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-img"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_".concat(this.props.match.params.houseId, ".jpg"),
+        alt: "image"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "reservation"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Make a reservation now!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservation_container__WEBPACK_IMPORTED_MODULE_3__.default, {
         today: this.today,
@@ -2215,6 +2222,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../session_form/login_form_container */ "./frontend/components/session_form/login_form_container.jsx");
 /* harmony import */ var _session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session_form/signup_form_container */ "./frontend/components/session_form/signup_form_container.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2236,6 +2244,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -2296,6 +2305,10 @@ var Modal = /*#__PURE__*/function (_React$Component) {
 
         case 'signup':
           component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_4__.default, null);
+          break;
+
+        case 'guest login':
+          component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(GuestLogin, null);
           break;
 
         default:
@@ -3602,7 +3615,12 @@ var Welcome = function Welcome(_ref) {
       onClick: function onClick() {
         return openModal('signup');
       }
-    }, "SignUp")));
+    }, "SignUp"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      id: "welcomebutton",
+      onClick: function onClick() {
+        return openModal('guest login');
+      }
+    }, "guest login")));
   };
 
   var logged_in = function logged_in() {
@@ -4325,7 +4343,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fetchLocation": () => (/* binding */ fetchLocation),
 /* harmony export */   "createRental": () => (/* binding */ createRental),
 /* harmony export */   "deleteRental": () => (/* binding */ deleteRental),
-/* harmony export */   "fetchRental": () => (/* binding */ fetchRental)
+/* harmony export */   "fetchRental": () => (/* binding */ fetchRental),
+/* harmony export */   "fetchImage": () => (/* binding */ fetchImage)
 /* harmony export */ });
 var fetchHouses = function fetchHouses(bounds) {
   return $.ajax({
@@ -4377,6 +4396,12 @@ var fetchRental = function fetchRental() {
   return $.ajax({
     method: 'GET',
     url: 'api/rental_infos'
+  });
+};
+var fetchImage = function fetchImage(houseId) {
+  return $.ajax({
+    method: 'GET',
+    url: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_".concat(houseId, ".jpg")
   });
 };
 

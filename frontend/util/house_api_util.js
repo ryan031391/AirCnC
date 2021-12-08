@@ -54,4 +54,11 @@ export const fetchHouses = bounds => (
     })
   )
 
+  export const fetchImage = (houseId) => (
+    $.ajax({
+      method: 'GET',
+      url: `https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_${houseId}.jpg`
+    })
+  )
+
   

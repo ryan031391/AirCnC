@@ -17,6 +17,8 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
                 <button id="welcomebutton" onClick={() => openModal('login')}>&nbsp;Login&nbsp;</button>
                 <br/><br/>
                 <button id="welcomebutton" onClick={() => openModal('signup')}>SignUp</button>
+                <br/><br/>
+                <button id="welcomebutton" onClick={() => openModal('guest login')}>guest login</button>
             </div>
         </div>
     );

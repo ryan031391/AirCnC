@@ -1255,7 +1255,8 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.today = new Date();
     _this.reviewForm = _this.reviewForm.bind(_assertThisInitialized(_this));
-    _this.getDisabledDays = _this.getDisabledDays.bind(_assertThisInitialized(_this));
+    _this.getDisabledDays = _this.getDisabledDays.bind(_assertThisInitialized(_this)); // this.showimage = this.showimage.bind(this)
+
     _this.houseimage = "";
     return _this;
   }
@@ -1286,7 +1287,14 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       if (temp) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_2__.default, {
         houseId: houseId
       });
-    }
+    } // showimage(id){
+    //     let temp = []
+    //     for (let i = 1; i < 4; i++) {
+    //         temp.push(<img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_${id}/${i}.jpg`} alt="image"/>)    
+    //     }
+    //     return temp
+    // }
+
   }, {
     key: "getDisabledDays",
     value: function getDisabledDays() {
@@ -1308,6 +1316,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       // console.log(this.props.match.params.houseId)
+      // const imgs = this.showimage(this.props.match.params.houseId)
       var _this$props = this.props,
           house = _this$props.house,
           reviews = _this$props.reviews;
@@ -1335,11 +1344,6 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "House Information:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         id: "infolist"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Location: ", house.location, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Price: ", house.price, " / night")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Rating: ", rating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Description: ", house.description)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "house-img"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_".concat(this.props.match.params.houseId, ".jpg"),
-        alt: "image"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "reservation"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Make a reservation now!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservation_container__WEBPACK_IMPORTED_MODULE_3__.default, {
         today: this.today,
@@ -1347,14 +1351,39 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_day_picker__WEBPACK_IMPORTED_MODULE_4___default()), {
         initialMonth: new Date(this.today.getFullYear(), this.today.getMonth()),
         disabledDays: this.getDisabledDays()
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-bottom"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "review"
-      }, "Reviews: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviews.map(function (review) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Reviews: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviews.map(function (review) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           key: review.id,
           review: review
         });
-      })), this.reviewForm(this.props.match.params.houseId));
+      })), this.reviewForm(this.props.match.params.houseId)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-img"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-img-high"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(this.props.match.params.houseId, "/1.jpg"),
+        alt: "image",
+        width: "700",
+        height: "100%"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-img-low"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(this.props.match.params.houseId, "/2.jpg"),
+        alt: "image",
+        width: "400",
+        height: "100%"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "vl"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(this.props.match.params.houseId, "/3.jpg"),
+        alt: "image",
+        width: "400",
+        height: "100%"
+      })))));
     }
   }]);
 

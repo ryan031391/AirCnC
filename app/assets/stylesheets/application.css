@@ -549,6 +549,35 @@ textarea {
   background-color: #0078d4;
 }
 
+.house-bottom {
+  display: flex;
+}
+
+#review {
+  width: 20%;
+}
+
+.house-img {
+  display: flex;
+  width: 80%;
+  height: 550px;
+}
+
+.house-img-high {
+  margin-top: 50px;
+  justify-self: auto;
+}
+
+.house-img-low {
+  margin-left: 5px;
+  display: grid;
+  justify-content: space-evenly;
+}
+
+.vl {
+  border-left: 1px solid rgba(65, 62, 62, 0.356);
+  height: 2px;
+}
 
 /* .dropbtn {
   background-color: #3498DB;

@@ -13,7 +13,7 @@ class HouseShow extends React.Component{
         this.today = new Date();    
         this.reviewForm = this.reviewForm.bind(this);
         this.getDisabledDays = this.getDisabledDays.bind(this)
-        
+        // this.showimage = this.showimage.bind(this)
         this.houseimage = ""
     }
 
@@ -37,6 +37,14 @@ class HouseShow extends React.Component{
         ) 
     }
 
+    // showimage(id){
+    //     let temp = []
+    //     for (let i = 1; i < 4; i++) {
+    //         temp.push(<img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_${id}/${i}.jpg`} alt="image"/>)    
+    //     }
+    //     return temp
+    // }
+
     getDisabledDays(){
         let result = [];
         this.props.rentals.forEach(({check_in, check_out}) => {
@@ -58,6 +66,7 @@ class HouseShow extends React.Component{
 
     render(){
         // console.log(this.props.match.params.houseId)
+        // const imgs = this.showimage(this.props.match.params.houseId)
         const {house, reviews} = this.props;
         let sum = 0;
         let num = 0;
@@ -81,9 +90,7 @@ class HouseShow extends React.Component{
                             <li><h3>Description: {house.description}</h3></li>
                         </ul>
                     </div>
-                    <div className="house-img">
-                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_${this.props.match.params.houseId}.jpg`} alt="image"/>
-                    </div>
+
                     {/* <div className="date-div"> */}
                         <div className="reservation">
                             <h2 >Make a reservation now!</h2>
@@ -106,17 +113,33 @@ class HouseShow extends React.Component{
                         </div>
                     {/* </div> */}
                 </div>
-
-                <h2 id="review">Reviews: </h2>
-                <ul>
-                    {reviews.map(review => (
-                        <ReviewItemContainer key={review.id} review={review}/>
-                    ))}
-                </ul>
-                {this.reviewForm(this.props.match.params.houseId)}
-                {/* <div className="house-sticky-image-wrapper">
-                    <img className="house-bot-img" src={window.backgroundUrl} />
-                </div> */}
+                <div className='house-bottom'>
+                    <div id="review">               
+                        <h2>Reviews: </h2>
+                        <ul>
+                            {reviews.map(review => (
+                                <ReviewItemContainer key={review.id} review={review}/>
+                            ))}
+                        </ul>
+                        {this.reviewForm(this.props.match.params.houseId)}
+                        {/* <div className="house-sticky-image-wrapper">
+                            <img className="house-bot-img" src={window.backgroundUrl} />
+                        </div> */}
+                    </div> 
+                    <div className="house-img">
+                        {/* {imgs.map(img => {
+                            return img
+                        })} */}
+                        <div className='house-img-high'>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${this.props.match.params.houseId}/1.jpg`} alt="image" width="700" height="100%"/>
+                        </div>
+                        <div className='house-img-low'>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${this.props.match.params.houseId}/2.jpg`} alt="image" width="400" height="100%"/>
+                            <div className='vl'></div>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${this.props.match.params.houseId}/3.jpg`} alt="image" width="400" height="100%"/>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

@@ -14,7 +14,6 @@ class HouseShow extends React.Component{
         this.reviewForm = this.reviewForm.bind(this);
         this.getDisabledDays = this.getDisabledDays.bind(this)
         // this.showimage = this.showimage.bind(this)
-        this.houseimage = ""
     }
 
     componentDidMount(){
@@ -38,7 +37,7 @@ class HouseShow extends React.Component{
     }
 
     // showimage(id){
-    //     let temp = []
+    //     let temp = [];
     //     for (let i = 1; i < 4; i++) {
     //         temp.push(<img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house_${id}/${i}.jpg`} alt="image"/>)    
     //     }
@@ -65,7 +64,6 @@ class HouseShow extends React.Component{
     }
 
     render(){
-        // console.log(this.props.match.params.houseId)
         // const imgs = this.showimage(this.props.match.params.houseId)
         const {house, reviews} = this.props;
         let sum = 0;

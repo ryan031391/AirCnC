@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { remove } from '../../util/session_api_util'
 import SearchContainer from '../search/search_container'
 import DisplayReservation from './display'
+import GuestLoginContainer from '../session_form/guest_login_container'
 
 const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fetchRental}) => {
     
@@ -18,7 +19,8 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
                 <br/><br/>
                 <button id="welcomebutton" onClick={() => openModal('signup')}>SignUp</button>
                 <br/><br/>
-                <button id="welcomebutton" onClick={() => openModal('guest login')}>guest login</button>
+                {/* <button id="welcomebutton" onClick={() => openModal('guest login')}>guest login</button> */}
+                <GuestLoginContainer />
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
 import { guestLogin } from '../../actions/session_actions';
+import GuestLoginContainer from '../session_form/guest_login_container';
 
 // function Modal({modal, closeModal}) {
 //   if (!modal) {
@@ -47,9 +48,9 @@ class Modal extends React.Component{
       case 'signup':
         component = <SignupFormContainer />;
         break;
-      case 'guest login':
-        component = <GuestLogin/>;
-        break;
+      // case 'guest login':
+      //   component = <GuestLoginContainer/>;
+      //   break;
 
       default:
         return null;

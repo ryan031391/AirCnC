@@ -66,7 +66,7 @@ class HouseShow extends React.Component{
     render(){
         // const imgs = this.showimage(this.props.match.params.houseId)
         const {house, reviews} = this.props;
-        const house_num = this.props.match.params.houseId + 105;
+        const house_num = parseInt(this.props.match.params.houseId) + 105;
         let sum = 0;
         let num = 0;
         reviews.map(review => num += 1)
@@ -130,12 +130,12 @@ class HouseShow extends React.Component{
                             return img
                         })} */}
                         <div className='house-img-high'>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house${house_num}/1.jpg`} alt="image" width="700" height="100%"/>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/1.jpg`} alt="image" width="700" height="100%"/>
                         </div>
                         <div className='house-img-low'>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house${house_num}/2.jpg`} alt="image" width="400" height="100%"/>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/2.jpg`} alt="image" width="400" height="100%"/>
                             <div className='vl'></div>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house${house_num}/3.jpg`} alt="image" width="400" height="100%"/>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/3.jpg`} alt="image" width="400" height="100%"/>
                         </div>
                     </div>
                 </div>

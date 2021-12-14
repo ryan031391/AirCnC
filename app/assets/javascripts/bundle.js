@@ -1318,6 +1318,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           house = _this$props.house,
           reviews = _this$props.reviews;
+      var house_num = this.props.match.params.houseId - 105;
       var sum = 0;
       var num = 0;
       reviews.map(function (review) {
@@ -1363,21 +1364,21 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "house-img-high"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(this.props.match.params.houseId, "/1.jpg"),
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/1.jpg"),
         alt: "image",
         width: "700",
         height: "100%"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "house-img-low"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(this.props.match.params.houseId, "/2.jpg"),
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/2.jpg"),
         alt: "image",
         width: "400",
         height: "100%"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "vl"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(this.props.match.params.houseId, "/3.jpg"),
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/3.jpg"),
         alt: "image",
         width: "400",
         height: "100%"
@@ -2722,8 +2723,6 @@ var HouseMap = /*#__PURE__*/function (_React$Component) {
   _createClass(HouseMap, [{
     key: "render",
     value: function render() {
-      // console.log(mapOptions.center)
-      // console.log(this.center)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         style: {
           height: '100vh',
@@ -2794,7 +2793,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
  // const MyMarker = ({ text, tooltip, $hover }) => {
 //   const handleClick = () => {
-//     console.log(`You clicked on ${tooltip}`);
+//     
 //   };
 //   return (
 //     <div className={$hover ? "circle hover" : "circle"} onClick={handleClick}>
@@ -3618,8 +3617,7 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleClick",
     value: function handleClick(e) {
-      e.preventDefault(); // console.log("working")
-
+      e.preventDefault();
       this.setState({
         house_id: e.currentTarget.value,
         showup: true

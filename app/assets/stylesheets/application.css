@@ -295,7 +295,7 @@ textarea {
 }
 .session-form-left img {
     width: 100%;
-    height: 1050px;
+    height: 100%;
     object-fit: fill;
     object-position: left bottom;
 }

@@ -130,12 +130,12 @@ class HouseShow extends React.Component{
                             return img
                         })} */}
                         <div className='house-img-high'>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/1.jpg`} alt="image" width="700" height="100%"/>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house${house_num}/1.jpg`} alt="image" width="700" height="100%"/>
                         </div>
                         <div className='house-img-low'>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/2.jpg`} alt="image" width="400" height="100%"/>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house${house_num}/2.jpg`} alt="image" width="400" height="100%"/>
                             <div className='vl'></div>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/3.jpg`} alt="image" width="400" height="100%"/>
+                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house${house_num}/3.jpg`} alt="image" width="400" height="100%"/>
                         </div>
                     </div>
                 </div>

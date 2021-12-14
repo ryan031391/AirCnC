@@ -2,7 +2,7 @@ import React from "react";
 
 // const MyMarker = ({ text, tooltip, $hover }) => {
 //   const handleClick = () => {
-//     console.log(`You clicked on ${tooltip}`);
+//     
 //   };
 
 //   return (

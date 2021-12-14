@@ -30,7 +30,6 @@ class DisplayReservation extends React.Component{
 
     handleClick(e){
         e.preventDefault();
-        // console.log("working")
         this.setState({
             house_id: e.currentTarget.value,
             showup: true

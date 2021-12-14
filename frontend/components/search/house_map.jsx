@@ -37,8 +37,6 @@ class HouseMap extends React.Component{
     // }
 
     render() {
-        // console.log(mapOptions.center)
-        // console.log(this.center)
         return (
         <div style={{ height: '100vh', width: '100%' }}>
             <GoogleMapReact

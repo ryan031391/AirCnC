@@ -13,6 +13,8 @@ class HouseShow extends React.Component{
         this.today = new Date();    
         this.reviewForm = this.reviewForm.bind(this);
         this.getDisabledDays = this.getDisabledDays.bind(this)
+        // this.showReivews = this.showReivews.bind(this)
+        // console.log(this.props)
         // this.showimage = this.showimage.bind(this)
     }
 
@@ -25,8 +27,11 @@ class HouseShow extends React.Component{
         if (this.props.rentals.length !==0 && this.props.renters.lenth !== 0) {
             this.props.renters.forEach(renter => {
                 if (this.props.currentUser.username === renter.username ) {
-                    let temp_1 = new Date(this.props.rentals.find(ele => ele.user_id === renter.id).check_out)
-                    if (temp_1 < this.today) temp = true;
+                    let temp_1 = this.props.rentals.find(ele => ele.user_id === renter.id)
+                    if (temp_1 !== undefined) {
+                        let temp_2 = new Date(temp_1.check_out)
+                        if (temp_2 < this.today) temp = true;
+                    }
                 }
             })
         }
@@ -63,6 +68,16 @@ class HouseShow extends React.Component{
         // },
     }
 
+    // showReivews(){
+    //     console.log(this.props.reviews)
+    //     this.props.reviews.map(review => {
+    //         if (review !== undefined) {
+    //             console.log(review)
+    //             return <ReviewItemContainer key={review.id} review={review}/>
+    //         }
+    //     })
+    // }
+
     render(){
         // const imgs = this.showimage(this.props.match.params.houseId)
         const {house, reviews} = this.props;
@@ -70,7 +85,11 @@ class HouseShow extends React.Component{
         let sum = 0;
         let num = 0;
         reviews.map(review => num += 1)
-        reviews.map(review => sum += review.score)
+        reviews.map(review => {
+            if (review !== undefined) {
+                sum += review.score
+            }
+        })            
         let rating = (sum/num).toFixed(2)
         if (rating === 'NaN') {rating = "No review yet"}
         return(
@@ -116,6 +135,7 @@ class HouseShow extends React.Component{
                     <div id="review">               
                         <h2>Reviews: </h2>
                         <ul>
+                            {/* {this.showReivews()} */}
                             {reviews.map(review => (
                                 <ReviewItemContainer key={review.id} review={review}/>
                             ))}

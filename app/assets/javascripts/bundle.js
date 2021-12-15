@@ -1255,7 +1255,9 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.today = new Date();
     _this.reviewForm = _this.reviewForm.bind(_assertThisInitialized(_this));
-    _this.getDisabledDays = _this.getDisabledDays.bind(_assertThisInitialized(_this)); // this.showimage = this.showimage.bind(this)
+    _this.getDisabledDays = _this.getDisabledDays.bind(_assertThisInitialized(_this)); // this.showReivews = this.showReivews.bind(this)
+    // console.log(this.props)
+    // this.showimage = this.showimage.bind(this)
 
     return _this;
   }
@@ -1275,10 +1277,14 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       if (this.props.rentals.length !== 0 && this.props.renters.lenth !== 0) {
         this.props.renters.forEach(function (renter) {
           if (_this2.props.currentUser.username === renter.username) {
-            var temp_1 = new Date(_this2.props.rentals.find(function (ele) {
+            var temp_1 = _this2.props.rentals.find(function (ele) {
               return ele.user_id === renter.id;
-            }).check_out);
-            if (temp_1 < _this2.today) temp = true;
+            });
+
+            if (temp_1 !== undefined) {
+              var temp_2 = new Date(temp_1.check_out);
+              if (temp_2 < _this2.today) temp = true;
+            }
           }
         });
       }
@@ -1310,7 +1316,16 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       //   after: new Date(2017, 3, 20),
       //   before: new Date(2017, 3, 25),
       // },
-    }
+    } // showReivews(){
+    //     console.log(this.props.reviews)
+    //     this.props.reviews.map(review => {
+    //         if (review !== undefined) {
+    //             console.log(review)
+    //             return <ReviewItemContainer key={review.id} review={review}/>
+    //         }
+    //     })
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -1325,7 +1340,9 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
         return num += 1;
       });
       reviews.map(function (review) {
-        return sum += review.score;
+        if (review !== undefined) {
+          sum += review.score;
+        }
       });
       var rating = (sum / num).toFixed(2);
 

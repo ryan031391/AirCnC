@@ -70,12 +70,14 @@ class HouseShow extends React.Component{
 
     // showReivews(){
     //     console.log(this.props.reviews)
-    //     this.props.reviews.map(review => {
+    //     let result = []
+    //     this.props.reviews.forEach(review => {
     //         if (review !== undefined) {
     //             console.log(review)
-    //             return <ReviewItemContainer key={review.id} review={review}/>
+    //             result.push(<ReviewItemContainer key={review.id} review={review}/>) 
     //         }
     //     })
+    //     return result
     // }
 
     render(){
@@ -91,6 +93,8 @@ class HouseShow extends React.Component{
             }
         })            
         let rating = (sum/num).toFixed(2)
+        // let comments = this.showReivews()
+        // console.log(comments)
         if (rating === 'NaN') {rating = "No review yet"}
         return(
             <div id="showpage">
@@ -135,10 +139,11 @@ class HouseShow extends React.Component{
                     <div id="review">               
                         <h2>Reviews: </h2>
                         <ul>
-                            {/* {this.showReivews()} */}
-                            {reviews.map(review => (
-                                <ReviewItemContainer key={review.id} review={review}/>
-                            ))}
+                            {reviews.map(review => {
+                                if (review !== undefined) {
+                                    return <ReviewItemContainer key={review.id} review={review}/>
+                                }
+                            })}
                         </ul>
                         {this.reviewForm(this.props.match.params.houseId)}
                         {/* <div className="house-sticky-image-wrapper">

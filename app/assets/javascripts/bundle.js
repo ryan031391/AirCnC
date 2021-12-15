@@ -1318,12 +1318,14 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       // },
     } // showReivews(){
     //     console.log(this.props.reviews)
-    //     this.props.reviews.map(review => {
+    //     let result = []
+    //     this.props.reviews.forEach(review => {
     //         if (review !== undefined) {
     //             console.log(review)
-    //             return <ReviewItemContainer key={review.id} review={review}/>
+    //             result.push(<ReviewItemContainer key={review.id} review={review}/>) 
     //         }
     //     })
+    //     return result
     // }
 
   }, {
@@ -1344,7 +1346,8 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
           sum += review.score;
         }
       });
-      var rating = (sum / num).toFixed(2);
+      var rating = (sum / num).toFixed(2); // let comments = this.showReivews()
+      // console.log(comments)
 
       if (rating === 'NaN') {
         rating = "No review yet";
@@ -1372,10 +1375,12 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "review"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Reviews: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviews.map(function (review) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
-          key: review.id,
-          review: review
-        });
+        if (review !== undefined) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
+            key: review.id,
+            review: review
+          });
+        }
       })), this.reviewForm(this.props.match.params.houseId)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "house-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2080,9 +2085,13 @@ var ReviewItem = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ReviewItem);
 
   function ReviewItem(props) {
+    var _this;
+
     _classCallCheck(this, ReviewItem);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    console.log(_this.props);
+    return _this;
   }
 
   _createClass(ReviewItem, [{

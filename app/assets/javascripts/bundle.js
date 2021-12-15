@@ -1318,7 +1318,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           house = _this$props.house,
           reviews = _this$props.reviews;
-      var house_num = this.props.match.params.houseId - 105;
+      var house_num = parseInt(this.props.match.params.houseId) + 105;
       var sum = 0;
       var num = 0;
       reviews.map(function (review) {
@@ -3673,6 +3673,7 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
       if (this.props.rentals.length !== 0) {
         var temp = [];
         var today = new Date();
+        today.setDate(today.getDate() - 2);
         this.props.rentals.forEach(function (ele) {
           if (new Date(ele.check_in) >= today) {
             temp.push(ele);

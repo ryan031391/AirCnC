@@ -77,6 +77,7 @@ class DisplayReservation extends React.Component{
         if (this.props.rentals.length !== 0) {
             let temp = []
             let today = new Date()
+            today.setDate(today.getDate() - 2);
             this.props.rentals.forEach(ele => {
                 if (new Date(ele.check_in) >= today) {
                     temp.push(ele)

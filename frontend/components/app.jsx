@@ -7,6 +7,7 @@ import LoginFormContainer from './session_form/login_form_container'
 import WelcomeContainer from './welcome/welcome_container';
 import HouseShowContainer from './house_show/house_show_container';
 import My404Component from './my404';
+import HouseIndexContainer from './search/house_index_container';
 import UserContainer from './user/user_container';
 import Modal from './modal/modal';
 import LogoutContainer from './logout_container'
@@ -28,7 +29,7 @@ const App = () => (
       <Switch>
       <Route exact path="/" component={WelcomeContainer}/>
       <ProtectedRoute path="/houses/:houseId" component={HouseShowContainer} />
-
+      <ProtectedRoute path="/search" component={HouseIndexContainer} />
       <Route component={My404Component} />
       
         {/* <AuthRoute exact path="/login" component={LoginFormContainer} />

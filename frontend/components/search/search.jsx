@@ -1,5 +1,6 @@
 import React from 'react';
 import HouseIndex from './house_index';
+import { withRouter, Link } from 'react-router-dom';
 
 class Search extends React.Component{
     constructor(props){
@@ -8,10 +9,12 @@ class Search extends React.Component{
             location: '',
             bound: '',
         }
+        // console.log(this.props)
         this.updateLocation = this.updateLocation.bind(this);
         this.updateBound = this.updateBound.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showHouses = this.showHouses.bind(this);
+        this.inputParams = this.inputParams.bind(this)
     }
 
     showHouses(){
@@ -25,6 +28,7 @@ class Search extends React.Component{
         // const temp = this.state.location.split(" ").join("")
         // this.setState({location: `${temp}`})
         this.props.fetchLocation(this.state)
+            .then(() => this.inputParams)
     }
 
     updateLocation(e){
@@ -35,17 +39,25 @@ class Search extends React.Component{
         this.setState({bound: e.currentTarget.value})
     }
 
+    inputParams(){
+        const newTO = {
+            pathname: `/search`,
+            params: this.state
+        }
+        return newTO
+    }
+
     render(){
         return(
             <div >
-                <form onSubmit={this.handleSubmit} className="search-bar">
+                {/* <form onSubmit={this.handleSubmit} className="search-bar"> */}
                     <div className="search-box">
                         <div className="location">
                             <b>Location: </b>
                                 <input 
                                 className="input-location"
                                 type="text"
-                                placeholder="where are you going" 
+                                placeholder="San Francisco" 
                                 value={this.state.location} 
                                 onChange={this.updateLocation}
                                 />
@@ -63,14 +75,17 @@ class Search extends React.Component{
                         </div>
                     </div>
                     <br/>
-                    <button className="search-button" type="submit">Search</button>
+                    <Link className="search-button" to={this.inputParams}>
+                        Search
+                    </Link>
+                    {/* <button className="search-button" type="submit">Search</button> */}
                     {/* <input 
                     type="text" 
                     value={this.state.bound} 
                     onChange={this.updateBound}
                     /> */}
-                </form>
-                {this.showHouses()}
+                {/* </form> */}
+                {/* {this.showHouses()} */}
                 {/* <HouseIndex houses={this.props.houses} /> */}
             </div>
         )

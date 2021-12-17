@@ -60,12 +60,13 @@ class Search extends React.Component{
                                 placeholder="San Francisco" 
                                 value={this.state.location} 
                                 onChange={this.updateLocation}
+                                required
                                 />
                         </div>
                         {/* <br/> */}
                         <div className="bound">  
                             <b> Bound: </b>  
-                            <select className="input-bound" id="myList" onChange={this.updateBound} >  
+                            <select className="input-bound" id="myList" onChange={this.updateBound} required>  
                                 <option > choose bound </option>  
                                 <option value="5"> 5 miles </option>  
                                 <option value="10"> 10 miles </option>  

@@ -3,6 +3,7 @@ import ReviewItemContainer from './review_item_container';
 import ReviewFormContainer from './review_form_container';
 import ReservationContainer from './reservation_container';
 import DayPicker from 'react-day-picker';
+import { Link } from 'react-router-dom';
 
 // import '../../../node_modules/react-day-picker/lib/style.css';
 // import Calendar from "react-calendar";
@@ -101,6 +102,7 @@ class HouseShow extends React.Component{
                 <div >
                     <img className="houseshow-top-img" src={window.backgroundUrl} />
                 </div>
+                <Link to={`/search`}>Back to Search</Link>
                 <div className="house-info">
                     <div>
                         <h2>House Information:<br/></h2>

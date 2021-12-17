@@ -21,7 +21,6 @@ class HouseIndex extends React.Component{
     }
 
     searchBar(){
-        console.log(this.props.location.params.location)
         return(
             <div >
                 <form onSubmit={this.handleSubmit} className="search-bar">
@@ -31,7 +30,7 @@ class HouseIndex extends React.Component{
                                 <input 
                                 className="input-location"
                                 type="text"
-                                input={this.props.location.params.location}
+                                placeholder="San Francisco"
                                 value={this.state.location} 
                                 onChange={this.updateLocation}
                                 />

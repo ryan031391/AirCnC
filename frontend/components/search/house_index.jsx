@@ -22,7 +22,7 @@ class HouseIndex extends React.Component{
 
     searchBar(){
         return(
-            <div >
+            <div className='new-page-search' >
                 <form onSubmit={this.handleSubmit} className="search-bar">
                     <div className="search-box">
                         <div className="location">
@@ -78,27 +78,29 @@ class HouseIndex extends React.Component{
     render(){
         if (this.props.houses.length !== 0) {
             return(
-                <div className="result-map">
-                    <div>
+                <div >
+                    <div className='search-div'>
                         {this.searchBar()}
                     </div>
-                    <div className="result">
-                        {/* <h1 id="houses">Houses: </h1> */}
-                        <ul className="grid-container">
-                            <div className="grid-header">
-                                <h2 className="grid-item-left">Location</h2>
-                                <h2 className="grid-item-right">Price ($/per night)</h2>
-                            </div>
-                            {this.props.houses.map(house => (
-                                <HouseIndexItem key={house.id} house={house}/>
-                            ))}
-                        </ul>
-                        {/* <Wrapper apiKey={"AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk"} render={render}>
-                            <Map />
-                        </Wrapper> */}
-                    </div>
-                    <div className="map">
-                        <HouseMap houses={this.props.houses} />
+                    <div className="result-map">
+                        <div className="result">
+                            {/* <h1 id="houses">Houses: </h1> */}
+                            <ul className="grid-container">
+                                <div className="grid-header">
+                                    <h2 className="grid-item-left">Location</h2>
+                                    <h2 className="grid-item-right">Price ($/per night)</h2>
+                                </div>
+                                {this.props.houses.map(house => (
+                                    <HouseIndexItem key={house.id} house={house}/>
+                                ))}
+                            </ul>
+                            {/* <Wrapper apiKey={"AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk"} render={render}>
+                                <Map />
+                            </Wrapper> */}
+                        </div>
+                        <div className="map">
+                            <HouseMap houses={this.props.houses} />
+                        </div>
                     </div>
                 </div>
             )

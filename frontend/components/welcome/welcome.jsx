@@ -38,14 +38,14 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
             </div>
             
             {/* <button onClick={logout}>Log out</button> */}
-            <div className="welcomepage-content">
+            {/* <div className="welcomepage-content">
                 <div className="reservation-list">
-                    {/* <DisplayReservation rentals={reservations} deleteRental={deleteRental} fetchRental={fetchRental}/> */}
+                    <DisplayReservation rentals={reservations} deleteRental={deleteRental} fetchRental={fetchRental}/>
                 </div>
-                {/* {displayHouses()} */}
-                {/* <h2>Your upcoming events: {currentUser.rentals.foreach(ele => {return ele})}</h2> */}
+                {displayHouses()}
+                <h2>Your upcoming events: {currentUser.rentals.foreach(ele => {return ele})}</h2>
 
-            </div>
+            </div> */}
             {/* <div className="sticky-image-wrapper">
                 <img className="house-bot-img" src={window.backgroundUrl} />
             </div> */}

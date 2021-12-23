@@ -99,12 +99,28 @@ class HouseShow extends React.Component{
         if (rating === 'NaN') {rating = "No review yet"}
         return(
             <div id="showpage">
-                <div >
+                {/* <div >
                     <img className="houseshow-top-img" src={window.backgroundUrl} />
+                </div> */}
+                <h2>{house.location}</h2>
+                <div className="house-img">
+                    {/* {imgs.map(img => {
+                        return img
+                    })} */}
+                    <div className='house-img-high'>
+                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/1.jpg`} alt="image" width="700" height="100%"/>
+                    </div>
+                    <div className='house-img-low'>
+                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/2.jpg`} alt="image" width="400" height="100%"/>
+                        <div className='vl'></div>
+                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/3.jpg`} alt="image" width="400" height="100%"/>
+                    </div>
                 </div>
                 <Link to={`/search`}>Back to Search</Link>
+                <h3>Rating: {rating}&nbsp;&nbsp;&nbsp;Price: {house.price}</h3>
+                <h3>Description: {house.description}</h3>
                 <div className="house-info">
-                    <div>
+                    {/* <div>
                         <h2>House Information:<br/></h2>
                         
                         <ul id="infolist">
@@ -113,7 +129,7 @@ class HouseShow extends React.Component{
                             <li><h3>Rating: {rating}</h3></li>
                             <li><h3>Description: {house.description}</h3></li>
                         </ul>
-                    </div>
+                    </div> */}
 
                     {/* <div className="date-div"> */}
                         <div className="reservation">
@@ -152,19 +168,6 @@ class HouseShow extends React.Component{
                             <img className="house-bot-img" src={window.backgroundUrl} />
                         </div> */}
                     </div> 
-                    <div className="house-img">
-                        {/* {imgs.map(img => {
-                            return img
-                        })} */}
-                        <div className='house-img-high'>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/1.jpg`} alt="image" width="700" height="100%"/>
-                        </div>
-                        <div className='house-img-low'>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/2.jpg`} alt="image" width="400" height="100%"/>
-                            <div className='vl'></div>
-                            <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/3.jpg`} alt="image" width="400" height="100%"/>
-                        </div>
-                    </div>
                 </div>
             </div>
         )

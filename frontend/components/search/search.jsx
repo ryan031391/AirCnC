@@ -49,7 +49,7 @@ class Search extends React.Component{
 
     render(){
         return(
-            <div >
+            <div className='search-div'>
                 {/* <form onSubmit={this.handleSubmit} className="search-bar"> */}
                     <div className="search-box">
                         <div className="location">

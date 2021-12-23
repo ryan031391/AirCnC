@@ -8,6 +8,8 @@ class Homepage extends React.Component{
         this.state = {
             search: true,
             reservation: false,
+            select_search: "select_search",
+            select_reser: "", 
         }
         this.showSerch = this.showSerch.bind(this)
         this.showReservation = this.showReservation.bind(this)
@@ -17,7 +19,9 @@ class Homepage extends React.Component{
     showSerch(){
         this.setState({
             search: true,
-            reservation: false, 
+            reservation: false,
+            select_search: "select_search",
+            select_reser: "", 
         })
     }
 
@@ -25,6 +29,8 @@ class Homepage extends React.Component{
         this.setState({
             search: false,
             reservation: true,
+            select_search: "",
+            select_reser: "select_reser", 
         })
     }
 
@@ -39,8 +45,8 @@ class Homepage extends React.Component{
     render(){
         return(
             <div className='homepage-selection'>
-                <button onClick={() => this.showSerch()}>Places to stay</button>
-                <button onClick={() => this.showReservation()}>Show my reservations</button>
+                <text className='home-nav-1' id={this.state.select_search} onClick={() => this.showSerch()}>Places to stay</text>
+                <text className='home-nav-2' id={this.state.select_reser} onClick={() => this.showReservation()}>Show my reservations</text>
                 {this.showContent()}
             </div>
         )

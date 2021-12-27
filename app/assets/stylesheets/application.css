@@ -66,6 +66,7 @@ nav{
   font-size: 20px;
   height: 100%;
   /* margin-top: 50px; */
+  /* margin-top: 10px; */
 }
 
 #welcomebutton {
@@ -519,6 +520,10 @@ textarea {
 
 .house-item-link {
   text-decoration: none;
+}
+
+.search-img {
+  width: 300px;
 }
 
 .grid-body {

@@ -29,7 +29,7 @@ const App = () => (
       <Switch>
       <Route exact path="/" component={WelcomeContainer}/>
       <ProtectedRoute path="/houses/:houseId" component={HouseShowContainer} />
-      <ProtectedRoute path="/search" component={HouseIndexContainer} />
+      <ProtectedRoute path="/:location :bound" component={HouseIndexContainer} />
       <Route component={My404Component} />
       
         {/* <AuthRoute exact path="/login" component={LoginFormContainer} />

@@ -1189,7 +1189,7 @@ var App = function App() {
       path: "/houses/:houseId",
       component: _house_show_house_show_container__WEBPACK_IMPORTED_MODULE_6__.default
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
-      path: "/search",
+      path: "/:location :bound",
       component: _search_house_index_container__WEBPACK_IMPORTED_MODULE_8__.default
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
       component: _my404__WEBPACK_IMPORTED_MODULE_7__.default
@@ -1218,7 +1218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reservation_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reservation_container */ "./frontend/components/house_show/reservation_container.js");
 /* harmony import */ var react_day_picker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-day-picker */ "./node_modules/react-day-picker/lib/react-day-picker.min.js");
 /* harmony import */ var react_day_picker__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_day_picker__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1263,7 +1263,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     _this.today = new Date();
     _this.reviewForm = _this.reviewForm.bind(_assertThisInitialized(_this));
     _this.getDisabledDays = _this.getDisabledDays.bind(_assertThisInitialized(_this)); // this.showReivews = this.showReivews.bind(this)
-    // console.log(this.props)
+    // this.inputParams = this.inputParams.bind(this)
     // this.showimage = this.showimage.bind(this)
 
     return _this;
@@ -1323,7 +1323,14 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       //   after: new Date(2017, 3, 20),
       //   before: new Date(2017, 3, 25),
       // },
-    } // showReivews(){
+    } // inputParams(){
+    //     const newTO = {
+    //         pathname: `/${this.props.searchParams.location} ${this.props.searchParams.bound}`,
+    //         params: this.props.searchParams,
+    //     }
+    //     return newTO
+    // }
+    // showReivews(){
     //     console.log(this.props.reviews)
     //     let result = []
     //     this.props.reviews.forEach(review => {
@@ -1385,8 +1392,8 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
         alt: "image",
         width: "400",
         height: "100%"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-        to: "/search"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.props.history.goBack
       }, "Back to Search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Rating: ", rating, "\xA0\xA0\xA0Price: ", house.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Description: ", house.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "house-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1415,7 +1422,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
   return HouseShow;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HouseShow);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)(HouseShow));
 
 /***/ }),
 
@@ -1442,6 +1449,7 @@ __webpack_require__.r(__webpack_exports__);
 // })
 
 var mSTP = function mSTP(state, ownProps) {
+  console.log(ownProps);
   var HouseId = parseInt(ownProps.match.params.houseId);
   var house = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectHouse)(state.entities, HouseId);
   var reviews = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectReviewsForHouse)(state.entities, house);
@@ -1457,7 +1465,8 @@ var mSTP = function mSTP(state, ownProps) {
     // renters: rentals.map(rental => (
     //     state.entities.users[rental.user_id]
     // )),
-    renters: renters
+    renters: renters,
+    searchParams: ownProps.location.state
   };
 };
 
@@ -2089,13 +2098,9 @@ var ReviewItem = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ReviewItem);
 
   function ReviewItem(props) {
-    var _this;
-
     _classCallCheck(this, ReviewItem);
 
-    _this = _super.call(this, props);
-    console.log(_this.props);
-    return _this;
+    return _super.call(this, props); // console.log(this.props)
   }
 
   _createClass(ReviewItem, [{
@@ -2562,13 +2567,29 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
     _this.updateBound = _this.updateBound.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.searchBar = _this.searchBar.bind(_assertThisInitialized(_this));
+    _this.destruct = _this.destruct.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(HouseIndex, [{
+    key: "destruct",
+    value: function destruct() {
+      var name = this.props.location.pathname.split(" ");
+      name[0] = name[0].split("").slice(1, name[0].split("").length).join("");
+      var distance = name[name.length - 1];
+      name = name.slice(0, name.length - 1).join(" ");
+      var data = {
+        location: name,
+        bound: distance
+      };
+      return data;
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchLocation(this.props.location.params);
+      // console.log(data)
+      this.props.fetchLocation(this.destruct()); // this.props.fetchLocation(this.props.location.params)
+      // console.log(this.props)
     }
   }, {
     key: "searchBar",
@@ -2630,6 +2651,8 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       if (this.props.houses.length !== 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "search-div"
@@ -2648,7 +2671,8 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
         }, "Price ($/per night)")), this.props.houses.map(function (house) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index_item__WEBPACK_IMPORTED_MODULE_1__.default, {
             key: house.id,
-            house: house
+            house: house,
+            searchParams: _this2.destruct()
           });
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "map"
@@ -2755,22 +2779,37 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(HouseIndexItem);
 
   function HouseIndexItem(props) {
+    var _this;
+
     _classCallCheck(this, HouseIndexItem);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.inputParams = _this.inputParams.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(HouseIndexItem, [{
+    key: "inputParams",
+    value: function inputParams() {
+      var newTO = {
+        pathname: "/houses/".concat(this.props.house.id),
+        state: this.props.searchParams
+      };
+      return newTO;
+    }
+  }, {
     key: "render",
     value: function render() {
-      var house = this.props.house;
-      var house_num = parseInt(house.id) + 105;
+      var house = this.props.house; // const house_num = parseInt(house.id) + 105;
+
+      var house_num = parseInt(house.id);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         id: "house-".concat(house.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         className: "house-item-link",
-        to: "/houses/".concat(house.id)
+        to: this.inputParams
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "search-img",
         src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/1.jpg"),
         alt: "image",
         width: "700",
@@ -3131,9 +3170,9 @@ var Search = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "inputParams",
-    value: function inputParams() {
+    value: function inputParams(location, bound) {
       var newTO = {
-        pathname: "/search",
+        pathname: "/".concat(location, " ").concat(bound),
         params: this.state
       };
       return newTO;
@@ -3171,7 +3210,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         value: "50"
       }, " 50 miles ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "search-button",
-        to: this.inputParams
+        to: this.inputParams(this.state.location, this.state.bound)
       }, "Search"));
     }
   }]);

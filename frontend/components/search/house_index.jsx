@@ -14,10 +14,26 @@ class HouseIndex extends React.Component{
         this.updateBound = this.updateBound.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.searchBar = this.searchBar.bind(this)
+        this.destruct = this.destruct.bind(this)
+    }
+
+    destruct(){
+        let name = (this.props.location.pathname).split(" ")
+        name[0] = name[0].split("").slice(1, name[0].split("").length).join("")
+        let distance = name[name.length-1]
+        name = name.slice(0, name.length - 1).join(" ")   
+        let data = {
+            location: name,
+            bound: distance,
+        }
+        return data
     }
 
     componentDidMount(){
-        this.props.fetchLocation(this.props.location.params)
+        // console.log(data)
+        this.props.fetchLocation(this.destruct())
+        // this.props.fetchLocation(this.props.location.params)
+        // console.log(this.props)
     }
 
     searchBar(){
@@ -91,7 +107,7 @@ class HouseIndex extends React.Component{
                                     <h2 className="grid-item-right">Price ($/per night)</h2>
                                 </div>
                                 {this.props.houses.map(house => (
-                                    <HouseIndexItem key={house.id} house={house}/>
+                                    <HouseIndexItem key={house.id} house={house} searchParams={this.destruct()}/>
                                 ))}
                             </ul>
                             {/* <Wrapper apiKey={"AIzaSyAZsmOMc3VUofOxE2fbhDv6JrQGwlPY_Bk"} render={render}>

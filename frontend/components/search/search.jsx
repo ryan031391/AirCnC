@@ -39,9 +39,9 @@ class Search extends React.Component{
         this.setState({bound: e.currentTarget.value})
     }
 
-    inputParams(){
+    inputParams(location, bound){
         const newTO = {
-            pathname: `/search`,
+            pathname: `/${location} ${bound}`,
             params: this.state
         }
         return newTO
@@ -76,7 +76,7 @@ class Search extends React.Component{
                         </div>
                     </div>
                     <br/>
-                    <Link className="search-button" to={this.inputParams}>
+                    <Link className="search-button" to={this.inputParams(this.state.location, this.state.bound)}>
                         Search
                     </Link>
                     {/* <button className="search-button" type="submit">Search</button> */}

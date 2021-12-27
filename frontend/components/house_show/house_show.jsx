@@ -3,7 +3,7 @@ import ReviewItemContainer from './review_item_container';
 import ReviewFormContainer from './review_form_container';
 import ReservationContainer from './reservation_container';
 import DayPicker from 'react-day-picker';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 // import '../../../node_modules/react-day-picker/lib/style.css';
 // import Calendar from "react-calendar";
@@ -15,7 +15,7 @@ class HouseShow extends React.Component{
         this.reviewForm = this.reviewForm.bind(this);
         this.getDisabledDays = this.getDisabledDays.bind(this)
         // this.showReivews = this.showReivews.bind(this)
-        // console.log(this.props)
+        // this.inputParams = this.inputParams.bind(this)
         // this.showimage = this.showimage.bind(this)
     }
 
@@ -69,6 +69,14 @@ class HouseShow extends React.Component{
         // },
     }
 
+    // inputParams(){
+    //     const newTO = {
+    //         pathname: `/${this.props.searchParams.location} ${this.props.searchParams.bound}`,
+    //         params: this.props.searchParams,
+    //     }
+    //     return newTO
+    // }
+
     // showReivews(){
     //     console.log(this.props.reviews)
     //     let result = []
@@ -116,7 +124,8 @@ class HouseShow extends React.Component{
                         <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/3.jpg`} alt="image" width="400" height="100%"/>
                     </div>
                 </div>
-                <Link to={`/search`}>Back to Search</Link>
+                {/* <Link to={this.inputParams()}>Back to Search</Link> */}
+                <button onClick={this.props.history.goBack}>Back to Search</button>
                 <h3>Rating: {rating}&nbsp;&nbsp;&nbsp;Price: {house.price}</h3>
                 <h3>Description: {house.description}</h3>
                 <div className="house-info">
@@ -174,4 +183,4 @@ class HouseShow extends React.Component{
     }
 }
 
-export default HouseShow;
+export default withRouter(HouseShow);

@@ -8,6 +8,7 @@ import HouseShow from './house_show';
 // })
 
 const mSTP = (state, ownProps) => {
+    console.log(ownProps)
     const HouseId = parseInt(ownProps.match.params.houseId);
     const house = selectHouse(state.entities, HouseId);
     const reviews = selectReviewsForHouse(state.entities, house);
@@ -24,6 +25,7 @@ const mSTP = (state, ownProps) => {
         //     state.entities.users[rental.user_id]
         // )),
         renters,
+        searchParams: ownProps.location.state,
     }
 }
 

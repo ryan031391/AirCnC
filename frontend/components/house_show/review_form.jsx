@@ -7,11 +7,14 @@ class ReviewForm extends React.Component{
             house_id: props.houseId, 
             body: '',
             score: '',
+            showup: false,
         }
         this.updateBody = this.updateBody.bind(this);
         this.updateScore = this.updateScore.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
+        this.popup = this.popup.bind(this);
+        console.log(props)
     }
 
     updateBody(e){
@@ -24,7 +27,31 @@ class ReviewForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.createReview(this.state)
+        let data = {
+            house_id: this.state.house_id, 
+            body: this.state.body,
+            score: this.state.score,       
+        }
+        if (this.props.bool) {
+            this.props.createReview(data)
+        } else {
+            this.setState({ showup: true })
+        }      
+    }
+
+    popup(){
+        if (!this.state.showup){
+            return null
+        } else {
+            return(
+                <div className="pop-up">
+                    <div className="pop-up-content">
+                        <h3>Sorry, comment section is not available until Check out.</h3>
+                        <button onClick={() => this.setState({ showup: false })}>OK</button>
+                    </div>
+                </div>
+            );
+        }    
     }
 
     renderErrors() {
@@ -56,6 +83,7 @@ class ReviewForm extends React.Component{
                 </select> 
                 &nbsp;&nbsp;
                 <button type="submit">Submit</button>
+                {this.popup()}
                 {this.renderErrors()}
 
             </form>

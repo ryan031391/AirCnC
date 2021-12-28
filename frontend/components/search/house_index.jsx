@@ -62,9 +62,11 @@ class HouseIndex extends React.Component{
                                 <option value="50"> 50 miles </option>  
                             </select>     
                         </div>
+                        <div className='search-button-div'>
+                            <button className="search-button" type="submit">Search</button>
+                        </div>
                     </div>
-                    <br/>
-                    <button className="search-button" type="submit">Search</button>
+                    
                     {/* <input 
                     type="text" 
                     value={this.state.bound} 

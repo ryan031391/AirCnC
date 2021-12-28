@@ -88,6 +88,7 @@ body {
   background-repeat: no-repeat;
   margin: 0;
   height: 100%; 
+  text-align: -webkit-center;
 }
 
 #guest {
@@ -204,15 +205,15 @@ a:hover {
 #check-in, #check-out {
   margin-top: 5px;
 }
-
+/* 
 #review-list, #review {
-  /* color: wheat; */
+  color: wheat;
   padding-left: 30px;
-}
+} */
 
-.review {
+/* .review {
   padding-left: 30px;
-}
+} */
 
 #review {
   margin-top: 50px;
@@ -325,6 +326,25 @@ textarea {
   object-position: bottom;
 }
 
+.showpage {
+  width: 1400px;
+  /* margin-left: 150px;
+  margin-right: 150px; */
+}
+
+.house-show-mid {
+  display: flex;
+}
+
+.house-show-mid-left {
+  width: 500px;
+  text-align: left;
+}
+
+.house-show-mid-right {
+  width: 900px;
+}
+
 .house-top-img {
   /* height: 550px; */
   width: 80%;
@@ -427,13 +447,13 @@ textarea {
   box-shadow: 0 8px 16px 0 rgba(126, 125, 125, 0.561), 0 6px 20px 0 rgba(119, 118, 118, 0.19);
   border-radius: 8px;
   font-family: 'Viaoda Libre', cursive;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(226, 216, 171);
   padding: 5px;
   cursor: pointer;
 }
 
 .search-bar {
-  width: 500px;
+  width: 600px;
 }
 
 .search-div {
@@ -461,14 +481,14 @@ textarea {
 
 .location {
   flex: 1.6 0 0%;
-  margin-top: 8px;
+  margin-top: 10px;
   width: 400px;
 }
 
 .bound {
   flex: 1 0 0%;
   width: 120px;
-  margin-top: 8px;
+  margin-top: 10px;
   padding-top: 8px;
 }
 
@@ -481,6 +501,12 @@ textarea {
 .input-bound {
   text-align: center;
   border: aliceblue;
+}
+
+.search-button-div {
+  width: 120px;
+  margin-top: 10px;
+  padding-top: 8px;
 }
 
 .Nav-logout {
@@ -563,6 +589,7 @@ textarea {
 
 .result-map{
   display: flex;
+  margin-top: 20px;
   /* width: 1300px; */
 }
 
@@ -601,25 +628,26 @@ textarea {
   display: flex;
 }
 
-#review {
+/* #review {
   width: 35%;
-}
+} */
 
 .house-img {
   display: flex;
-  width: 60%;
-  height: 550px;
+  height: 700px;
+  /* margin-left: 150px;
+  margin-right: 150px; */
 }
 
 .house-img-high {
-  margin-top: 50px;
-  justify-self: auto;
+  height: 100%;
+  width: 100%;
 }
 
 .house-img-low {
-  margin-left: 5px;
+  margin-left: 3px;
   display: grid;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
 }
 
 .vl {

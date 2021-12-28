@@ -74,11 +74,13 @@ class Search extends React.Component{
                                 <option value="50"> 50 miles </option>  
                             </select>     
                         </div>
+                        <div className='search-button-div'>
+                            <Link className="search-button" to={this.inputParams(this.state.location, this.state.bound)}>
+                                Search
+                            </Link>
+                        </div>
                     </div>
                     <br/>
-                    <Link className="search-button" to={this.inputParams(this.state.location, this.state.bound)}>
-                        Search
-                    </Link>
                     {/* <button className="search-button" type="submit">Search</button> */}
                     {/* <input 
                     type="text" 

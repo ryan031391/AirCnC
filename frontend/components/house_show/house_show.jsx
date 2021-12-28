@@ -23,7 +23,7 @@ class HouseShow extends React.Component{
         this.props.fetchHouse(this.props.HouseId)
     }
 
-    reviewForm(houseId){
+    reviewForm(){
         let temp = false
         if (this.props.rentals.length !==0 && this.props.renters.lenth !== 0) {
             this.props.renters.forEach(renter => {
@@ -37,9 +37,10 @@ class HouseShow extends React.Component{
             })
         }
 
-        if (temp) return(
-            <ReviewFormContainer houseId={houseId}/>
-        ) 
+        return temp
+        // if (temp) return(
+        //     <ReviewFormContainer houseId={houseId}/>
+        // ) 
     }
 
     // showimage(id){
@@ -92,7 +93,8 @@ class HouseShow extends React.Component{
     render(){
         // const imgs = this.showimage(this.props.match.params.houseId)
         const {house, reviews} = this.props;
-        const house_num = parseInt(this.props.match.params.houseId) + 105;
+        // const house_num = parseInt(this.props.match.params.houseId) + 105;
+        const house_num = parseInt(this.props.match.params.houseId);
         let sum = 0;
         let num = 0;
         reviews.map(review => num += 1)
@@ -106,7 +108,7 @@ class HouseShow extends React.Component{
         // console.log(comments)
         if (rating === 'NaN') {rating = "No review yet"}
         return(
-            <div id="showpage">
+            <div className="showpage">
                 {/* <div >
                     <img className="houseshow-top-img" src={window.backgroundUrl} />
                 </div> */}
@@ -116,67 +118,74 @@ class HouseShow extends React.Component{
                         return img
                     })} */}
                     <div className='house-img-high'>
-                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/1.jpg`} alt="image" width="700" height="100%"/>
+                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/1.jpg`} alt="image" width="100%" height="100%"/>
                     </div>
                     <div className='house-img-low'>
-                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/2.jpg`} alt="image" width="400" height="100%"/>
+                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/2.jpg`} alt="image" width="465" height="100%"/>
                         <div className='vl'></div>
-                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/3.jpg`} alt="image" width="400" height="100%"/>
+                        <img src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/3.jpg`} alt="image" width="465" height="100%"/>
                     </div>
                 </div>
                 {/* <Link to={this.inputParams()}>Back to Search</Link> */}
                 <button onClick={this.props.history.goBack}>Back to Search</button>
-                <h3>Rating: {rating}&nbsp;&nbsp;&nbsp;Price: {house.price}</h3>
-                <h3>Description: {house.description}</h3>
-                <div className="house-info">
-                    {/* <div>
-                        <h2>House Information:<br/></h2>
-                        
-                        <ul id="infolist">
-                            <li><h3>Location: {house.location} </h3></li>
-                            <li><h3>Price: {house.price} / night</h3></li>
-                            <li><h3>Rating: {rating}</h3></li>
-                            <li><h3>Description: {house.description}</h3></li>
-                        </ul>
-                    </div> */}
+                <div className='house-show-mid'>
+                    <div className='house-show-mid-left'>
+                        <h3>Rating: {rating}&nbsp;&nbsp;&nbsp;Price: {house.price}</h3>
+                        <h3>Description: {house.description}</h3>
+                        <div className='house-bottom'>
+                            <div id="review">               
+                                <h2>Reviews: </h2>
+                                <ul>
+                                    {reviews.map(review => {
+                                        if (review !== undefined) {
+                                            return <ReviewItemContainer key={review.id} review={review}/>
+                                        }
+                                    })}
+                                </ul>
+                                <ReviewFormContainer houseId={this.props.match.params.houseId} bool={this.reviewForm()}/>
+                                {/* {this.reviewForm(this.props.match.params.houseId)} */}
+                                {/* <div className="house-sticky-image-wrapper">
+                                    <img className="house-bot-img" src={window.backgroundUrl} />
+                                </div> */}
+                            </div> 
+                        </div>
+                    </div>
+                    <div className='house-show-mid-right'>
+                        <div className="house-info">
+                            {/* <div>
+                                <h2>House Information:<br/></h2>
+                                
+                                <ul id="infolist">
+                                    <li><h3>Location: {house.location} </h3></li>
+                                    <li><h3>Price: {house.price} / night</h3></li>
+                                    <li><h3>Rating: {rating}</h3></li>
+                                    <li><h3>Description: {house.description}</h3></li>
+                                </ul>
+                            </div> */}
 
-                    {/* <div className="date-div"> */}
-                        <div className="reservation">
-                            <h2 >Make a reservation now!</h2>
-                            
-                            <ReservationContainer today={this.today} houseId={this.props.match.params.houseId} />
+                            {/* <div className="date-div"> */}
+                                <div className="reservation">
+                                    <h2 >Make a reservation now!</h2>
+                                    
+                                    <ReservationContainer today={this.today} houseId={this.props.match.params.houseId} />
+                                </div>
+                                <div >
+                                    {/* <Calendar
+                                        onChange={this.showAvailability()}
+                                        onChange={(date) => this.setState({ date })}
+                                        value={this.state.date}
+                                        maxDate={new Date()}
+                                    /> */}
+                                    <DayPicker
+                                        initialMonth={new Date(this.today.getFullYear(), this.today.getMonth())}
+                                        disabledDays={
+                                            this.getDisabledDays()
+                                        }
+                                    />
+                                </div>
+                            {/* </div> */}
                         </div>
-                        <div >
-                            {/* <Calendar
-                                onChange={this.showAvailability()}
-                                onChange={(date) => this.setState({ date })}
-                                value={this.state.date}
-                                maxDate={new Date()}
-                            /> */}
-                            <DayPicker
-                                initialMonth={new Date(this.today.getFullYear(), this.today.getMonth())}
-                                disabledDays={
-                                    this.getDisabledDays()
-                                }
-                            />
-                        </div>
-                    {/* </div> */}
-                </div>
-                <div className='house-bottom'>
-                    <div id="review">               
-                        <h2>Reviews: </h2>
-                        <ul>
-                            {reviews.map(review => {
-                                if (review !== undefined) {
-                                    return <ReviewItemContainer key={review.id} review={review}/>
-                                }
-                            })}
-                        </ul>
-                        {this.reviewForm(this.props.match.params.houseId)}
-                        {/* <div className="house-sticky-image-wrapper">
-                            <img className="house-bot-img" src={window.backgroundUrl} />
-                        </div> */}
-                    </div> 
+                    </div>
                 </div>
             </div>
         )

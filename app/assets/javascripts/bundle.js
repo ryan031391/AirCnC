@@ -1276,7 +1276,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "reviewForm",
-    value: function reviewForm(houseId) {
+    value: function reviewForm() {
       var _this2 = this;
 
       var temp = false;
@@ -1296,9 +1296,9 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      if (temp) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_2__.default, {
-        houseId: houseId
-      });
+      return temp; // if (temp) return(
+      //     <ReviewFormContainer houseId={houseId}/>
+      // ) 
     } // showimage(id){
     //     let temp = [];
     //     for (let i = 1; i < 4; i++) {
@@ -1348,8 +1348,9 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       // const imgs = this.showimage(this.props.match.params.houseId)
       var _this$props = this.props,
           house = _this$props.house,
-          reviews = _this$props.reviews;
-      var house_num = parseInt(this.props.match.params.houseId) + 105;
+          reviews = _this$props.reviews; // const house_num = parseInt(this.props.match.params.houseId) + 105;
+
+      var house_num = parseInt(this.props.match.params.houseId);
       var sum = 0;
       var num = 0;
       reviews.map(function (review) {
@@ -1368,7 +1369,7 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        id: "showpage"
+        className: "showpage"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, house.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "house-img"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1376,35 +1377,29 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/1.jpg"),
         alt: "image",
-        width: "700",
+        width: "100%",
         height: "100%"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "house-img-low"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/2.jpg"),
         alt: "image",
-        width: "400",
+        width: "465",
         height: "100%"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "vl"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/3.jpg"),
         alt: "image",
-        width: "400",
+        width: "465",
         height: "100%"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.props.history.goBack
-      }, "Back to Search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Rating: ", rating, "\xA0\xA0\xA0Price: ", house.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Description: ", house.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "house-info"
+      }, "Back to Search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-show-mid"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "reservation"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Make a reservation now!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservation_container__WEBPACK_IMPORTED_MODULE_3__.default, {
-        today: this.today,
-        houseId: this.props.match.params.houseId
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_day_picker__WEBPACK_IMPORTED_MODULE_4___default()), {
-        initialMonth: new Date(this.today.getFullYear(), this.today.getMonth()),
-        disabledDays: this.getDisabledDays()
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-show-mid-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Rating: ", rating, "\xA0\xA0\xA0Price: ", house.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Description: ", house.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "house-bottom"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "review"
@@ -1415,7 +1410,22 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
             review: review
           });
         }
-      })), this.reviewForm(this.props.match.params.houseId))));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_2__.default, {
+        houseId: this.props.match.params.houseId,
+        bool: this.reviewForm()
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-show-mid-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "house-info"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "reservation"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Make a reservation now!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reservation_container__WEBPACK_IMPORTED_MODULE_3__.default, {
+        today: this.today,
+        houseId: this.props.match.params.houseId
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_day_picker__WEBPACK_IMPORTED_MODULE_4___default()), {
+        initialMonth: new Date(this.today.getFullYear(), this.today.getMonth()),
+        disabledDays: this.getDisabledDays()
+      }))))));
     }
   }]);
 
@@ -1449,7 +1459,7 @@ __webpack_require__.r(__webpack_exports__);
 // })
 
 var mSTP = function mSTP(state, ownProps) {
-  console.log(ownProps);
+  // console.log(ownProps)
   var HouseId = parseInt(ownProps.match.params.houseId);
   var house = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectHouse)(state.entities, HouseId);
   var reviews = (0,_reducers_selectors__WEBPACK_IMPORTED_MODULE_2__.selectReviewsForHouse)(state.entities, house);
@@ -1942,12 +1952,15 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       house_id: props.houseId,
       body: '',
-      score: ''
+      score: '',
+      showup: false
     };
     _this.updateBody = _this.updateBody.bind(_assertThisInitialized(_this));
     _this.updateScore = _this.updateScore.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    _this.popup = _this.popup.bind(_assertThisInitialized(_this));
+    console.log(props);
     return _this;
   }
 
@@ -1969,7 +1982,40 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.createReview(this.state);
+      var data = {
+        house_id: this.state.house_id,
+        body: this.state.body,
+        score: this.state.score
+      };
+
+      if (this.props.bool) {
+        this.props.createReview(data);
+      } else {
+        this.setState({
+          showup: true
+        });
+      }
+    }
+  }, {
+    key: "popup",
+    value: function popup() {
+      var _this2 = this;
+
+      if (!this.state.showup) {
+        return null;
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "pop-up"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "pop-up-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Sorry, comment section is not available until Check out."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          onClick: function onClick() {
+            return _this2.setState({
+              showup: false
+            });
+          }
+        }, "OK")));
+      }
     }
   }, {
     key: "renderErrors",
@@ -2009,7 +2055,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         value: "1"
       }, " 1 ")), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "submit"
-      }, "Submit"), this.renderErrors());
+      }, "Submit"), this.popup(), this.renderErrors());
     }
   }]);
 
@@ -2623,10 +2669,12 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
         value: "20"
       }, " 20 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "50"
-      }, " 50 miles ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, " 50 miles "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "search-button-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "search-button",
         type: "submit"
-      }, "Search")));
+      }, "Search")))));
     }
   }, {
     key: "updateLocation",
@@ -3208,10 +3256,12 @@ var Search = /*#__PURE__*/function (_React$Component) {
         value: "20"
       }, " 20 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "50"
-      }, " 50 miles ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      }, " 50 miles "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "search-button-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "search-button",
         to: this.inputParams(this.state.location, this.state.bound)
-      }, "Search"));
+      }, "Search"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
     }
   }]);
 

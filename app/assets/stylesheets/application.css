@@ -332,17 +332,23 @@ textarea {
   margin-right: 150px; */
 }
 
+.back-to-search {
+  text-align-last: left;
+  /* padding-left: 30px; */
+}
+
 .house-show-mid {
   display: flex;
 }
 
 .house-show-mid-left {
-  width: 500px;
+  width: 600px;
   text-align: left;
 }
 
 .house-show-mid-right {
-  width: 900px;
+  width: 800px;
+  text-align-last: left;
 }
 
 .house-top-img {
@@ -568,7 +574,7 @@ textarea {
 }
 
 .reservation {
-  margin-left: auto;
+  /* margin-left: auto; */
   margin-right: 5%;
 }
 

@@ -127,7 +127,9 @@ class HouseShow extends React.Component{
                     </div>
                 </div>
                 {/* <Link to={this.inputParams()}>Back to Search</Link> */}
-                <button onClick={this.props.history.goBack}>Back to Search</button>
+                <div className='back-to-search'>
+                    <button onClick={this.props.history.goBack}>Back to Search</button>
+                </div>
                 <div className='house-show-mid'>
                     <div className='house-show-mid-left'>
                         <h3>Rating: {rating}&nbsp;&nbsp;&nbsp;Price: {house.price}</h3>

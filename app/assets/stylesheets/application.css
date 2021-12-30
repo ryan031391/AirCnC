@@ -335,6 +335,7 @@ textarea {
 .back-to-search {
   text-align-last: left;
   /* padding-left: 30px; */
+  padding: 20px;
 }
 
 .house-show-mid {
@@ -344,6 +345,7 @@ textarea {
 .house-show-mid-left {
   width: 600px;
   text-align: left;
+  padding-left: 20px;
 }
 
 .house-show-mid-right {
@@ -633,10 +635,6 @@ textarea {
 .house-bottom {
   display: flex;
 }
-
-/* #review {
-  width: 35%;
-} */
 
 .house-img {
   display: flex;

@@ -34,7 +34,13 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
                     <HomePage rentals={reservations} deleteRental={deleteRental} fetchRental={fetchRental}/>
                 </div>
                 <img className="house-top-img" src={window.backgroundUrl} />
-
+                <div>
+                    <h3>Developer Information : </h3>
+                    <h4>Guocong Pan</h4>
+                    <a className='hyperlink' href='https://github.com/ryan031391'>My Github</a>
+                    <a className='hyperlink' href='https://www.linkedin.com/in/ryan-pan-b032461a6/'>My LinkedIn</a>
+                    <a className='hyperlink' href='https://angel.co/u/guocong-pan'>My Angelist</a>
+                </div>
             </div>
             
             {/* <button onClick={logout}>Log out</button> */}

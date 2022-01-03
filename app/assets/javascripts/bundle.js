@@ -1348,9 +1348,10 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       // const imgs = this.showimage(this.props.match.params.houseId)
       var _this$props = this.props,
           house = _this$props.house,
-          reviews = _this$props.reviews; // const house_num = parseInt(this.props.match.params.houseId) + 105;
+          reviews = _this$props.reviews; // const house_num = parseInt(this.props.match.params.houseId) + 105; // heroku v.
 
-      var house_num = parseInt(this.props.match.params.houseId);
+      var house_num = parseInt(this.props.match.params.houseId); // github v.
+
       var sum = 0;
       var num = 0;
       reviews.map(function (review) {
@@ -2850,9 +2851,10 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var house = this.props.house; // const house_num = parseInt(house.id) + 105;
+      var house = this.props.house; // const house_num = parseInt(house.id) + 105; // heroku v.
 
-      var house_num = parseInt(house.id);
+      var house_num = parseInt(house.id); // github v.
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         id: "house-".concat(house.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
@@ -4168,7 +4170,16 @@ var Welcome = function Welcome(_ref) {
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       className: "house-top-img",
       src: window.backgroundUrl
-    })));
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Developer Information : "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Guocong Pan"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      className: "hyperlink",
+      href: "https://github.com/ryan031391"
+    }, "My Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      className: "hyperlink",
+      href: "https://www.linkedin.com/in/ryan-pan-b032461a6/"
+    }, "My LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      className: "hyperlink",
+      href: "https://angel.co/u/guocong-pan"
+    }, "My Angelist"))));
   };
 
   return currentUser ? logged_in() : not_logged_in(); // return not_logged_in();

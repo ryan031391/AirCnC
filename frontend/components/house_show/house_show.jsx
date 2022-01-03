@@ -93,8 +93,8 @@ class HouseShow extends React.Component{
     render(){
         // const imgs = this.showimage(this.props.match.params.houseId)
         const {house, reviews} = this.props;
-        // const house_num = parseInt(this.props.match.params.houseId) + 105; // heroku v.
-        const house_num = parseInt(this.props.match.params.houseId); // github v.
+        const house_num = parseInt(this.props.match.params.houseId) + 105; // heroku v.
+        // const house_num = parseInt(this.props.match.params.houseId); // github v.
         let sum = 0;
         let num = 0;
         reviews.map(review => num += 1)

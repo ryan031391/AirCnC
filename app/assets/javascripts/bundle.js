@@ -1348,9 +1348,9 @@ var HouseShow = /*#__PURE__*/function (_React$Component) {
       // const imgs = this.showimage(this.props.match.params.houseId)
       var _this$props = this.props,
           house = _this$props.house,
-          reviews = _this$props.reviews; // const house_num = parseInt(this.props.match.params.houseId) + 105; // heroku v.
-
-      var house_num = parseInt(this.props.match.params.houseId); // github v.
+          reviews = _this$props.reviews;
+      var house_num = parseInt(this.props.match.params.houseId) + 105; // heroku v.
+      // const house_num = parseInt(this.props.match.params.houseId); // github v.
 
       var sum = 0;
       var num = 0;
@@ -2851,9 +2851,9 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var house = this.props.house; // const house_num = parseInt(house.id) + 105; // heroku v.
-
-      var house_num = parseInt(house.id); // github v.
+      var house = this.props.house;
+      var house_num = parseInt(house.id) + 105; // heroku v.
+      // const house_num = parseInt(house.id); // github v.
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         id: "house-".concat(house.id)

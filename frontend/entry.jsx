@@ -6,6 +6,7 @@ import configureStore from './store/store';
 
 document.addEventListener("DOMContentLoaded", ()=>{
     let store;
+    
     if (window.currentUser) {
         const { currentUser } = window
         const { session_token } = currentUser
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     } else {
       store = configureStore();
     }
+
     const rootEl = document.getElementById("root");
     // rootEl.style.backgroundImage = window.backgroundUrl;
     

@@ -19,6 +19,7 @@ const App = () => (
       <nav id="home-nav">
         
         <Link to="/" id="home-symbol"><img id="logo" src={window.logoUrl}/></Link>
+        
         {/* <WelcomeContainer/> */}
         <LogoutContainer />
       </nav>

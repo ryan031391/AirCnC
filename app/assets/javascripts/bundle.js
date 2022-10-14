@@ -2609,8 +2609,8 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      location: "",
-      bound: ""
+      location: "San Francisco",
+      bound: "5"
     };
     _this.updateLocation = _this.updateLocation.bind(_assertThisInitialized(_this));
     _this.updateBound = _this.updateBound.bind(_assertThisInitialized(_this));
@@ -2655,7 +2655,7 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "input-location",
         type: "text",
-        placeholder: "San Francisco",
+        placeholder: "Please type in San Francisco",
         value: this.state.location,
         onChange: this.updateLocation
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3173,8 +3173,8 @@ var Search = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      location: '',
-      bound: ''
+      location: "San Francisco",
+      bound: "5"
     }; // console.log(this.props)
 
     _this.updateLocation = _this.updateLocation.bind(_assertThisInitialized(_this));
@@ -3241,7 +3241,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "input-location",
         type: "text",
-        placeholder: "San Francisco",
+        placeholder: "Please type in San Francisco",
         value: this.state.location,
         onChange: this.updateLocation,
         required: true
@@ -4199,10 +4199,9 @@ var Welcome = function Welcome(_ref) {
       rentals: reservations,
       deleteRental: deleteRental,
       fetchRental: fetchRental
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      className: "house-top-img",
-      src: window.backgroundUrl
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Developer Information : "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Guocong Pan"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "dev-info"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Developer Information : "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Guocong Pan"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
       className: "hyperlink",
       href: "https://github.com/ryan031391"
     }, "My Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {

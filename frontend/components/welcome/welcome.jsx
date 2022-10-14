@@ -33,8 +33,8 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
                     {/* <SearchContainer /> */}
                     <HomePage rentals={reservations} deleteRental={deleteRental} fetchRental={fetchRental}/>
                 </div>
-                <img className="house-top-img" src={window.backgroundUrl} />
-                <div>
+                {/* <img className="house-top-img" src={window.backgroundUrl} /> */}
+                <div className="dev-info">
                     <h3>Developer Information : </h3>
                     <h4>Guocong Pan</h4>
                     <a className='hyperlink' href='https://github.com/ryan031391'>My Github</a>

@@ -7,8 +7,8 @@ class HouseIndex extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            location: "",
-            bound: "",
+            location: "San Francisco",
+            bound: "5",
         }
         this.updateLocation = this.updateLocation.bind(this);
         this.updateBound = this.updateBound.bind(this);
@@ -46,7 +46,7 @@ class HouseIndex extends React.Component{
                                 <input 
                                 className="input-location"
                                 type="text"
-                                placeholder="San Francisco"
+                                placeholder="Please type in San Francisco"
                                 value={this.state.location} 
                                 onChange={this.updateLocation}
                                 />

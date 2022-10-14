@@ -6,8 +6,8 @@ class Search extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            location: '',
-            bound: '',
+            location: "San Francisco",
+            bound: "5",
         }
         // console.log(this.props)
         this.updateLocation = this.updateLocation.bind(this);
@@ -57,7 +57,7 @@ class Search extends React.Component{
                                 <input 
                                 className="input-location"
                                 type="text"
-                                placeholder="San Francisco" 
+                                placeholder="Please type in San Francisco" 
                                 value={this.state.location} 
                                 onChange={this.updateLocation}
                                 required
@@ -67,7 +67,7 @@ class Search extends React.Component{
                         <div className="bound">  
                             <b> Bound: </b>  
                             <select className="input-bound" id="myList" onChange={this.updateBound} required>  
-                                <option > choose bound </option>  
+                                <option> choose bound </option>  
                                 <option value="5"> 5 miles </option>  
                                 <option value="10"> 10 miles </option>  
                                 <option value="20"> 20 miles </option>  

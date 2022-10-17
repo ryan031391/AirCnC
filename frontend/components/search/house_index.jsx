@@ -51,7 +51,7 @@ class HouseIndex extends React.Component{
                                 onChange={this.updateLocation}
                                 />
                         </div>
-                        {/* <br/> */}
+                        <br/>
                         <div className="bound">  
                             <b> Bound: </b>  
                             <select className="input-bound" id="myList" onChange={this.updateBound} >  

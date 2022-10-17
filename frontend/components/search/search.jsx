@@ -63,7 +63,7 @@ class Search extends React.Component{
                                 required
                                 />
                         </div>
-                        {/* <br/> */}
+                        <br/>
                         <div className="bound">  
                             <b> Bound: </b>  
                             <select className="input-bound" id="myList" onChange={this.updateBound} required>  
@@ -81,6 +81,15 @@ class Search extends React.Component{
                         </div>
                     </div>
                     <br/>
+                    {/* <button className="search-button" type="submit">Search</button> */}
+                    {/* <input 
+                    type="text" 
+                    value={this.state.bound} 
+                    onChange={this.updateBound}
+                    /> */}
+                {/* </form> */}
+                {/* {this.showHouses()} */}
+                {/* <HouseIndex houses={this.props.houses} /> */}
                     {/* <button className="search-button" type="submit">Search</button> */}
                     {/* <input 
                     type="text" 

@@ -676,3 +676,53 @@ textarea {
 .hyperlink {
   padding: 10px;
 }
+
+
+/* .search-button-div {
+  width: 120px;
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.Nav-logout {
+  margin-left: auto;
+  padding: 0%;
+  height: 32px;
+  margin-top: 10px;
+  margin-right: 20px;
+  z-index: 1000;
+}
+
+.grid-header {
+  display: flex;
+  flex: 1 1 0%;
+  text-align: -webkit-center;
+}
+
+.grid-container {
+  display: contents;
+}
+
+.grid-item-left {
+  flex: 2 0 0%;
+}
+
+.grid-item-right {
+  flex: 1 0 0%;
+}
+
+.house-index-left {
+  flex: 2 0 0%;
+}
+
+.house-index-right {
+  flex: 1 0 0%;
+}
+
+.house-item-link {
+  text-decoration: none;
+}
+
+.search-img {
+  width: 300px;
+} */

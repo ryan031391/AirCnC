@@ -70,10 +70,10 @@ nav{
   /* margin-top: 10px; */
 }
 
-#welcomebutton {
+/* #welcomebutton {
   font-size: 15px;
   background-color: burlywood;
-}
+} */
 
 #signin {
   margin: 5px;
@@ -192,12 +192,13 @@ a:link {
 }
 
 a:visited {
-  color: black;
+  color: white;
   
 }
 
 a:hover {
   color: rgb(160, 111, 22);
+  /* pointer-events: all; */
 }
 
 #houseitem{
@@ -469,7 +470,7 @@ textarea {
   box-shadow: 0 8px 16px 0 rgba(126, 125, 125, 0.561), 0 6px 20px 0 rgba(119, 118, 118, 0.19);
   border-radius: 8px;
   font-family: 'Viaoda Libre', cursive;
-  background-color: rgb(226, 216, 171);
+  background-color: #FF385C;
   padding: 5px;
   cursor: pointer;
 }
@@ -581,7 +582,8 @@ textarea {
 }
 
 .grid-body:hover {
-  background-color: rgb(211, 212, 146);
+  /* background-color: rgb(211, 212, 146); */
+  pointer-events: all;
 }
 
 .house-info {

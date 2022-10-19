@@ -48,6 +48,7 @@ class Homepage extends React.Component{
                 <text className='home-nav-1' id={this.state.select_search} onClick={() => this.showSerch()}>Places to stay</text>
                 <text className='home-nav-2' id={this.state.select_reser} onClick={() => this.showReservation()}>Show my reservations</text>
                 {this.showContent()}
+                
             </div>
         )
     }

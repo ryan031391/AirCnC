@@ -90,15 +90,6 @@ class Search extends React.Component{
                 {/* </form> */}
                 {/* {this.showHouses()} */}
                 {/* <HouseIndex houses={this.props.houses} /> */}
-                    {/* <button className="search-button" type="submit">Search</button> */}
-                    {/* <input 
-                    type="text" 
-                    value={this.state.bound} 
-                    onChange={this.updateBound}
-                    /> */}
-                {/* </form> */}
-                {/* {this.showHouses()} */}
-                {/* <HouseIndex houses={this.props.houses} /> */}
             </div>
         )
     }

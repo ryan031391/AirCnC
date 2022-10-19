@@ -2658,7 +2658,7 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
         placeholder: "Please type in San Francisco",
         value: this.state.location,
         onChange: this.updateLocation
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "bound"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
         className: "input-bound",
@@ -3245,7 +3245,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         value: this.state.location,
         onChange: this.updateLocation,
         required: true
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "bound"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
         className: "input-bound",
@@ -3933,39 +3933,7 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
         showup: false
       });
       this.props.fetchRental();
-    } //     showSerch(){
-    //     this.setState({
-    //         search: true,
-    //         reservation: false,
-    //         select_search: "select_search",
-    //         select_reser: "", 
-    //     })
-    // }
-    // showReservation(){
-    //     this.setState({
-    //         search: false,
-    //         reservation: true,
-    //         select_search: "",
-    //         select_reser: "select_reser", 
-    //     })
-    // }
-    // showContent(){
-    //     if (this.state.search === true) {
-    //         return <SearchContainer />
-    //     } else {
-    //         return <DisplayReservation rentals={this.props.rentals} deleteRental={this.props.deleteRental} fetchRental={this.props.fetchRental}/>
-    //     }
-    // }
-    // render(){
-    //     return(
-    //         <div className='homepage-selection'>
-    //             <text className='home-nav-1' id={this.state.select_search} onClick={() => this.showSerch()}>Places to stay</text>
-    //             <text className='home-nav-2' id={this.state.select_reser} onClick={() => this.showReservation()}>Show my reservations</text>
-    //             {this.showContent()}
-    //         </div>
-    //     )
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {

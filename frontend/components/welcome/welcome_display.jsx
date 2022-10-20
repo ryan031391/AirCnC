@@ -7,11 +7,20 @@ class WelcomeDisplay extends React.Component{
             location: "San Francisco",
             bound: "10",           
         }
+        // console.log(this.state)
     }
 
     componentDidMount(){
         this.props.fetchLocation(this.state)
-        // console.log(state)
+    }
+
+    render(){
+        if (this.state.entities === null) {
+            return null
+        } else {
+            console.log(this.state)
+            return null
+        }
     }
 
 }

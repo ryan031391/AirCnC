@@ -2711,15 +2711,15 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
           className: "result-map"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "result"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-          className: "grid-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "grid-header"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
           className: "grid-item-left"
         }, "Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
           className: "grid-item-right"
-        }, "Price ($/per night)")), this.props.houses.map(function (house) {
+        }, "Price ($/per night)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+          className: "grid-container"
+        }, this.props.houses.map(function (house) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index_item__WEBPACK_IMPORTED_MODULE_1__.default, {
             key: house.id,
             house: house,
@@ -3235,7 +3235,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "search-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "search-box"
+        className: "homepage-search-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "location"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -3316,6 +3316,97 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_search__WEBPACK_IMPORTED_MODULE_3__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/search/welcome_house_index_item.jsx":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/search/welcome_house_index_item.jsx ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var WelcomeHouseIndexItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(WelcomeHouseIndexItem, _React$Component);
+
+  var _super = _createSuper(WelcomeHouseIndexItem);
+
+  function WelcomeHouseIndexItem(props) {
+    var _this;
+
+    _classCallCheck(this, WelcomeHouseIndexItem);
+
+    _this = _super.call(this, props);
+    _this.inputParams = _this.inputParams.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(WelcomeHouseIndexItem, [{
+    key: "inputParams",
+    value: function inputParams() {
+      var newTO = {
+        pathname: "/houses/".concat(this.props.house.id),
+        state: this.props.searchParams
+      };
+      return newTO;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var house = this.props.house; // const house_num = parseInt(house.id) + 105; // heroku v.
+
+      var house_num = parseInt(house.id); // github v.
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        id: "house-".concat(house.id)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        className: "house-item-link",
+        to: this.inputParams
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "search-img",
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/1.jpg"),
+        alt: "image",
+        width: "700",
+        height: "100%"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)));
+    }
+  }]);
+
+  return WelcomeHouseIndexItem;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WelcomeHouseIndexItem);
 
 /***/ }),
 
@@ -3962,7 +4053,7 @@ var DisplayReservation = /*#__PURE__*/function (_React$Component) {
           }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
         }))));
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "You don't have any Reservation yet!");
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "You don't have any Reservation");
       }
     }
   }]);
@@ -4085,13 +4176,13 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this2.showSerch();
         }
-      }, "Places to stay"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
+      }, "Search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("text", {
         className: "home-nav-2",
         id: this.state.select_reser,
         onClick: function onClick() {
           return _this2.showReservation();
         }
-      }, "Show my reservations"), this.showContent(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_welcome_display_container__WEBPACK_IMPORTED_MODULE_3__.default, null));
+      }, "Reservations"), this.showContent(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_welcome_display_container__WEBPACK_IMPORTED_MODULE_3__.default, null));
     }
   }]);
 
@@ -4162,8 +4253,6 @@ var Welcome = function Welcome(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       id: "welcomepage"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "background-img"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "search"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_homepage__WEBPACK_IMPORTED_MODULE_4__.default, {
       rentals: reservations,
@@ -4180,7 +4269,7 @@ var Welcome = function Welcome(_ref) {
     }, "My LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
       className: "hyperlink",
       href: "https://angel.co/u/guocong-pan"
-    }, "My Angelist"))));
+    }, "My Angelist")));
   };
 
   return currentUser ? logged_in() : not_logged_in(); // return not_logged_in();
@@ -4257,6 +4346,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _search_welcome_house_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../search/welcome_house_index_item */ "./frontend/components/search/welcome_house_index_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4278,6 +4368,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -4308,11 +4399,34 @@ var WelcomeDisplay = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       if (this.state.entities === null) {
         return null;
       } else {
-        console.log(this.state);
-        return null;
+        var arr = [];
+        this.props.houses.forEach(function (element) {
+          if (arr.length < 9) {
+            arr.push(element);
+          }
+        });
+        console.log(arr);
+
+        if (arr.empty === []) {
+          return null;
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "welcome-result"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+            className: "welcome-page-grid-container"
+          }, arr.map(function (house) {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_welcome_house_index_item__WEBPACK_IMPORTED_MODULE_1__.default, {
+              key: house.id,
+              house: house,
+              searchParams: _this2.state
+            });
+          })));
+        }
       }
     }
   }]);

@@ -102,12 +102,13 @@ class HouseIndex extends React.Component{
                     </div>
                     <div className="result-map">
                         <div className="result">
+                            <div className="grid-header">
+                                <h2 className="grid-item-left">Location</h2>
+                                <h2 className="grid-item-right">Price ($/per night)</h2>
+                            </div>
                             {/* <h1 id="houses">Houses: </h1> */}
                             <ul className="grid-container">
-                                <div className="grid-header">
-                                    <h2 className="grid-item-left">Location</h2>
-                                    <h2 className="grid-item-right">Price ($/per night)</h2>
-                                </div>
+
                                 {this.props.houses.map(house => (
                                     <HouseIndexItem key={house.id} house={house} searchParams={this.destruct()}/>
                                 ))}

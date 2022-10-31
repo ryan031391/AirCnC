@@ -28,7 +28,7 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
 
     const logged_in = () => (
         <div id="welcomepage" >
-            <div className="background-img">
+            {/* <div className="background-img"> */}
                 <div className="search">
                     {/* <SearchContainer /> */}
                     <HomePage rentals={reservations} deleteRental={deleteRental} fetchRental={fetchRental}/>
@@ -41,7 +41,7 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
                     <a className='hyperlink' href='https://www.linkedin.com/in/ryan-pan-b032461a6/'>My LinkedIn</a>
                     <a className='hyperlink' href='https://angel.co/u/guocong-pan'>My Angelist</a>
                 </div>
-            </div>
+            {/* </div> */}
             
             {/* <button onClick={logout}>Log out</button> */}
             {/* <div className="welcomepage-content">

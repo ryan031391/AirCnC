@@ -46,8 +46,8 @@ class Homepage extends React.Component{
     render(){
         return(
             <div className='homepage-selection'>
-                <text className='home-nav-1' id={this.state.select_search} onClick={() => this.showSerch()}>Places to stay</text>
-                <text className='home-nav-2' id={this.state.select_reser} onClick={() => this.showReservation()}>Show my reservations</text>
+                <text className='home-nav-1' id={this.state.select_search} onClick={() => this.showSerch()}>Search</text>
+                <text className='home-nav-2' id={this.state.select_reser} onClick={() => this.showReservation()}>Reservations</text>
                 {this.showContent()}
                 <WelcomeDisplayContainer />
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import WelcomeHouseIndexItem from "../search/welcome_house_index_item";
 
 class WelcomeDisplay extends React.Component{
     constructor(props){
@@ -18,8 +19,26 @@ class WelcomeDisplay extends React.Component{
         if (this.state.entities === null) {
             return null
         } else {
-            console.log(this.state)
-            return null
+            var arr = []
+            this.props.houses.forEach(element => {
+                if (arr.length < 9) {
+                    arr.push(element)
+                }
+            });
+            console.log(arr)
+            if (arr.empty === []) {
+                return null
+            } else {
+                return (
+                    <div className="welcome-result">
+                        <ul className="welcome-page-grid-container">
+                            {arr.map(house => (
+                                <WelcomeHouseIndexItem key={house.id} house={house} searchParams={this.state}/>
+                            ))}
+                        </ul>
+                    </div>
+                )
+            }
         }
     }
 

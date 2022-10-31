@@ -107,7 +107,7 @@ class DisplayReservation extends React.Component{
             )
         } else {
             return(
-                <h2>You don't have any Reservation yet!</h2>
+                <h2>You don't have any Reservation</h2>
             )
         }
     }

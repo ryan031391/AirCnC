@@ -146,8 +146,15 @@ ul {
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 15%), 0px 3px 8px rgba(0, 0, 0, 10%);
   background: rgba(0, 0, 0, 20%); */
   /* color:rgb(219, 189, 88); */
-  margin-left: 10px;
+  /* margin-left: -800px; */
   width: 35%;
+  /* height: 800px;
+  overflow: auto; */
+}
+
+.welcome-result {
+  height: 800px;
+  overflow: auto;
 }
 
 .result ul li:after {
@@ -196,6 +203,10 @@ a:visited {
   
 }
 
+.hyperlink:visited {
+  color: black;
+}
+
 a:hover {
   color: rgb(160, 111, 22);
   /* pointer-events: all; */
@@ -214,6 +225,14 @@ a:hover {
 #check-in, #check-out {
   margin-top: 5px;
 }
+
+.welcome-page-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 12px;
+  grid-row-gap: 24px;
+}
+
 /* 
 #review-list, #review {
   color: wheat;
@@ -420,8 +439,8 @@ textarea {
 .search {
     position: absolute;
     /* padding-left: 25%; */
-    padding-top: 50px;
-    margin-top: -80px;
+    padding-top: 20px;
+    /* margin-top: -80px; */
     width: 100%;
     text-align: -webkit-center;
 }
@@ -429,7 +448,7 @@ textarea {
 .dev-info {
     position: absolute;
     width: 100%;
-    bottom: 0%;
+    bottom: -100px;
 }
 
 .homepage-selection {
@@ -439,22 +458,32 @@ textarea {
 .home-nav-1 {
     box-shadow: none;
     font-family: 'Viaoda Libre', cursive;
-    color: white;
+    color: black;
     padding: 1px;
     margin-bottom: 20px;
     cursor: pointer;
+    font-weight: bold;
     /* padding-right: 20px; */
 }
 
 .home-nav-2 {
     box-shadow: none;
     font-family: 'Viaoda Libre', cursive;
-    color: white;
+    color: black;
     padding: 1px;
     margin-bottom: 20px;
     cursor: pointer;
     margin-left:20px;
+    font-weight: bold;
     /* padding-left: 20px;     */
+}
+
+.home-nav-1:hover {
+  color: lightgrey;
+}
+
+.home-nav-2:hover {
+  color: lightgrey;
 }
 
 #select_search {
@@ -481,6 +510,21 @@ textarea {
 
 .search-div {
   margin-top: 8px;
+}
+
+.homepage-search-box {
+  display: flex;
+  flex: 1 1 0%;
+  border: 1 solid #DDDDDD;
+  border-radius: 32px;
+  color: #222222;
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 15%), 0px 3px 8px rgba(0, 0, 0, 10%);
+  --big-search-form-background: #FFFFFF;
+  background-color: #FFFFFF;
+  width: 60%;
+  height: 66px;
+  text-align: center;
+  margin-top: 19px;
 }
 
 .search-box {
@@ -548,8 +592,29 @@ textarea {
 }
 
 .grid-container {
-  display: contents;
+  display: block;
+  height: 1000px;
+  overflow: auto;
+  /* margin-left: -400px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  display: flex;
+  height: 80vh;  */
 }
+
+/* ul li {
+  flex: 1 1 27%;
+  height: 100px;
+}
+
+li {
+  padding: 10px;
+} */
+
+/* ul li {
+  width: 33.333333%;
+  float: left;
+} */
 
 .grid-item-left {
   flex: 2 0 0%;
@@ -579,6 +644,7 @@ textarea {
   display: flex;
   flex: 1 1 0%;
   text-align: -webkit-center;
+  color: lightseagreen;
 }
 
 .grid-body:hover {
@@ -614,11 +680,13 @@ textarea {
 .result-map{
   display: flex;
   margin-top: 20px;
+  column-gap: 10px;
   /* width: 1300px; */
 }
 
 .map{
   flex: 1 0 0%;
+  margin-top: 100px;
   /* margin: 50px;
   margin-top: 220px; */
 }
@@ -678,744 +746,6 @@ textarea {
 .hyperlink {
   padding: 10px;
 }
-
-
-/* .search-button-div {
-  width: 120px;
-  margin-top: 10px;
-  padding-top: 8px;
-}
-
-.Nav-logout {
-  margin-left: auto;
-  padding: 0%;
-  height: 32px;
-  margin-top: 10px;
-  margin-right: 20px;
-  z-index: 1000;
-}
-
-.grid-header {
-  display: flex;
-  flex: 1 1 0%;
-  text-align: -webkit-center;
-}
-
-.grid-container {
-  display: contents;
-}
-
-.grid-item-left {
-  flex: 2 0 0%;
-}
-
-.grid-item-right {
-  flex: 1 0 0%;
-}
-
-.house-index-left {
-  flex: 2 0 0%;
-}
-
-.house-index-right {
-  flex: 1 0 0%;
-}
-
-.house-item-link {
-  text-decoration: none;
-}
-
-.search-img {
-  width: 300px;
-} */
-
-
-//////////////////////////////////////////////////////
-
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-{html,
-body {
-margin: 0;
-height: 100%;
-}
-
-#root {
-margin: 0;
-height: 100%;
-}
-
-#logo {
-margin-top: 9px;
-}
-
-.modal-background {
-position: fixed;
-top: 0;
-bottom: 0;
-right: 0;
-left: 0;
-background: rgba(0, 0, 0, 0.7);
-z-index: 10;
-}
-
-.modal-child {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-text-align: 40%left;
-color: white;
-font-size: 20px;
-}
-
-nav {
-background-color: rgb(255, 255, 255);
-box-shadow: 0px 16px 32px rgb(0 0 0 / 15%), 0px 3px 8px rgb(0 0 0 / 10%);
-height: 50px;
-display: flex;
-}
-
-#home-symbol {
-color: white;
-/* margin: 20px; */
-padding-left: 20px;
-z-index: 1000;
-}
-
-#Welcome {
-position: initial;
-text-align: center;
-font-size: 20px;
-height: 100%;
-/* margin-top: 50px; */
-/* margin-top: 10px; */
-}
-
-/* #welcomebutton {
-font-size: 15px;
-background-color: burlywood;
-} */
-
-#signin {
-margin: 5px;
-}
-
-body {
-background-size: 100%;
-font-family: 'Viaoda Libre', cursive;
-}
-
-#mainpage {
-background-size: 100%;
-background-repeat: no-repeat;
-margin: 0;
-height: 100%;
-text-align: -webkit-center;
-}
-
-#guest {
-text-align: center;
-}
-
-#change {
-text-align: center;
-}
-
-button {
-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-border-radius: 8px;
-font-family: 'Viaoda Libre', cursive;
-background-color: rgb(255, 255, 255);
-padding: 5px;
-cursor: pointer;
-transition-duration: 0.4s;
-}
-
-button:hover {
-background-color: black;
-color: white;
-}
-
-input {
-width: 300px;
-height: 20px;
-}
-
-h1 {
-font-family: 'Viaoda Libre', cursive;
-}
-
-#welcomepage {
-display: flex;
-text-align: center;
-height: 100%;
-/* background-color: rgb(235, 225, 205); */
-}
-
-#search {
-margin-top: 20px;
-}
-
-ul {
-list-style: none;
-}
-
-.result {
-/* background-color: lightgoldenrodyellow; */
-/* display: flex; */
-/* border-radius: 32px;
-box-shadow: 0px 16px 32px rgba(0, 0, 0, 15%), 0px 3px 8px rgba(0, 0, 0, 10%);
-background: rgba(0, 0, 0, 20%); */
-/* color:rgb(219, 189, 88); */
-margin-left: 10px;
-width: 35%;
-}
-
-.result ul li:after {
-content: "";
-display: block;
-height: 1px;
-width: 80%;
-margin-left: 40px;
-margin-bottom: 25px;
-justify-content: center;
-/* margin: 10px;
-margin-bottom: 10px; */
-background: rgba(59, 53, 52, 0.322);
-}
-
-.show-reservation {
-margin-top: 50px;
-/* border-radius: 16px;
-box-shadow: 0px 16px 32px rgb(0 0 0 / 15%), 0px 3px 8px rgb(0 0 0 / 10%);
-background: rgba(231, 217, 201, 0.794); */
-}
-
-.mainpage-reservation {
-margin-top: 10px;
-border-style: outset;
-border-radius: 16px;
-box-shadow: 0px 16px 32px rgba(0, 0, 0, 15%), 0px 3px 8px rgba(0, 0, 0, 10%);
-background: rgba(231, 217, 201, 0.794);
-}
-
-.mainpage-reservation-font {
-margin: 10px;
-}
-
-#houses {
-font-family: 'Viaoda Libre', cursive;
-font-weight: bold;
-}
-
-a:link {
-color: black
-}
-
-a:visited {
-color: white;
-
-}
-
-a:hover {
-color: rgb(160, 111, 22);
-/* pointer-events: all; */
-}
-
-#houseitem {
-font-style: italic;
-cursor: pointer;
-/* color: whitesmoke; */
-}
-
-#reservationbtn {
-margin-top: 10px;
-}
-
-#check-in,
-#check-out {
-margin-top: 5px;
-}
-
-/* 
-#review-list, #review {
-color: wheat;
-padding-left: 30px;
-} */
-
-/* .review {
-padding-left: 30px;
-} */
-
-#review {
-margin-top: 50px;
-}
-
-textarea {
-width: 300px;
-height: 100px;
-}
-
-.pop-up-content {
-background-color: whitesmoke;
-border-radius: 5px;
-margin: 15% auto;
-padding: 20px;
-width: 30%;
-box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
-
-}
-
-.map-pop-up-content {
-background-color: whitesmoke;
-border-radius: 5px;
-box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
-}
-
-.pop-up {
-z-index: 1;
-position: fixed;
-left: 0;
-top: 0;
-height: 100%;
-width: 100%;
-color: gray;
-background-color: rgba(0, 0, 0, 0.4);
-}
-
-.map-pop-up {
-z-index: 1;
-position: relative;
-margin-top: 30px;
-left: 0;
-top: 0;
-height: 100%;
-width: 100px;
-color: gray;
-background-color: rgba(0, 0, 0, 0.4);
-}
-
-.pop-up-button button {
-font-size: 12px;
-text-align: center;
-color: black;
-border-radius: 5px;
-padding: 6px;
-background-color: #D4E9ED;
-cursor: pointer;
-}
-
-
-.yes {
-margin-right: 70px;
-cursor: pointer;
-background-color: #D4E9ED;
-border-radius: 5px;
-padding: 6px;
-margin-top: 10px;
-}
-
-.pop-up-button {
-padding-top: 23px;
-}
-
-.session-form {
-display: flex;
-flex-direction: row;
-background: #F2EBDC;
-}
-
-.session-form-left {
-width: 70%;
-}
-
-.session-form-left img {
-width: 100%;
-height: 100%;
-object-fit: fill;
-object-position: left bottom;
-}
-
-
-.session-form-right {
-width: 30%;
-padding-left: 110px;
-box-sizing: border-box;
-padding-right: 110px;
-padding-top: 50px;
-}
-
-.top-img {
-object-fit: none;
-height: 150px;
-width: 100%;
-object-position: top;
-}
-
-.bot-img {
-object-fit: none;
-height: 100px;
-width: 100%;
-object-position: bottom;
-}
-
-.showpage {
-width: 1400px;
-/* margin-left: 150px;
-margin-right: 150px; */
-}
-
-.back-to-search {
-text-align-last: left;
-/* padding-left: 30px; */
-padding: 20px;
-}
-
-.house-show-mid {
-display: flex;
-}
-
-.house-show-mid-left {
-width: 600px;
-text-align: left;
-padding-left: 20px;
-}
-
-.house-show-mid-right {
-width: 800px;
-text-align-last: left;
-}
-
-.house-top-img {
-/* height: 550px; */
-width: 80%;
-z-index: -100;
-margin-top: 120px;
-}
-
-.houseshow-top-img {
-object-fit: none;
-height: 100px;
-width: 100%;
-object-position: top;
-padding-left: 0px;
-}
-
-.house-bot-img {
-object-fit: none;
-height: 100px;
-width: 100%;
-object-position: bottom;
-padding-left: 0px;
-}
-
-.sticky-image-wrapper {
-position: fixed;
-bottom: 0;
-width: 100%;
-z-index: -1;
-}
-
-.house-sticky-image-wrapper {
-position: fixed;
-bottom: 0;
-width: 100%;
-}
-
-.welcomepage-content {
-flex: 1 0 0;
-display: flex;
-flex-direction: row;
-}
-
-.reservation-list {
-margin-right: 10px;
-/* width: 30%; */
-}
-
-.background-img {
-/* display: inline-block; */
-flex: 3 0 0;
-position: relative;
-width: 100%;
-left: 0%;
-}
-
-.search {
-position: absolute;
-/* padding-left: 25%; */
-padding-top: 50px;
-margin-top: -80px;
-width: 100%;
-text-align: -webkit-center;
-}
-
-.dev-info {
-position: absolute;
-width: 100%;
-bottom: 0%;
-}
-
-.homepage-selection {
-display: inline-block;
-}
-
-.home-nav-1 {
-box-shadow: none;
-font-family: 'Viaoda Libre', cursive;
-color: white;
-padding: 1px;
-margin-bottom: 20px;
-cursor: pointer;
-/* padding-right: 20px; */
-}
-
-.home-nav-2 {
-box-shadow: none;
-font-family: 'Viaoda Libre', cursive;
-color: white;
-padding: 1px;
-margin-bottom: 20px;
-cursor: pointer;
-margin-left: 20px;
-/* padding-left: 20px;     */
-}
-
-#select_search {
-border-bottom: 1px solid rgb(255, 255, 255);
-}
-
-#select_reser {
-border-bottom: 1px solid rgb(255, 255, 255);
-}
-
-.search-button {
-text-decoration: none;
-box-shadow: 0 8px 16px 0 rgba(126, 125, 125, 0.561), 0 6px 20px 0 rgba(119, 118, 118, 0.19);
-border-radius: 8px;
-font-family: 'Viaoda Libre', cursive;
-background-color: #FF385C;
-padding: 5px;
-cursor: pointer;
-}
-
-.search-bar {
-width: 600px;
-}
-
-.search-div {
-margin-top: 8px;
-}
-
-.search-box {
-display: flex;
-flex: 1 1 0%;
-border: 1 solid #DDDDDD;
-border-radius: 32px;
-color: #222222;
-box-shadow: 0px 16px 32px rgba(0, 0, 0, 15%), 0px 3px 8px rgba(0, 0, 0, 10%);
---big-search-form-background: #FFFFFF;
-background-color: #FFFFFF;
-width: 100%;
-height: 66px;
-text-align: center;
-margin-top: 19px;
-}
-
-.new-page-search {
-text-align: -webkit-center;
-}
-
-.location {
-flex: 1.6 0 0%;
-margin-top: 10px;
-width: 400px;
-}
-
-.bound {
-flex: 1 0 0%;
-width: 120px;
-margin-top: 10px;
-padding-top: 8px;
-}
-
-.input-location {
-text-align: center;
-border: aliceblue;
-width: 80%;
-}
-
-.input-bound {
-text-align: center;
-border: aliceblue;
-}
-
-.search-button-div {
-width: 120px;
-margin-top: 10px;
-padding-top: 8px;
-}
-
-.Nav-logout {
-margin-left: auto;
-padding: 0%;
-height: 32px;
-margin-top: 10px;
-margin-right: 20px;
-z-index: 1000;
-}
-
-.grid-header {
-display: flex;
-flex: 1 1 0%;
-text-align: -webkit-center;
-}
-
-.grid-container {
-display: contents;
-}
-
-.grid-item-left {
-flex: 2 0 0%;
-}
-
-.grid-item-right {
-flex: 1 0 0%;
-}
-
-.house-index-left {
-flex: 2 0 0%;
-}
-
-.house-index-right {
-flex: 1 0 0%;
-}
-
-.house-item-link {
-text-decoration: none;
-}
-
-.search-img {
-width: 300px;
-}
-
-.grid-body {
-display: flex;
-flex: 1 1 0%;
-text-align: -webkit-center;
-}
-
-.grid-body:hover {
-/* background-color: rgb(211, 212, 146); */
-pointer-events: all;
-}
-
-.house-info {
-display: flex;
-padding-left: 30px;
-}
-
-.reservation {
-/* margin-left: auto; */
-margin-right: 5%;
-}
-
-.date-div {
-display: flex;
-flex-direction: row;
-}
-
-.react-calendar {
-width: 380px;
-}
-
-.calendar {
-padding-top: 100px;
-margin-right: 150px;
-min-width: 500px;
-}
-
-.result-map {
-display: flex;
-margin-top: 20px;
-/* width: 1300px; */
-}
-
-.map {
-flex: 1 0 0%;
-/* margin: 50px;
-margin-top: 220px; */
-}
-
-.circle {
-background-color: #d83b01;
-border-radius: 50%;
-color: #fff;
-height: 2.5em;
-position: relative;
-width: 2.5em;
-
-border: 1px solid transparent;
-}
-
-.circleText {
-text-align: center;
-height: 50%;
-left: 50%;
-position: absolute;
-top: 50%;
-transform: translate(-50%, -50%);
-width: 50%;
-}
-
-.hover {
-background-color: #0078d4;
-}
-
-.house-bottom {
-display: flex;
-}
-
-.house-img {
-display: flex;
-height: 700px;
-/* margin-left: 150px;
-margin-right: 150px; */
-}
-
-.house-img-high {
-height: 100%;
-width: 100%;
-}
-
-.house-img-low {
-margin-left: 3px;
-display: grid;
-/* justify-content: space-evenly; */
-}
-
-.vl {
-border-left: 1px solid rgba(65, 62, 62, 0.356);
-height: 2px;
-}
-
-.hyperlink {
-padding: 10px;
-}}
 
 
 /* .search-button-div {

@@ -6,7 +6,7 @@ class Search extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            location: "San Francisco",
+            location: "",
             bound: "5",
         }
         // console.log(this.props)
@@ -39,25 +39,33 @@ class Search extends React.Component{
         this.setState({bound: e.currentTarget.value})
     }
 
-    inputParams(location, bound){
+    inputParams(){
+        const temp = {
+            location: this.state.location,
+            bound: this.state.bound,
+        }
+        if (this.state.location === "") {
+            temp.location = "san francisco"
+        }
         const newTO = {
-            pathname: `/${location} ${bound}`,
+            pathname: `/${temp.location} ${temp.bound}`,
             params: this.state
         }
         return newTO
     }
 
     render(){
+        
         return(
             <div className='search-div'>
                 {/* <form onSubmit={this.handleSubmit} className="search-bar"> */}
                     <div className="homepage-search-box">
                         <div className="location">
-                            <b>Location: </b>
+                            <b>LOCATION: </b>
                                 <input 
                                 className="input-location"
                                 type="text"
-                                placeholder="Please type in San Francisco" 
+                                placeholder="San Francisco" 
                                 value={this.state.location} 
                                 onChange={this.updateLocation}
                                 required
@@ -65,17 +73,16 @@ class Search extends React.Component{
                         </div>
                         <br/>
                         <div className="bound">  
-                            <b> Bound: </b>  
-                            <select className="input-bound" id="myList" onChange={this.updateBound} required>  
-                                <option> choose bound </option>  
-                                <option value="5"> 5 miles </option>  
+                            <b> BOUND: <br /></b>  
+                            <select className="input-bound" id="myList" onChange={this.updateBound} required>   
+                                <option selected value="5"> 5 miles </option>  
                                 <option value="10"> 10 miles </option>  
                                 <option value="20"> 20 miles </option>  
                                 <option value="50"> 50 miles </option>  
                             </select>     
                         </div>
                         <div className='search-button-div'>
-                            <Link className="search-button" to={this.inputParams(this.state.location, this.state.bound)}>
+                            <Link className="search-button" to={this.inputParams()}>
                                 Search
                             </Link>
                         </div>

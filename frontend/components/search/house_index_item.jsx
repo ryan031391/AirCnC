@@ -26,9 +26,8 @@ class HouseIndexItem extends React.Component{
                     {/* <label id="houseitem">location: {house.location}&nbsp;&nbsp;&nbsp;{house.price}/night</label> */}
                     <div className="grid-body">
                         <h4 className="house-index-left">{house.location}</h4>
-                        <h4 className="house-index-right">{house.price}</h4>
+                        <h4 className="house-index-right">${house.price} night</h4>
                     </div>
-                    <br/>
                     <br/>
                 </Link>
             </li>

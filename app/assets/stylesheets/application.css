@@ -81,7 +81,8 @@ nav{
 
 body {
   background-size: 100%;
-  font-family: 'Viaoda Libre', cursive;
+  /* font-family: 'Viaoda Libre', cursive; */
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 }
 
 #mainpage {
@@ -110,7 +111,7 @@ button {
   transition-duration: 0.4s;
 }
 
-button:hover {
+.Nav-logout:hover {
   background-color: black;
   color: white;
 }
@@ -195,7 +196,7 @@ ul {
 }
 
 a:link {
-  color:black
+  color:white
 }
 
 a:visited {
@@ -204,6 +205,10 @@ a:visited {
 }
 
 .hyperlink:visited {
+  color: black;
+}
+
+.bthomepage {
   color: black;
 }
 
@@ -448,7 +453,7 @@ textarea {
 .dev-info {
     position: absolute;
     width: 100%;
-    bottom: -100px;
+    bottom: -15%;
 }
 
 .homepage-selection {
@@ -499,9 +504,15 @@ textarea {
   box-shadow: 0 8px 16px 0 rgba(126, 125, 125, 0.561), 0 6px 20px 0 rgba(119, 118, 118, 0.19);
   border-radius: 8px;
   font-family: 'Viaoda Libre', cursive;
+  color: white;
   background-color: #FF385C;
   padding: 5px;
   cursor: pointer;
+}
+
+.search-button:hover {
+  color: rgb(160, 111, 22);
+  /* background-color: transparent; */
 }
 
 .search-bar {
@@ -550,13 +561,18 @@ textarea {
   flex: 1.6 0 0%;
   margin-top: 10px;
   width: 400px;
+  font-size: 10px;
+  padding-top: 8px;
+  font-weight: 800;
 }
 
 .bound {
   flex: 1 0 0%;
   width: 120px;
   margin-top: 10px;
-  padding-top: 8px;
+  padding-top:10px;
+  font-weight: 700;
+  font-size: 10px;
 }
 
 .input-location {
@@ -566,8 +582,20 @@ textarea {
 }
 
 .input-bound {
+  padding-top: 3px;
   text-align: center;
   border: aliceblue;
+}
+
+option {
+  font-weight: 400;
+}
+
+.house-count {
+  padding-left: 40px;
+  text-align: left;
+  font-size: 22px;
+  padding-bottom: 14px;
 }
 
 .search-button-div {
@@ -593,7 +621,7 @@ textarea {
 
 .grid-container {
   display: block;
-  height: 1000px;
+  height: 40%;
   overflow: auto;
   /* margin-left: -400px;
   flex-direction: column;
@@ -686,7 +714,7 @@ li {
 
 .map{
   flex: 1 0 0%;
-  margin-top: 100px;
+  margin-top: 54px;
   /* margin: 50px;
   margin-top: 220px; */
 }

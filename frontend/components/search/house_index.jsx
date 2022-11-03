@@ -7,7 +7,7 @@ class HouseIndex extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            location: "San Francisco",
+            location: "",
             bound: "5",
         }
         this.updateLocation = this.updateLocation.bind(this);
@@ -42,21 +42,20 @@ class HouseIndex extends React.Component{
                 <form onSubmit={this.handleSubmit} className="search-bar">
                     <div className="search-box">
                         <div className="location">
-                            <b>Location: </b>
+                            <b>Location: <br /></b>
                                 <input 
                                 className="input-location"
                                 type="text"
-                                placeholder="Please type in San Francisco"
+                                placeholder="San Francisco"
                                 value={this.state.location} 
                                 onChange={this.updateLocation}
                                 />
                         </div>
                         <br/>
                         <div className="bound">  
-                            <b> Bound: </b>  
-                            <select className="input-bound" id="myList" onChange={this.updateBound} >  
-                                <option > choose bound </option>  
-                                <option value="5"> 5 miles </option>  
+                            <b> Bound: <br /></b>  
+                            <select className="input-bound" id="myList" onChange={this.updateBound} >   
+                                <option selected value="5"> 5 miles </option>  
                                 <option value="10"> 10 miles </option>  
                                 <option value="20"> 20 miles </option>  
                                 <option value="50"> 50 miles </option>  
@@ -88,8 +87,15 @@ class HouseIndex extends React.Component{
     }
 
     handleSubmit(e){
-        e.preventDefault();
-        this.props.fetchLocation(this.state)
+        e.preventDefault();        
+        const temp = {
+            location: this.state.location,
+            bound: this.state.bound,
+        }
+        if (this.state.location === "") {
+            temp.location = "san francisco"
+        }
+        this.props.fetchLocation(temp)
     }
 
 
@@ -102,11 +108,12 @@ class HouseIndex extends React.Component{
                     </div>
                     <div className="result-map">
                         <div className="result">
-                            <div className="grid-header">
+                            {/* <div className="grid-header">
                                 <h2 className="grid-item-left">Location</h2>
                                 <h2 className="grid-item-right">Price ($/per night)</h2>
-                            </div>
+                            </div> */}
                             {/* <h1 id="houses">Houses: </h1> */}
+                            <div className="house-count">{this.props.houses.length} results</div>
                             <ul className="grid-container">
 
                                 {this.props.houses.map(house => (

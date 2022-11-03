@@ -2514,7 +2514,8 @@ var my404page = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Page Not Found"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "/"
+        to: "/",
+        className: "hyperlink"
       }, "Back to homepage"));
     }
   }]);
@@ -2609,7 +2610,7 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      location: "San Francisco",
+      location: "",
       bound: "5"
     };
     _this.updateLocation = _this.updateLocation.bind(_assertThisInitialized(_this));
@@ -2652,19 +2653,20 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
         className: "search-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "location"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "input-location",
         type: "text",
-        placeholder: "Please type in San Francisco",
+        placeholder: "San Francisco",
         value: this.state.location,
         onChange: this.updateLocation
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "bound"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
         className: "input-bound",
         id: "myList",
         onChange: this.updateBound
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " choose bound "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        selected: true,
         value: "5"
       }, " 5 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "10"
@@ -2697,7 +2699,16 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.fetchLocation(this.state);
+      var temp = {
+        location: this.state.location,
+        bound: this.state.bound
+      };
+
+      if (this.state.location === "") {
+        temp.location = "san francisco";
+      }
+
+      this.props.fetchLocation(temp);
     }
   }, {
     key: "render",
@@ -2712,12 +2723,8 @@ var HouseIndex = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "result"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "grid-header"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-          className: "grid-item-left"
-        }, "Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-          className: "grid-item-right"
-        }, "Price ($/per night)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+          className: "house-count"
+        }, this.props.houses.length, " results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
           className: "grid-container"
         }, this.props.houses.map(function (house) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_house_index_item__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -2872,7 +2879,7 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "house-index-left"
       }, house.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
         className: "house-index-right"
-      }, house.price)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)));
+      }, "$", house.price, " night")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)));
     }
   }]);
 
@@ -3173,7 +3180,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      location: "San Francisco",
+      location: "",
       bound: "5"
     }; // console.log(this.props)
 
@@ -3222,9 +3229,18 @@ var Search = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "inputParams",
-    value: function inputParams(location, bound) {
+    value: function inputParams() {
+      var temp = {
+        location: this.state.location,
+        bound: this.state.bound
+      };
+
+      if (this.state.location === "") {
+        temp.location = "san francisco";
+      }
+
       var newTO = {
-        pathname: "/".concat(location, " ").concat(bound),
+        pathname: "/".concat(temp.location, " ").concat(temp.bound),
         params: this.state
       };
       return newTO;
@@ -3238,21 +3254,22 @@ var Search = /*#__PURE__*/function (_React$Component) {
         className: "homepage-search-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "location"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Location: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "LOCATION: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "input-location",
         type: "text",
-        placeholder: "Please type in San Francisco",
+        placeholder: "San Francisco",
         value: this.state.location,
         onChange: this.updateLocation,
         required: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "bound"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Bound: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " BOUND: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
         className: "input-bound",
         id: "myList",
         onChange: this.updateBound,
         required: true
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " choose bound "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+        selected: true,
         value: "5"
       }, " 5 miles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "10"
@@ -3264,7 +3281,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         className: "search-button-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "search-button",
-        to: this.inputParams(this.state.location, this.state.bound)
+        to: this.inputParams()
       }, "Search"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null));
     }
   }]);
@@ -4258,7 +4275,7 @@ var Welcome = function Welcome(_ref) {
       rentals: reservations,
       deleteRental: deleteRental,
       fetchRental: fetchRental
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "dev-info"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Developer Information : "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Guocong Pan"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
       className: "hyperlink",
@@ -4269,7 +4286,7 @@ var Welcome = function Welcome(_ref) {
     }, "My LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
       className: "hyperlink",
       href: "https://angel.co/u/guocong-pan"
-    }, "My Angelist")));
+    }, "My Angelist"))));
   };
 
   return currentUser ? logged_in() : not_logged_in(); // return not_logged_in();

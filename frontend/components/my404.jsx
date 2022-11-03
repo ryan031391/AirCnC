@@ -7,7 +7,7 @@ class my404page extends React.Component{
         return (
             <div>
                 <h1>Page Not Found</h1>
-                <Link to="/">Back to homepage</Link>
+                <Link to="/" className='hyperlink'>Back to homepage</Link>
             </div>
         )
     }

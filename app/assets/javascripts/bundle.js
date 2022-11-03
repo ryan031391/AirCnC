@@ -1917,8 +1917,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2034,8 +2032,6 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _React$createElement;
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "review",
         onSubmit: this.handleSubmit
@@ -2044,9 +2040,10 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }, "Leave your review here:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         value: this.state.body,
         onChange: this.updateBody
-      }), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Rate: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", (_React$createElement = {
-        id: "rating"
-      }, _defineProperty(_React$createElement, "id", "reviewlist"), _defineProperty(_React$createElement, "onChange", this.updateScore), _React$createElement), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " --- Rate --- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      }), "\xA0\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, " Rate: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+        id: "rating",
+        onChange: this.updateScore
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, " --- Rate --- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "5"
       }, " 5 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
         value: "4"
@@ -2858,9 +2855,9 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var house = this.props.house; //const house_num = parseInt(house.id) + 105; // heroku v.
-
-      var house_num = parseInt(house.id); // github v.
+      var house = this.props.house;
+      var house_num = parseInt(house.id) + 105; // heroku v.
+      //const house_num = parseInt(house.id); // github v.
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         id: "house-".concat(house.id)
@@ -3412,7 +3409,7 @@ var WelcomeHouseIndexItem = /*#__PURE__*/function (_React$Component) {
         to: this.inputParams
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "search-img",
-        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num, "/1.jpg"),
+        src: "https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-".concat(house_num + 105, "/1.jpg"),
         alt: "image",
         width: "700",
         height: "100%"

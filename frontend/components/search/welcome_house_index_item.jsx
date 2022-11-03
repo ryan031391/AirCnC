@@ -22,7 +22,7 @@ class WelcomeHouseIndexItem extends React.Component{
         return(
             <li id={`house-${house.id}`}>
                 <Link className="house-item-link" to={this.inputParams}> 
-                    <img className='search-img' src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num}/1.jpg`} alt="image" width="700" height="100%"/>
+                    <img className='search-img' src={`https://ryan-aircnc-dev-pub.s3.us-west-1.amazonaws.com/house-${house_num + 105}/1.jpg`} alt="image" width="700" height="100%"/>
                     {/* <label id="houseitem">location: {house.location}&nbsp;&nbsp;&nbsp;{house.price}/night</label> */}
                     {/* <div className="grid-body">
                         <h4 className="house-index-left">{house.location}</h4>

@@ -73,7 +73,7 @@ class ReviewForm extends React.Component{
                     <textarea value={this.state.body} onChange={this.updateBody} />
                     &nbsp;&nbsp;
                 <b> Rate: </b>  
-                <select id="rating" id="reviewlist" onChange={this.updateScore} >  
+                <select id="rating" onChange={this.updateScore} >  
                     <option> --- Rate --- </option> 
                     <option value="5"> 5 </option>  
                     <option value="4"> 4 </option>  

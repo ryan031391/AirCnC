@@ -1962,8 +1962,8 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     _this.updateScore = _this.updateScore.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
-    _this.popup = _this.popup.bind(_assertThisInitialized(_this));
-    console.log(props);
+    _this.popup = _this.popup.bind(_assertThisInitialized(_this)); // console.log(props)
+
     return _this;
   }
 
@@ -4426,8 +4426,7 @@ var WelcomeDisplay = /*#__PURE__*/function (_React$Component) {
           if (arr.length < 9) {
             arr.push(element);
           }
-        });
-        console.log(arr);
+        }); // console.log(arr)
 
         if (arr.empty === []) {
           return null;

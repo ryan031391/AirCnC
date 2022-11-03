@@ -14,7 +14,7 @@ class ReviewForm extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
         this.popup = this.popup.bind(this);
-        console.log(props)
+        // console.log(props)
     }
 
     updateBody(e){

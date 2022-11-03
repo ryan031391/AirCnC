@@ -2858,9 +2858,9 @@ var HouseIndexItem = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var house = this.props.house;
-      var house_num = parseInt(house.id) + 105; // heroku v.
-      // const house_num = parseInt(house.id); // github v.
+      var house = this.props.house; //const house_num = parseInt(house.id) + 105; // heroku v.
+
+      var house_num = parseInt(house.id); // github v.
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         id: "house-".concat(house.id)

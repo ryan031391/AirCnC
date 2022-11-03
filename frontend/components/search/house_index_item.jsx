@@ -17,8 +17,8 @@ class HouseIndexItem extends React.Component{
 
     render(){
         const {house} = this.props
-        const house_num = parseInt(house.id) + 105; // heroku v.
-        // const house_num = parseInt(house.id); // github v.
+        //const house_num = parseInt(house.id) + 105; // heroku v.
+        const house_num = parseInt(house.id); // github v.
         return(
             <li id={`house-${house.id}`}>
                 <Link className="house-item-link" to={this.inputParams}> 

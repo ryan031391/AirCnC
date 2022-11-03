@@ -25,7 +25,7 @@ class WelcomeDisplay extends React.Component{
                     arr.push(element)
                 }
             });
-            console.log(arr)
+            // console.log(arr)
             if (arr.empty === []) {
                 return null
             } else {

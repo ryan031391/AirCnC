@@ -132,8 +132,22 @@ class HouseShow extends React.Component{
                 </div>
                 <div className='house-show-mid'>
                     <div className='house-show-mid-left'>
-                        <h3>Rating: {rating}&nbsp;&nbsp;&nbsp;Price: {house.price}</h3>
-                        <h3>Description: {house.description}</h3>
+                        <div>
+                            {/* <h3>Rating: </h3> */}
+                            <span><b>Rating:</b> &nbsp; {rating} </span>
+                            
+                        </div>
+                        <br/>
+                        <div>
+                            {/* <h3>Price: </h3>  */}
+                            <span><b>Price:</b> &nbsp; ${house.price} </span>                            
+                        </div>
+                        <br/>
+                        <div>
+                            {/* <h3>Description: </h3> */}
+                            <span><b>Description:</b> &nbsp; {house.description} </span>
+                        </div>
+
                         <div className='house-bottom'>
                             <div id="review">               
                                 <h2>Reviews: </h2>

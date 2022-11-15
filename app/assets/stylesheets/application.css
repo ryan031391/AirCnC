@@ -116,7 +116,8 @@ button {
   transition-duration: 0.4s; */
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 5%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   border-radius: 8px;
-  font-family: 'Circular', -apple-system, 'BlinkMacSystemFont', 'Roboto', 'Helvetica Neue', sans-serif;
+  font-family: 'Circular',-apple-system,'BlinkMacSystemFont','Roboto','Helvetica Neue',sans-serif;
+  /* font-family: 'Circular', -apple-system, 'BlinkMacSystemFont', 'Roboto', 'Helvetica Neue', sans-serif; */
   font-size: 16px;
   /* font-weight: 800; */
   background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
@@ -127,6 +128,10 @@ button {
   /* width: 80px;
   height: 30px; */
   transition-duration: 0.4s;
+  width: 120px;
+  height: 30px;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .Nav-logout:hover {
@@ -139,9 +144,13 @@ input {
   height: 20px;
 }
 
-h1 {
-  font-family: 'Viaoda Libre', cursive;
+.username-input {
+  margin-left: -24%;
 }
+
+/* h1 {
+  font-family: 'Viaoda Libre', cursive;
+} */
 
 #welcomepage {
   display: flex;
@@ -351,8 +360,8 @@ textarea {
 .session-form-left img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
-    object-position: left bottom;
+    /* object-fit: fill; */
+    object-position: 60%;
 }
 
 
@@ -362,6 +371,7 @@ textarea {
     box-sizing: border-box;
     padding-right: 110px;
     padding-top: 50px;
+    background-color: #faf7f0;
 }
 
 .top-img {
@@ -527,6 +537,8 @@ textarea {
   background-color: #FF385C;
   padding: 5px;
   cursor: pointer;
+  width: 53.31px;
+  height: 32.4px;
 }
 
 .search-button:hover {
@@ -620,7 +632,13 @@ option {
 .search-button-div {
   width: 120px;
   margin-top: 10px;
-  padding-top: 8px;
+  padding-top: 10px;
+}
+
+.search-button-div-2 {
+  width: 120px;
+  margin-top: 10px;
+  padding-top: 6px;
 }
 
 .Nav-logout {

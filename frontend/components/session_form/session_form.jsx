@@ -67,7 +67,7 @@ class SessionForm extends React.Component{
 
     handleGuest(){
 
-        if (this.props.formType === 'LogIn') {
+        if (this.props.formType === 'Login') {
             return(
                 <button onClick={this.guestSubmit}>Guest Login</button>
             )
@@ -83,7 +83,7 @@ class SessionForm extends React.Component{
                     </div>
                     
                     {this.renderErrors()}
-                    <label className="input">Username: &nbsp;
+                    <label className="username-input">Username: &nbsp;&nbsp;
                         <input 
                         type="text" 
                         value={this.state.username} 

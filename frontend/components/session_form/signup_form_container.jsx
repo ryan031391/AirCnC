@@ -8,7 +8,7 @@ import {openModal, closeModal} from '../../actions/modal_actions'
 
 const mapStateToProps = ({ errors }) => ({
     errors: errors.session,
-    formType: 'SignUp'
+    formType: 'Signup'
 })
 
 const mapDispatchToProps = dispatch => ({

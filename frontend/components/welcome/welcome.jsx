@@ -15,7 +15,7 @@ const Welcome = ({currentUser, reservations, logout, openModal, deleteRental, fe
                 <img src={window.backgroundUrl} />
             </div>
             <div className="session-form-right">
-                <h1>Welcome to AirCnC</h1>
+                <h1>AirCnC</h1>
                 <button id="welcomebutton" onClick={() => openModal('login')}>&nbsp;Login&nbsp;</button>
                 <br/><br/>
                 <button id="welcomebutton" onClick={() => openModal('signup')}>SignUp</button>

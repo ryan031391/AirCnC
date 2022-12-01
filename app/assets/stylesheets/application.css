@@ -50,9 +50,10 @@ html, body {
 nav{
   /* background-color: rgb(255, 255, 255); */
   /* box-shadow: 0px 16px 32px rgba(0, 0, 0 / 15%), 0px 3px 8px rgba(0, 0, 0 / 10%); */
-  background: linear-gradient(15deg, #4a4a4a, transparent);
+  /* background: linear-gradient(15deg, #4a4a4a, transparent); */
   height: 50px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 16px 0 rgb(0 0 0 / 5%),
+    0 6px 10px 0 rgb(0 0 0 / 9%);
   display: flex;
 }
 
@@ -532,9 +533,14 @@ textarea {
 
 .search-button {
   text-decoration: none;
-  box-shadow: 0 8px 16px 0 rgba(126, 125, 125, 0.561), 0 6px 20px 0 rgba(119, 118, 118, 0.19);
+  /* box-shadow: 0 8px 16px 0 rgba(126, 125, 125, 0.561), 0 6px 20px 0 rgba(119, 118, 118, 0.19); */
   border-radius: 8px;
-  font-family: 'Viaoda Libre', cursive;
+  font-family: Circular,
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    Helvetica Neue,
+    sans-serif;
   color: white;
   background-color: #FF385C;
   padding: 5px;
@@ -562,7 +568,7 @@ textarea {
   border: 1 solid #DDDDDD;
   border-radius: 32px;
   color: #222222;
-  box-shadow: 0px 16px 32px rgba(0, 0, 0, 15%), 0px 3px 8px rgba(0, 0, 0, 10%);
+  box-shadow: 0px 4px 32px rgba(0, 0, 0, 10%), 0px 3px 8px rgba(0, 0, 0, 10%);
   --big-search-form-background: #FFFFFF;
   background-color: #FFFFFF;
   width: 60%;
@@ -577,7 +583,7 @@ textarea {
   border: 1 solid #DDDDDD;
   border-radius: 32px;
   color: #222222;
-  box-shadow: 0px 16px 32px rgba(0, 0, 0, 15%), 0px 3px 8px rgba(0, 0, 0, 10%);
+  box-shadow: 0px 4px 32px rgba(0, 0, 0, 10%), 0px 3px 8px rgba(0, 0, 0, 10%);
   --big-search-form-background: #FFFFFF;
   background-color: #FFFFFF;
   width: 100%;

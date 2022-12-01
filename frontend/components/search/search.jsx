@@ -81,6 +81,9 @@ class Search extends React.Component{
                                 <option value="50"> 50 miles </option>  
                             </select>     
                         </div>
+
+
+
                         <div className='search-button-div'>
                             <Link className="search-button" to={this.inputParams()}>
                                 Search

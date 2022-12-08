@@ -94,6 +94,7 @@ body {
 #mainpage {
   background-size: 100%;
   background-repeat: no-repeat;
+  background-color: blueviolet;
   margin: 0;
   height: 100%; 
   text-align: -webkit-center;
